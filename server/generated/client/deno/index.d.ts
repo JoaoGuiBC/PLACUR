@@ -1185,6 +1185,22 @@ export namespace Prisma {
     ): Prisma__userClient<userGetPayload<T>>
 
     /**
+     * Create many Users.
+     *     @param {userCreateManyArgs} args - Arguments to create many Users.
+     *     @example
+     *     // Create many Users
+     *     const user = await prisma.user.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends userCreateManyArgs>(
+      args?: SelectSubset<T, userCreateManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
      * Delete a User.
      * @param {userDeleteArgs} args - Arguments to delete one User.
      * @example
@@ -1645,6 +1661,19 @@ export namespace Prisma {
 
 
   /**
+   * user createMany
+   */
+  export type userCreateManyArgs = {
+    /**
+     * The data used to create many users.
+     * 
+    **/
+    data: Enumerable<userCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
    * user update
    */
   export type userUpdateArgs = {
@@ -1771,6 +1800,14 @@ export namespace Prisma {
   // Based on
   // https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
 
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -1780,6 +1817,9 @@ export namespace Prisma {
 
 
   export const TransactionIsolationLevel: {
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
   };
 
@@ -1980,6 +2020,25 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type userCreateManyInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    document: string
+    phone: string
+    isPublicAgent: boolean
+    office?: string | null
+    address: string
+    neighborhood: string
+    city: string
+    haveVisualImpairment?: boolean
+    haveHearingImpairment?: boolean
+    hasPhysicalDisability?: boolean
+    isAdmin?: boolean
+    createdAt?: Date | string
+  }
+
   export type userUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -2029,6 +2088,7 @@ export namespace Prisma {
     contains?: string
     startsWith?: string
     endsWith?: string
+    mode?: QueryMode
     not?: NestedStringFilter | string
   }
 
@@ -2048,6 +2108,7 @@ export namespace Prisma {
     contains?: string
     startsWith?: string
     endsWith?: string
+    mode?: QueryMode
     not?: NestedStringNullableFilter | string | null
   }
 
@@ -2130,6 +2191,7 @@ export namespace Prisma {
     contains?: string
     startsWith?: string
     endsWith?: string
+    mode?: QueryMode
     not?: NestedStringWithAggregatesFilter | string
     _count?: NestedIntFilter
     _min?: NestedStringFilter
@@ -2155,6 +2217,7 @@ export namespace Prisma {
     contains?: string
     startsWith?: string
     endsWith?: string
+    mode?: QueryMode
     not?: NestedStringNullableWithAggregatesFilter | string | null
     _count?: NestedIntNullableFilter
     _min?: NestedStringNullableFilter
