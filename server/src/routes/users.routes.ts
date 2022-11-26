@@ -21,6 +21,16 @@ interface ICreateUser {
   isAdmin: boolean
 }
 
+usersRouter.get("/", async ({ request, response }) => {
+  const userId = String(request.url.searchParams.get("userId"))
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId }
+  })
+
+  return response.body = user
+})
+
 usersRouter.post("/", async ({ request, response }) => {
   const body = request.body()
 
