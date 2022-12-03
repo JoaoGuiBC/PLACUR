@@ -1,11 +1,11 @@
 import { Router } from "https://deno.land/x/oak@v11.1.0/mod.ts"
-import * as bcrypt from "https://deno.land/x/bcrypt@v0.4.1/mod.ts"
 
 import { prisma } from "../database/prismaClient.ts"
+import { createUser } from "../services/users/createUser.ts"
 
 const usersRouter = new Router()
 
-interface ICreateUser {
+export interface ICreateUser {
   email: string
   password: string
   name: string
@@ -34,61 +34,19 @@ usersRouter.get("/", async ({ request, response }) => {
 usersRouter.post("/", async ({ request, response }) => {
   const body = request.body()
 
-  const {
-    address,
-    city,
-    document,
-    email,
-    haveHearingImpairment,
-    haveVisualImpairment,
-    isAdmin,
-    isPublicAgent,
-    name,
-    neighborhood,
-    password,
-    phone,
-    office
-  } = await body.value as ICreateUser
+  const userData = await body.value as ICreateUser
+  const cleanedDocument = userData.document.replace(/\D/g,'')
 
-  const cleanedDocument = document.replace(/\D/g,'');
-
-  const checkIfEmailIsAlreadyUsed = await prisma.user.findUnique({
-    where: { email }
+  const checkIfUserAlreadyExists = await prisma.user.findFirst({
+    where: { email: userData.email, OR: { document: cleanedDocument } }
   })
 
-  if (checkIfEmailIsAlreadyUsed) {
+  if (checkIfUserAlreadyExists) {
     response.status = 406
-    return response.body = { message: "E-Mail já em uso, por favor insira outro" }
+    return response.body = { message: "E-mail e/ou CPF já em uso, por favor revise os dados" }
   }
 
-  const checkIfDocumentIsAlreadyUsed = await prisma.user.findUnique({
-    where: { document: cleanedDocument }
-  })
-
-  if (checkIfDocumentIsAlreadyUsed) {
-    response.status = 406
-    return response.body = { message: "CPF já em uso, por favor insira outro" }
-  }
-
-  const hashPassword = await bcrypt.hash(password)
-
-  const user = await prisma.user.create({
-    data: {
-      address,
-      city,
-      document: cleanedDocument,
-      email,
-      haveHearingImpairment,
-      haveVisualImpairment,
-      isAdmin,
-      isPublicAgent,
-      name,
-      neighborhood,
-      password: hashPassword,
-      phone,
-      office
-    },
-  })
+  const { user } = await createUser(userData, cleanedDocument)
 
   return response.body = user
 })
