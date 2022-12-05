@@ -6,7 +6,7 @@ export default function Home() {
       <h1>Hello World</h1>
 
       <CourseCard
-        image="https://github.com/vercel.png"
+        image="/course_placeholder.png"
         title="Formação Continuada Multiprofissional da equipe de visitadores dos Programas Bem-Estar da Família e Criança Feliz MODULO XVII"
         firstDate="16/11/2022"
         lastDate="16/11/2022"
@@ -15,7 +15,7 @@ export default function Home() {
         category="Workshop"
       />
       <CourseCard
-        image="https://github.com/vercel.png"
+        image="/course_placeholder.png"
         title="Primeiras intervenções nas urgências e emergências no ambiente escolar - SEDUC"
         firstDate="26/08/2022"
         lastDate="23/11/2022"
@@ -24,7 +24,7 @@ export default function Home() {
         category="Capacitação"
       />
       <CourseCard
-        image="https://github.com/vercel.png"
+        image="/course_placeholder.png"
         title="Anestesiologia"
         firstDate="29/09/22"
         lastDate="29/09/22"
