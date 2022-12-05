@@ -6,11 +6,6 @@ export const Container = styled('header', {
   alignItems: 'center',
   padding: '0 5rem',
   
-  position: 'absolute',
-  right: 0,
-  left: 0,
-  top: 0,
-
   background: '$blue800',
 })
 

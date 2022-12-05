@@ -3,6 +3,7 @@ import { CourseCard } from "../components/CourseCard";
 export default function Home() {
   return (
     <div>
+
       <CourseCard
         image="/course_image_placeholder.png"
         title="Formação Continuada Multiprofissional da equipe de visitadores dos Programas Bem-Estar da Família e Criança Feliz MODULO XVII"

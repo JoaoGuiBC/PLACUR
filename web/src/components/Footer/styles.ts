@@ -1,10 +1,6 @@
 import { styled } from "../../../stitches.config";
 
 export const Container = styled('footer', {
-  position: 'absolute',
-  left: 0,
-  right: 0,
-  bottom: 0,
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',

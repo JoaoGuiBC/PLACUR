@@ -10,7 +10,7 @@ export function Header() {
       <UserInfoContainer>
         <span>Olá, {'\n'} Faça login</span>
 
-        <Image src="/user_image_placeholder" alt="usuário" quality={100} width={40} height={40}  />
+        <Image src="/user_image_placeholder.png" alt="usuário" quality={100} width={40} height={40}  />
       </UserInfoContainer>
     </Container>
   )

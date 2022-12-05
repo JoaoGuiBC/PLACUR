@@ -3,8 +3,7 @@ import type { AppProps } from 'next/app'
 
 import { globalStyles } from '../styles/globalStyles'
 
-import { Footer } from '../components/Footer'
-import { Header } from '../components/Header'
+import Layout from '../components/Layout'
 
 export default function App({ Component, pageProps }: AppProps) {
   globalStyles()
@@ -15,13 +14,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>EGEPE</title>
       </Head>
 
-      <div>
-      <Header />
-
-      <Component {...pageProps} />
-
-      <Footer />
-      </div>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   )
 }
