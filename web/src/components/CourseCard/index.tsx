@@ -1,4 +1,6 @@
 import Image from "next/image"
+
+import { Tag } from "../Tag";
 import { Container, Content, InfoBar, Title } from "./styles"
 
 interface CourseCardProps {
@@ -8,9 +10,10 @@ interface CourseCardProps {
 	lastDate: string;
 	availability: number;
 	finished: boolean;
+	category: 'Workshop' | 'Palestra' | 'EAD' | 'Capacitação' | 'Seminário' | 'Outros';
 }
 
-export function CourseCard({ image, title, firstDate, lastDate, availability, finished }: CourseCardProps) {
+export function CourseCard({ image, title, firstDate, lastDate, availability, finished, category }: CourseCardProps) {
 	return (
 		<Container>
 			<Image src={image} alt={`imagem do curso ${title}`} width={88} height={88} />
@@ -38,6 +41,8 @@ export function CourseCard({ image, title, firstDate, lastDate, availability, fi
 					)}
 				</InfoBar>
 			</Content>
+
+			<Tag category={category}>{category}</Tag>
 		</Container>
 	)
 }

@@ -2,9 +2,11 @@ import { styled } from "../../../stitches.config"
 
 export const Container = styled('div', {
   display: 'flex',
+  position: 'relative',
   alignItems: 'center',
   padding: '0.5rem',
   gap: '0.5rem',
+  overflow: 'clip',
 
   width: '26rem',
 
