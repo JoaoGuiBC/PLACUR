@@ -29,8 +29,8 @@ export const { styled, getCssText, globalCss, theme, keyframes } = createStitche
 			green500: '#10C36D'
 		},
 		fonts: {
-			text: 'Inter, sans-serif',
-			heading: 'Poppins, sans-serif'
+			text: "'Inter', sans-serif",
+			heading: "'Poppins', sans-serif"
 		},
 		fontSizes: {
 			xs: '0.625rem',

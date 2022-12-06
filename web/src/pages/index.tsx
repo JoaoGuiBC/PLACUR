@@ -1,3 +1,4 @@
+import { Searchbar } from "../components/Searchbar"
 import { CourseCard } from "../components/CourseCard"
 import { SectionTitle } from "../components/SectionTItle"
 
@@ -6,6 +7,8 @@ import { CoursesContainer } from "./styles"
 export default function Home() {
   return (
     <>
+      <Searchbar placeholder="Buscar curso" />
+
       <SectionTitle>Cursos com inscrições abertas</SectionTitle>
       <CoursesContainer>
         <CourseCard
