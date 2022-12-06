@@ -24,9 +24,5 @@ export const UserInfoContainer = styled('div', {
     fontSize: '1rem',
 
     color: '$gray100',
-  },
-
-  '& img': {
-    borderRadius: 100
   }
 })

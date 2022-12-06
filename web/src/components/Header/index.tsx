@@ -1,5 +1,7 @@
 import Image from "next/image"
 
+import { Avatar } from "../Avatar"
+
 import { Container, UserInfoContainer } from "./styles"
 
 export function Header() {
@@ -10,7 +12,7 @@ export function Header() {
       <UserInfoContainer>
         <span>Olá, {'\n'} Faça login</span>
 
-        <Image src="/user_image_placeholder.png" alt="usuário" quality={100} width={40} height={40}  />
+        <Avatar />
       </UserInfoContainer>
     </Container>
   )
