@@ -1,6 +1,11 @@
 import { createStitches } from '@stitches/react'
 
-export const { styled, getCssText, globalCss, theme } = createStitches({
+export const { styled, getCssText, globalCss, theme, keyframes } = createStitches({
+	media: {
+		sm: '(min-width: 768px)',
+		md: '(min-width: 1024px)',
+		lg: '(min-width: 1360px)'
+	},
 	theme: {
 		colors: {
 			white: '#FFFFFF',
@@ -11,7 +16,7 @@ export const { styled, getCssText, globalCss, theme } = createStitches({
 			gray800: '#222226',
 			gray900: '#121214',
 
-			blue100: '#2686ED',
+			blue100: '#9686ED',
 			blue600: '#2F6D87',
 			blue800: '#214C5E',
 

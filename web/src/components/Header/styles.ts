@@ -4,9 +4,13 @@ export const Container = styled('header', {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  padding: '0 5rem',
-  
+  padding: '0 1rem',
+
   background: '$blue800',
+
+  '@md': {
+    padding: '0 5rem',
+  }
 })
 
 export const UserInfoContainer = styled('div', {

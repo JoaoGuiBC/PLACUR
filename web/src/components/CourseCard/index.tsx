@@ -8,12 +8,12 @@ interface CourseCardProps {
 	title: string;
 	firstDate: string;
 	lastDate: string;
-	availability: number;
-	finished: boolean;
+	availability?: number;
+	finished?: boolean;
 	category: 'Workshop' | 'Palestra' | 'EAD' | 'Capacitação' | 'Seminário' | 'Outros';
 }
 
-export function CourseCard({ image, title, firstDate, lastDate, availability, finished, category }: CourseCardProps) {
+export function CourseCard({ image, title, firstDate, lastDate, availability, finished = false, category }: CourseCardProps) {
 	return (
 		<Container>
 			<Image src={image} alt={`imagem do curso ${title}`} width={88} height={88} />
@@ -30,7 +30,7 @@ export function CourseCard({ image, title, firstDate, lastDate, availability, fi
 
 							<div>
 								<p>Vagas disponíveis:</p>
-								<span>{availability}</span>
+								<span>{availability ?? 'Sem limite de vagas'}</span>
 							</div>
 						</>
 					) : (

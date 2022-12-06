@@ -2,6 +2,7 @@ import Image from "next/image"
 import { MapPin, WhatsappLogo } from "phosphor-react"
 
 import { Info } from "../Info"
+import { SectionTitle } from "../SectionTItle"
 
 import { Contacts, Container, InstitutionalLogos } from "./styles"
 
@@ -9,7 +10,7 @@ export function Footer() {
   return (
     <Container>
       <Contacts>
-        <h1>Contato</h1>
+        <SectionTitle>Contato</SectionTitle>
         <Info Icon={MapPin}>Rua paraguai, 401 - Nações</Info>
         <Info Icon={WhatsappLogo}>Telefone: (47) 98821-2008</Info>
       </Contacts>

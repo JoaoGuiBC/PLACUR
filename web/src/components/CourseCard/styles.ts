@@ -8,12 +8,20 @@ export const Container = styled('div', {
   gap: '0.5rem',
   overflow: 'clip',
 
-  width: '26rem',
+  width: 'calc(100% - 1rem)',
 
   background: "$white",
 
   border: '1px solid $gray300',
-  borderRadius: '8px'
+  borderRadius: '8px',
+
+  transition: 'all 0.2s',
+
+  '&:hover': {
+    transform: 'translateY(-8px) scale(1.025)',
+    filter: 'drop-shadow(0 8px 8px rgba(0, 0, 0, 0.15))',
+    zIndex: 20
+  }
 })
 
 export const Content = styled('div', {
