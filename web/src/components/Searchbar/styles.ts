@@ -31,7 +31,7 @@ export const Button = styled('button', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '0 0.5rem',
+  paddingRight: '1rem',
 
   height: '100%',
 

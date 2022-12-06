@@ -1,5 +1,12 @@
 import { styled } from "../../stitches.config";
 
+export const FilterContainer = styled('div', {
+  display: 'flex',
+  gap: '1rem',
+
+  marginBottom: '2rem'
+})
+
 export const CoursesContainer = styled('div', {
   display: 'grid',
   gridTemplateColumns: '1fr',

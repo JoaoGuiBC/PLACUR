@@ -1,13 +1,38 @@
+import { Select } from "../components/Select"
 import { Searchbar } from "../components/Searchbar"
 import { CourseCard } from "../components/CourseCard"
 import { SectionTitle } from "../components/SectionTItle"
 
-import { CoursesContainer } from "./styles"
+import { CoursesContainer, FilterContainer } from "./styles"
+
+const axesOfKnowledge = [
+  { value: 'aposentadoria-e-previdencia', content: 'Aposentadoria e Previdência' },
+  { value: 'compras-publicas', content: 'Compras Públicas' },
+  { value: 'comunicacao', content: 'Comunicação' },
+  { value: 'desenvolvimento-pessoal', content: 'Desenvolvimento Pessoal' },
+  { value: 'direito-e-legislacao', content: 'Direito e Legislação' },
+  { value: 'educacao-e-docencia', content: 'Educação e Docência' },
+  { value: 'etica-e-cidadania', content: 'Ética e Cidadania' },
+  { value: 'gestao-da-informacao-e-do-conhecimento', content: 'Gestão da Informação e do Conhecimento' },
+  { value: 'gestao-de-pessoas', content: 'Gestão de Pessoas' },
+  { value: 'gestao-publica-e-de-politicas-publicas', content: 'Gestão Pública e de Políticas Públicas' },
+  { value: 'tecnologia-da-informacao-e-inovacao', content: 'Tecnologia da Informação e Inovação' },
+  { value: 'infraestrutura-e-logistica', content: 'Infraestrutura e Logística' },
+  { value: 'meio-ambiente', content: 'Meio Ambiente' },
+  { value: 'politicas-sociais', content: 'Políticas Sociais' },
+  { value: 'politicas-de-saude-e-esporte', content: 'Políticas de Saúde e Esporte' },
+  { value: 'seguranca-publica-e-transito', content: 'Segurança Pública e Trânsito' },
+  { value: 'transparencia-controle-e-participacao', content: 'Transparência, Controle e Participação' },
+  { value: 'turismo-e-cultura', content: 'Turismo e Cultura' },
+]
 
 export default function Home() {
   return (
     <>
-      <Searchbar placeholder="Buscar curso" />
+      <FilterContainer>
+        <Searchbar placeholder="Buscar curso" />
+        <Select content={axesOfKnowledge} />
+      </FilterContainer>
 
       <SectionTitle>Cursos com inscrições abertas</SectionTitle>
       <CoursesContainer>
