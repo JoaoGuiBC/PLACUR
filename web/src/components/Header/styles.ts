@@ -22,6 +22,7 @@ export const UserInfoContainer = styled('div', {
     fontFamily: '$text',
     fontWeight: '$medium',
     fontSize: '1rem',
+    textAlign: 'right',
 
     color: '$gray100',
   }

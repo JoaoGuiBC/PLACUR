@@ -6,7 +6,21 @@ export const SectionTitle = styled('h1', {
   fontFamily: '$heading',
   fontWeight: '$medium',
   fontSize: "$xl",
-  color: "$blue600"
+
+  variants: {
+    style: {
+      primary: {
+        color: "$blue600",
+      },
+      secondary: {
+        color: "$gray900",
+      }
+    }
+  },
+
+  defaultVariants: {
+    style: "primary"
+  }
 })
 
 interface SectionTitleProps extends ComponentProps<typeof SectionTitle> {}
