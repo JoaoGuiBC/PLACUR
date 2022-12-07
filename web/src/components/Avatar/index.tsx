@@ -1,15 +1,16 @@
 import { User } from 'phosphor-react'
+import { ComponentProps } from 'react';
 
 import { theme } from "../../../stitches.config"
 import { AvatarRoot, AvatarImage, AvatarFallback } from './styles'
 
-interface AvatarProps {
+interface AvatarProps extends ComponentProps<typeof AvatarRoot> {
   src?: string;
 }
 
-export function Avatar({src}: AvatarProps) {
+export function Avatar({ src, ...rest }: AvatarProps) {
   return (
-    <AvatarRoot>
+    <AvatarRoot {...rest}>
       <AvatarImage src={src} alt="usuário" />
       <AvatarFallback>
         <User size={40} color={theme.colors.gray900.value} weight="light" />
@@ -17,3 +18,5 @@ export function Avatar({src}: AvatarProps) {
     </AvatarRoot>
   )
 }
+
+Avatar.displayName = 'Avatar'

@@ -2,6 +2,7 @@ import { createStitches } from '@stitches/react'
 
 export const { styled, getCssText, globalCss, theme, keyframes } = createStitches({
 	media: {
+		xs: '(min-width: 600px)',
 		sm: '(min-width: 768px)',
 		md: '(min-width: 1024px)',
 		lg: '(min-width: 1360px)'

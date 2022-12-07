@@ -1,10 +1,10 @@
 import { MagnifyingGlass } from "phosphor-react"
-import type { InputHTMLAttributes } from "react"
+import type { ComponentProps } from "react"
 
 import { theme } from "../../../stitches.config"
 import { Container, Input, Button } from './styles'
 
-interface SearchbarProps extends InputHTMLAttributes<HTMLInputElement> {}
+interface SearchbarProps extends ComponentProps<typeof Input> {}
 
 export function Searchbar(props: SearchbarProps) {
   return (
@@ -16,3 +16,5 @@ export function Searchbar(props: SearchbarProps) {
     </Container>
   )
 }
+
+Searchbar.displayName = 'Searchbar'

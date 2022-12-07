@@ -1,13 +1,12 @@
 import type { IconProps } from "phosphor-react"
-import type { ForwardRefExoticComponent, ReactNode } from "react"
+import type { ComponentProps, ForwardRefExoticComponent } from "react"
 
 import { theme } from "../../../stitches.config"
 
 import { Container } from "./styles"
 
-interface InfoProps {
-  children: ReactNode;
-  Icon: ForwardRefExoticComponent<IconProps & React.RefAttributes<SVGSVGElement>>
+interface InfoProps extends ComponentProps<typeof Container> {
+  Icon: ForwardRefExoticComponent<IconProps & React.RefAttributes<SVGSVGElement>>;
 }
 
 export function Info({ children, Icon }: InfoProps) {
@@ -18,3 +17,5 @@ export function Info({ children, Icon }: InfoProps) {
     </Container>
   )
 }
+
+Info.displayName = 'Info'

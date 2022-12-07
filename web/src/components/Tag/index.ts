@@ -1,4 +1,6 @@
-import { styled } from "../../../stitches.config";
+import { ComponentProps } from "react"
+
+import { styled } from "../../../stitches.config"
 
 export const Tag = styled('div', {
   position: 'absolute',
@@ -41,3 +43,7 @@ export const Tag = styled('div', {
     }
   }
 })
+
+interface TagProps extends ComponentProps<typeof Tag> {}
+
+Tag.displayName = 'Tag'

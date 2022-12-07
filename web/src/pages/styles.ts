@@ -2,9 +2,14 @@ import { styled } from "../../stitches.config";
 
 export const FilterContainer = styled('div', {
   display: 'flex',
+  flexDirection: 'column',
   gap: '1rem',
 
-  marginBottom: '2rem'
+  marginBottom: '2rem',
+
+  '@xs': {
+    flexDirection: 'row'
+  }
 })
 
 export const CoursesContainer = styled('div', {

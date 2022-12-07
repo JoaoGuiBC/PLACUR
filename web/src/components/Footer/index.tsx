@@ -1,14 +1,17 @@
 import Image from "next/image"
 import { MapPin, WhatsappLogo } from "phosphor-react"
+import { ComponentProps } from "react"
 
 import { Info } from "../Info"
 import { SectionTitle } from "../SectionTItle"
 
 import { Contacts, Container, InstitutionalLogos } from "./styles"
 
-export function Footer() {
+interface FooterProps extends ComponentProps<typeof Container> {}
+
+export function Footer(props: FooterProps) {
   return (
-    <Container>
+    <Container {...props}>
       <Contacts>
         <SectionTitle>Contato</SectionTitle>
         <Info Icon={MapPin}>Rua paraguai, 401 - Nações</Info>
@@ -24,3 +27,5 @@ export function Footer() {
     </Container>
   )
 }
+
+Footer.displayName = 'Footer'

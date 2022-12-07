@@ -1,9 +1,10 @@
 import Image from "next/image"
+import { ComponentProps } from "react";
 
 import { Tag } from "../Tag";
 import { Container, Content, InfoBar, Title } from "./styles"
 
-interface CourseCardProps {
+interface CourseCardProps extends ComponentProps<typeof Container> {
 	image: string;
 	title: string;
 	firstDate: string;
@@ -13,9 +14,18 @@ interface CourseCardProps {
 	category: 'Workshop' | 'Palestra' | 'EAD' | 'Capacitação' | 'Seminário' | 'Outros';
 }
 
-export function CourseCard({ image, title, firstDate, lastDate, availability, finished = false, category }: CourseCardProps) {
+export function CourseCard({
+	image,
+	title,
+	firstDate,
+	lastDate,
+	availability,
+	finished = false,
+	category,
+	...rest
+}: CourseCardProps) {
 	return (
-		<Container>
+		<Container {...rest}>
 			<Image src={image} alt={`imagem do curso ${title}`} width={88} height={88} />
 			<Content>
 				<Title>{title}</Title>
@@ -46,3 +56,5 @@ export function CourseCard({ image, title, firstDate, lastDate, availability, fi
 		</Container>
 	)
 }
+
+CourseCard.displayName = 'CourseCard'

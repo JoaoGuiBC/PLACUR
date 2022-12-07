@@ -1,12 +1,15 @@
 import Image from "next/image"
+import { ComponentProps } from "react"
 
 import { Avatar } from "../Avatar"
 
 import { Container, UserInfoContainer } from "./styles"
 
-export function Header() {
+interface HeaderProps extends ComponentProps<typeof Container> {}
+
+export function Header(props: HeaderProps) {
   return (
-    <Container>
+    <Container {...props}>
       <Image src="/logo_egepe.png" alt="Logo EGEPE" quality={100} width={156} height={88} />
 
       <UserInfoContainer>
@@ -17,3 +20,5 @@ export function Header() {
     </Container>
   )
 }
+
+Header.displayName = 'Header'
