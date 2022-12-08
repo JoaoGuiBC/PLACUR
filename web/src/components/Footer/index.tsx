@@ -3,7 +3,7 @@ import { MapPin, WhatsappLogo } from "phosphor-react"
 import { ComponentProps } from "react"
 
 import { Info } from "../Info"
-import { SectionTitle } from "../SectionTItle"
+import { SectionTitle } from "../SectionTitle"
 
 import { Contacts, Container, InstitutionalLogos } from "./styles"
 

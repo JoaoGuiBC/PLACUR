@@ -21,6 +21,7 @@ export const SelectTrigger = styled(Select.Trigger, {
   gap: '0.5rem',
   alignItems: 'center',
   padding: '0 1rem',
+  height: '3rem',
   
   width: 'fit-content',
   

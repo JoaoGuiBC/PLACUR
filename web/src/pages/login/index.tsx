@@ -1,7 +1,8 @@
+import Link from "next/link"
 import { EnvelopeSimple, LockKey } from "phosphor-react"
 
 import { TextInput } from "../../components/TextInput"
-import { SectionTitle } from "../../components/SectionTItle"
+import { SectionTitle } from "../../components/SectionTitle"
 
 import { ButtonContainer, Container, Form, InputContainer, Span } from "./styles"
 import { Button } from "../../components/Button"
@@ -15,16 +16,18 @@ export default function Login() {
 
       <Form onSubmit={(e) => e.preventDefault()}>
         <InputContainer>
-        <TextInput Icon={EnvelopeSimple} type="email" placeholder="E-Mail" />
-        <TextInput Icon={LockKey} type="password" placeholder="Senha" />
+          <TextInput Icon={EnvelopeSimple} type="email" placeholder="E-Mail" />
+          <TextInput Icon={LockKey} type="password" placeholder="Senha" />
         </InputContainer>
 
-      <Span>Esqueci minha senha</Span>
+        <Link href="/recuperacao-de-senha">
+          <Span>Esqueci minha senha</Span>
+        </Link>
 
-      <ButtonContainer>
-      <Button type="submit">Login</Button>
-      <Button type="button" variant="secondary">Criar conta</Button>
-      </ButtonContainer>
+        <ButtonContainer>
+          <Button type="submit">Login</Button>
+          <Button type="button" variant="secondary">Criar conta</Button>
+        </ButtonContainer>
       </Form>
 
     </Container>

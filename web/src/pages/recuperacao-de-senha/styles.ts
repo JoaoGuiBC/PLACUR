@@ -12,8 +12,10 @@ export const Span = styled('span', {
   fontWeight: "$regular",
   fontSize: '$sm',
   color: '$gray800',
+  textAlign: 'center',
 
-  marginTop: '1rem'
+  marginTop: '1rem',
+  maxWidth: '21.5rem'
 })
 
 export const Form = styled('form', {
@@ -23,11 +25,7 @@ export const Form = styled('form', {
 
   width: '20.5rem',
 
-  marginTop: '2rem',
-
-  '& a': {
-    marginTop: '1rem'
-  }
+  marginTop: '2rem'
 })
 
 export const InputContainer = styled('div', {

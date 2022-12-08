@@ -6,7 +6,6 @@ export const Container = styled('footer', {
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: '0 1rem',
-  height: '11rem',
 
   backgroundColor: '$white',
 

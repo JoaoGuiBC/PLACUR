@@ -1,7 +1,7 @@
 import { Select } from "../components/Select"
 import { Searchbar } from "../components/Searchbar"
 import { CourseCard } from "../components/CourseCard"
-import { SectionTitle } from "../components/SectionTItle"
+import { SectionTitle } from "../components/SectionTitle"
 
 import { CoursesContainer, FilterContainer } from "./styles"
 

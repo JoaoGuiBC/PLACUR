@@ -7,6 +7,8 @@ export const FilterContainer = styled('div', {
 
   marginBottom: '2rem',
 
+  height: 'fit-content',
+
   '@xs': {
     flexDirection: 'row'
   }
