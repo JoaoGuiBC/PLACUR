@@ -49,14 +49,6 @@ export const SelectPortal = styled(Select.Portal, {
   }
 })
 
-export const Separator = styled('div', {
-  width: '100%',
-  height: '1px',
-  borderRadius: '8px',
-  margin: '8px 0',
-  backgroundColor: '$gray500'
-})
-
 export const SelectItem = styled(Select.Item, {
   userSelect: 'none',
   fontFamily: "$text",

@@ -1,9 +1,10 @@
-import * as BaseSelect from '@radix-ui/react-select'
+import { ComponentProps, useState } from 'react'
 import { CaretDown, CaretUp } from 'phosphor-react'
-import { ComponentProps, useState } from 'react';
+import * as BaseSelect from '@radix-ui/react-select'
 
+import { Separator } from '../Separator';
 import { theme } from '../../../stitches.config';
-import { SelectRoot, SelectTrigger, SelectPortal, Separator, SelectItem } from './styles'
+import { SelectRoot, SelectTrigger, SelectPortal, SelectItem } from './styles'
 
 interface SelectProps extends ComponentProps<typeof SelectRoot> {
   content: {
@@ -48,7 +49,7 @@ export function Select({ content }: SelectProps) {
 
                 {content.map(item => (
                   <div key={item.value}>
-                    <Separator />
+                    <Separator css={{ $$baseColor: '$colors$gray500', margin: '8px 0' }} />
                     <SelectItem value={item.value}>
                       <BaseSelect.ItemText>{item.text}</BaseSelect.ItemText>
                     </SelectItem>
