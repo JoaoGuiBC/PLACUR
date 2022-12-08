@@ -6,6 +6,7 @@ export const Container = styled('footer', {
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: '0 1rem',
+  height: '11rem',
 
   backgroundColor: '$white',
 
@@ -25,5 +26,5 @@ export const Contacts = styled('div', {
 
 export const InstitutionalLogos = styled('div', {
   display: 'grid',
-  gridTemplateColumns: '1fr 1fr'
+  gridTemplateColumns: '1fr 1fr',
 })

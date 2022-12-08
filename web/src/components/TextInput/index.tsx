@@ -8,16 +8,16 @@ interface TextInputProps extends ComponentProps<typeof Input> {
   Icon: ForwardRefExoticComponent<IconProps & React.RefAttributes<SVGSVGElement>>;
 }
 
-export function TextInput({ Icon, type, ...props }: TextInputProps) {
+export function TextInput({ Icon, type, placeholder, ...props }: TextInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
   return (
     <Container>
-      <Prefix>
+      <Prefix htmlFor={placeholder} >
         <Icon size={32} color={theme.colors.gray900.value} weight="light" />
       </Prefix>
 
-      <Input type={isPasswordVisible ? 'text' : type} {...props} />
+      <Input id={placeholder} type={isPasswordVisible ? 'text' : type} placeholder={placeholder} {...props} />
 
       {
         type === 'password' && (

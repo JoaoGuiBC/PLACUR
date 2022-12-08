@@ -12,7 +12,7 @@ export function Header(props: HeaderProps) {
   return (
     <Container {...props}>
       <Link href="/">
-        <Image src="/logo_egepe.png" alt="Logo EGEPE" quality={100} width={156} height={88} />
+        <Image src="/logo_egepe.png" alt="Logo EGEPE" quality={100} width={156} height={88} priority />
       </Link>
 
       <Link href="/login">

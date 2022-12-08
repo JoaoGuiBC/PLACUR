@@ -47,12 +47,12 @@ export function Select({ content }: SelectProps) {
                 </SelectItem>
 
                 {content.map(item => (
-                  <>
+                  <div key={item.value}>
                     <Separator />
                     <SelectItem value={item.value}>
                       <BaseSelect.ItemText>{item.text}</BaseSelect.ItemText>
                     </SelectItem>
-                  </>
+                  </div>
                 ))}
               </BaseSelect.Viewport>
 

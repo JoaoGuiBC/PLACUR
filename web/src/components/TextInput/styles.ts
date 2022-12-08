@@ -1,3 +1,5 @@
+import * as Label from '@radix-ui/react-label'
+
 import { styled } from "../../../stitches.config"
 
 export const Container = styled('div', {
@@ -14,7 +16,9 @@ export const Container = styled('div', {
   borderRadius: '8px'
 })
 
-export const Prefix = styled('div', {
+export const Prefix = styled(Label.Root, {
+  all: 'unset',
+
   boxSizing: 'border-box',
   display: 'flex',
   justifyContent: 'center',
@@ -34,6 +38,8 @@ export const Input = styled('input', {
   fontWeight: "$medium",
   fontSize: "$sm",
   color: "$blue900",
+
+  height: '100%',
 
   border: 'none',
   outline: 'none'
