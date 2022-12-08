@@ -1,4 +1,4 @@
-import { styled } from "../../../stitches.config"
+import { styled } from "../../../../stitches.config"
 
 export const Container = styled('div', {
   flex: 1,
@@ -28,11 +28,11 @@ export const Form = styled('form', {
   marginTop: '2rem'
 })
 
-export const ButtonContainer = styled('div', {
+export const InputContainer = styled('div', {
   display: "flex",
   flexDirection: 'column',
   gap: '0.5rem',
 
-  marginTop: '2rem',
   width: '100%',
+  marginBottom: '2rem',
 })
