@@ -7,6 +7,12 @@ export const { styled, getCssText, globalCss, theme, keyframes } = createStitche
 		md: '(min-width: 1024px)',
 		lg: '(min-width: 1360px)'
 	},
+	utils: {
+		bg: (value: string) => ({
+			backgroundColor: value,
+			borderColor: value 
+		})
+	},
 	theme: {
 		colors: {
 			white: '#FFFFFF',
