@@ -7,13 +7,14 @@ import { theme } from '../../../stitches.config';
 import { SelectRoot, SelectTrigger, SelectPortal, SelectItem } from './styles'
 
 interface SelectProps extends ComponentProps<typeof SelectRoot> {
+  emptyValue: string;
   content: {
     value: string;
     text: string;
   }[];
 }
 
-export function Select({ content }: SelectProps) {
+export function Select({ emptyValue, content }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [dataState, setDataState] = useState<'closed' | 'open'>('closed')
 
@@ -28,8 +29,8 @@ export function Select({ content }: SelectProps) {
 
   return (
     <SelectRoot open={isOpen} onOpenChange={handleOpenAndCloseSelect}>
-      <SelectTrigger aria-label="Eixos de conhecimento">
-        <BaseSelect.Value placeholder="Filtrar por eixo de conhecimento" />
+      <SelectTrigger aria-label={emptyValue}>
+        <BaseSelect.Value placeholder={emptyValue} />
 
         <BaseSelect.Icon>
           <CaretDown size={16} color={theme.colors.gray900.value} weight="light" />
@@ -44,7 +45,7 @@ export function Select({ content }: SelectProps) {
 
               <BaseSelect.Viewport>
                 <SelectItem value="">
-                  <BaseSelect.ItemText>Filtrar por eixo de conhecimento</BaseSelect.ItemText>
+                  <BaseSelect.ItemText>{emptyValue}</BaseSelect.ItemText>
                 </SelectItem>
 
                 {content.map(item => (

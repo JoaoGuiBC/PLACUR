@@ -23,7 +23,7 @@ const axesOfKnowledge = [
   { value: 'politicas-de-saude-e-esporte', text: 'Políticas de Saúde e Esporte' },
   { value: 'seguranca-publica-e-transito', text: 'Segurança Pública e Trânsito' },
   { value: 'transparencia-controle-e-participacao', text: 'Transparência, Controle e Participação' },
-  { value: 'turismo-e-cultura', text: 'Turismo e Cultura' },
+  { value: 'turismo-e-cultura', text: 'Turismo e Cultura' }
 ]
 
 export default function Home() {
@@ -31,7 +31,7 @@ export default function Home() {
     <>
       <FilterContainer>
         <Searchbar placeholder="Buscar curso" />
-        <Select content={axesOfKnowledge} />
+        <Select emptyValue="Filtrar por eixo de conhecimento" content={axesOfKnowledge} />
       </FilterContainer>
 
       <SectionTitle>Cursos com inscrições abertas</SectionTitle>

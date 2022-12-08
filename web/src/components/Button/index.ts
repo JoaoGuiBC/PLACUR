@@ -9,10 +9,12 @@ export const Button = styled('button', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  boxSizing: 'border-box',
 
   height: '3rem',
   overflow: 'clip',
   width: '100%',
+  padding: '0 1.5rem',
 
   fontFamily: '$text',
   fontWeight: "$regular",
