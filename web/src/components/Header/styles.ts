@@ -73,14 +73,15 @@ export const DropdownMenuArrow = styled(DropdownMenu.Arrow, {
 })
 
 export const DropdownMenuItem = styled(DropdownMenu.Item, {
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  gap: '0.25rem',
-
   width: '100%',
-  cursor: 'pointer',
   userSelect: 'none',
+
+  '& a': {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    gap: '0.25rem',
+  },
 
   '& span': {
     fontFamily: '$text',

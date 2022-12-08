@@ -49,8 +49,10 @@ export function Header(props: HeaderProps) {
             <DropdownMenuArrow />
 
             <DropdownMenuItem>
-              <IdentificationBadge size={24} color={theme.colors.gray900.value} weight="light" />
-              <span>Perfil</span>
+              <Link href="/perfil">
+                <IdentificationBadge size={24} color={theme.colors.gray900.value} weight="light" />
+                <span>Perfil</span>
+              </Link>
             </DropdownMenuItem>
 
             <Separator />
@@ -62,9 +64,9 @@ export function Header(props: HeaderProps) {
             <Separator />
             <DropdownMenu.Sub>
               <DropdownMenuSubTrigger>
-                  <Gear size={24} color={theme.colors.gray900.value} weight="light" />
-                  <span>Administrar plataforma</span>
-                  <CaretRight size={16} color={theme.colors.gray900.value} weight="light" />
+                <Gear size={24} color={theme.colors.gray900.value} weight="light" />
+                <span>Administrar plataforma</span>
+                <CaretRight size={16} color={theme.colors.gray900.value} weight="light" />
               </DropdownMenuSubTrigger>
 
               <DropdownMenu.Portal>
