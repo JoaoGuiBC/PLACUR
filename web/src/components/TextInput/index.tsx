@@ -18,7 +18,7 @@ export function TextInput({ Icon, type, placeholder, ...props }: TextInputProps)
       </Prefix>
 
       <InputContainer>
-        <Input id={placeholder} type={isPasswordVisible ? 'text' : type} placeholder="" {...props} />
+        <Input id={placeholder} type={isPasswordVisible ? 'text' : type} placeholder=" " {...props} />
         <Label htmlFor={placeholder}>{placeholder}</Label>
       </InputContainer>
 
