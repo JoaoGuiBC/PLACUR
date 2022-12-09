@@ -2,7 +2,7 @@ import { Eye, EyeSlash, IconProps } from "phosphor-react"
 import { ComponentProps, ForwardRefExoticComponent, useState } from "react"
 
 import { theme } from "../../../stitches.config"
-import { Container, Prefix, ShowPasswordButton, Input } from "./styles"
+import { Container, Prefix, ShowPasswordButton, Input, InputContainer, Label } from "./styles"
 
 interface TextInputProps extends ComponentProps<typeof Input> {
   Icon: ForwardRefExoticComponent<IconProps & React.RefAttributes<SVGSVGElement>>;
@@ -13,19 +13,22 @@ export function TextInput({ Icon, type, placeholder, ...props }: TextInputProps)
 
   return (
     <Container>
-      <Prefix htmlFor={placeholder} >
+      <Prefix htmlFor={placeholder}>
         <Icon size={32} color={theme.colors.gray900.value} weight="light" />
       </Prefix>
 
-      <Input id={placeholder} type={isPasswordVisible ? 'text' : type} placeholder={placeholder} {...props} />
+      <InputContainer>
+        <Input id={placeholder} type={isPasswordVisible ? 'text' : type} placeholder="" {...props} />
+        <Label htmlFor={placeholder}>{placeholder}</Label>
+      </InputContainer>
 
       {
         type === 'password' && (
           <ShowPasswordButton type="button" onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
             {
               isPasswordVisible
-              ? <EyeSlash size={16} color={theme.colors.gray900.value} weight="light" />
-              : <Eye size={16} color={theme.colors.gray900.value} weight="light" />
+                ? <EyeSlash size={16} color={theme.colors.gray900.value} weight="light" />
+                : <Eye size={16} color={theme.colors.gray900.value} weight="light" />
             }
           </ShowPasswordButton>
         )

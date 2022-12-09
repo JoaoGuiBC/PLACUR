@@ -1,4 +1,4 @@
-import { EnvelopeSimple, GlobeHemisphereWest, IdentificationCard, Phone } from "phosphor-react"
+import { EnvelopeSimple, GlobeHemisphereWest, IdentificationBadge, IdentificationCard, Phone } from "phosphor-react"
 
 import { Avatar } from "../../components/Avatar"
 import { Select } from "../../components/Select"
@@ -51,7 +51,7 @@ export default function Perfil() {
           <UserInfoSection>
             <Title>Dados pessoais</Title>
 
-            <TextInput Icon={EnvelopeSimple} placeholder="E-Mail" />
+            <TextInput Icon={IdentificationBadge} placeholder="Nome completo" />
             <TextInput Icon={IdentificationCard} placeholder="CPF" />
             <TextInput Icon={Phone} placeholder="Telefone" />
           </UserInfoSection>
