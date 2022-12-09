@@ -27,7 +27,8 @@ export const Container = styled('div', {
     fontFamily: '$text',
     fontWeight: '$regular',
     fontSize: '$sm',
-    color: '$gray900'
+    color: '$gray900',
+    cursor: 'pointer'
   }
 })
 

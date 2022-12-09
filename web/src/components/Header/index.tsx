@@ -57,8 +57,10 @@ export function Header(props: HeaderProps) {
 
             <Separator />
             <DropdownMenuItem>
-              <BookBookmark size={24} color={theme.colors.gray900.value} weight="light" />
-              <span>Meus cursos</span>
+              <Link href="/">
+                <BookBookmark size={24} color={theme.colors.gray900.value} weight="light" />
+                <span>Meus cursos</span>
+              </Link>
             </DropdownMenuItem>
 
             <Separator />
@@ -86,8 +88,10 @@ export function Header(props: HeaderProps) {
 
             <Separator />
             <DropdownMenuItem>
-              <SignOut size={24} color={theme.colors.gray900.value} weight="light" />
-              <span>Sair</span>
+              <Link href="/">
+                <SignOut size={24} color={theme.colors.gray900.value} weight="light" />
+                <span>Sair</span>
+              </Link>
             </DropdownMenuItem>
 
           </DropdownMenuContent>
