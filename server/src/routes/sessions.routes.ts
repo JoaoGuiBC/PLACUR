@@ -1,7 +1,9 @@
 import { Router } from "https://deno.land/x/oak@v11.1.0/mod.ts"
 import * as bcrypt from "https://deno.land/x/bcrypt@v0.4.1/mod.ts"
 
+import { AppError } from "../lib/appError.ts"
 import { prisma } from "../database/prismaClient.ts"
+
 import { createUserSession } from "../services/sessions/createUserSession.ts"
 
 const sessionsRouter = new Router()
@@ -18,21 +20,14 @@ sessionsRouter.post("/", async ({ request, response }) => {
   const user = await prisma.user.findFirst({
     where: { email }
   })
+  const passwordMatched = await bcrypt.compare(password, String(user?.password))
 
-  if (!user) {
-    response.status = 401
-    return response.body = { message: "Credenciais incorretas" }
+  if (!user || !passwordMatched) {
+    throw new AppError('Credenciais incorretas', 401)
   }
 
-  const passwordMatched = await bcrypt.compare(password, user.password);
-
-  if (!passwordMatched) {
-    response.status = 401
-    return response.body = { message: "Credenciais incorretas" }
-  }
-
-  const { token } = await createUserSession(user.id);
-  const {password: _, ...rest} = user;
+  const { token } = await createUserSession(user.id)
+  const { password: _, ...rest } = user
 
   return response.body = { token, user: {...rest} }
 })

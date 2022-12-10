@@ -1,6 +1,8 @@
 import { Router } from "https://deno.land/x/oak@v11.1.0/mod.ts"
 
+import { AppError } from "../lib/appError.ts"
 import { prisma } from "../database/prismaClient.ts"
+
 import { createUser } from "../services/users/createUser.ts"
 
 const usersRouter = new Router()
@@ -42,8 +44,7 @@ usersRouter.post("/", async ({ request, response }) => {
   })
 
   if (checkIfUserAlreadyExists) {
-    response.status = 406
-    return response.body = { message: "E-mail e/ou CPF já em uso, por favor revise os dados" }
+    throw new AppError('E-mail e/ou CPF já em uso, por favor revise os dados', 406)
   }
 
   const { user } = await createUser(userData, cleanedDocument)
