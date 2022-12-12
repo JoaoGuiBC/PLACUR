@@ -40,14 +40,16 @@ export const ShowPasswordButton = styled('button', {
   height: '2rem'
 })
 
-export const InputContainer = styled('div', {
+export const InputContainer = styled('fieldset', {
   flex: 1,
   height: '100%',
+  width: '100%',
   display: 'flex',
   flexDirection: 'column-reverse',
   position: 'relative',
 
   borderLeft: '1px solid $gray300',
+  borderRight: 'none',
 
   transition: 'all 0.2s',
 

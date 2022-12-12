@@ -6,6 +6,7 @@ import { Button } from "../../components/Button"
 import { Checkbox } from "../../components/Checkbox"
 import { TextInput } from "../../components/TextInput"
 import { SectionTitle } from "../../components/SectionTitle"
+import { UpdatePasswordDialog } from "../../components/Dialogs/UpdatePasswordDialog"
 
 import { theme } from "../../../stitches.config"
 import {
@@ -43,9 +44,7 @@ export default function Perfil() {
 
             <TextInput Icon={EnvelopeSimple} placeholder="E-Mail" />
 
-            <Button variant="secondary" size="min">
-              Alterar senha
-            </Button>
+            <UpdatePasswordDialog />
           </UserInfoSection>
 
           <UserInfoSection>
