@@ -74,8 +74,10 @@ export function Header(props: HeaderProps) {
               <DropdownMenu.Portal>
                 <DropdownMenuSubContent sideOffset={16}>
                   <DropdownMenuItem>
-                    <UsersFour size={24} color={theme.colors.gray900.value} weight="light" />
-                    <span>Usuários</span>
+                    <Link href="/admin/usuarios-da-plataforma">
+                      <UsersFour size={24} color={theme.colors.gray900.value} weight="light" />
+                      <span>Usuários</span>
+                    </Link>
                   </DropdownMenuItem>
 
                   <DropdownMenuItem>
