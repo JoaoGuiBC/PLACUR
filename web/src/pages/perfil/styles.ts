@@ -11,10 +11,15 @@ export const Container = styled('div', {
 
 export const PageHeader = styled('div', {
   display: 'flex',
+  flexDirection: 'column',
   gap: '0.5rem',
 
   '& input': {
     display: 'none'
+  },
+
+  '@sm': {
+    flexDirection: 'row'
   }
 })
 
@@ -35,9 +40,16 @@ export const Label = styled('label', {
 
 export const Content = styled('div', {
   display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
+  gridTemplateRows: '1fr 1fr',
+  gridGap: '1rem',
 
-  width: '100%'
+  width: '100%',
+
+  '@sm': {
+    gridTemplateColumns: '1fr 1fr',
+    gridTemplateRows: '1fr',
+    gridGap: '0'
+  }
 })
 
 export const UserInfoContainer = styled('div', {
