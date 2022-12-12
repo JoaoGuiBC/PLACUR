@@ -57,7 +57,7 @@ export function Header(props: HeaderProps) {
 
             <Separator />
             <DropdownMenuItem>
-              <Link href="/perfil/meusCursos">
+              <Link href="/perfil/meus-cursos">
                 <BookBookmark size={24} color={theme.colors.gray900.value} weight="light" />
                 <span>Meus cursos</span>
               </Link>
