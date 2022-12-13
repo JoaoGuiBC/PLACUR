@@ -1,5 +1,5 @@
-import { DotsThree } from "phosphor-react";
-import { theme } from "../../../stitches.config";
+import { DotsThree } from "phosphor-react"
+import { theme } from "../../../stitches.config"
 import { Container, PaginationItem } from "./styles"
 
 interface PaginationProps {
@@ -53,14 +53,14 @@ export function Pagination({
 
       {previousPages.length > 0 &&
         previousPages.map(page => (
-          <PaginationItem>{page}</PaginationItem>
+          <PaginationItem key={page}>{page}</PaginationItem>
         ))}
 
       <PaginationItem isCurrentPage={true}>{currentPage}</PaginationItem>
 
       {nextPages.length > 0 &&
         nextPages.map(page => (
-          <PaginationItem>{page}</PaginationItem>
+          <PaginationItem key={page}>{page}</PaginationItem>
         ))}
 
       {currentPage + siblingsCount < lastPage && (
