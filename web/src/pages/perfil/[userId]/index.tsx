@@ -1,14 +1,14 @@
 import { EnvelopeSimple, GlobeHemisphereWest, IdentificationBadge, IdentificationCard, Phone } from "phosphor-react"
 
-import { Avatar } from "../../components/Avatar"
-import { Select } from "../../components/Select"
-import { Button } from "../../components/Button"
-import { Checkbox } from "../../components/Checkbox"
-import { TextInput } from "../../components/TextInput"
-import { SectionTitle } from "../../components/SectionTitle"
-import { UpdatePasswordDialog } from "../../components/Dialogs/UpdatePasswordDialog"
+import { Avatar } from "../../../components/Avatar"
+import { Select } from "../../../components/Select"
+import { Button } from "../../../components/Button"
+import { Checkbox } from "../../../components/Checkbox"
+import { TextInput } from "../../../components/TextInput"
+import { SectionTitle } from "../../../components/SectionTitle"
+import { UpdatePasswordDialog } from "../../../components/Dialogs/UpdatePasswordDialog"
 
-import { theme } from "../../../stitches.config"
+import { theme } from "../../../../stitches.config"
 import {
   Container,
   PageHeader,

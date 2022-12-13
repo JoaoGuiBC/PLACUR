@@ -49,7 +49,7 @@ export function Header(props: HeaderProps) {
             <DropdownMenuArrow />
 
             <DropdownMenuItem>
-              <Link href="/perfil">
+              <Link href="/perfil/123">
                 <IdentificationBadge size={24} color={theme.colors.gray900.value} weight="light" />
                 <span>Perfil</span>
               </Link>
