@@ -81,8 +81,10 @@ export function Header(props: HeaderProps) {
                   </DropdownMenuItem>
 
                   <DropdownMenuItem>
-                    <BookBookmark size={24} color={theme.colors.gray900.value} weight="light" />
-                    <span>Cursos</span>
+                    <Link href="/admin/cursos-da-plataforma">
+                      <BookBookmark size={24} color={theme.colors.gray900.value} weight="light" />
+                      <span>Cursos</span>
+                    </Link>
                   </DropdownMenuItem>
                 </DropdownMenuSubContent>
               </DropdownMenu.Portal>
