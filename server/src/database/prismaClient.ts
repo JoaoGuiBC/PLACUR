@@ -10,6 +10,6 @@ const prisma = new PrismaClient({
       url: envVars.DATABASE_URL,
     },
   },
-});
+})
 
-export { prisma };
+export { prisma }

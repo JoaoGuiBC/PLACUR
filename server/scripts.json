@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev": {
+      "url": "src/server.ts",
+      "permissions": [
+        "allow-net",
+        "allow-env",
+        "allow-read"
+      ]
+    }
+  }
+}
