@@ -13,7 +13,7 @@ const key = await crypto.subtle.generateKey(
 
 const expirationTime = getNumericDate(60 * 60 * 6) // 6 hours
 
-export async function createUserSession({ email, password }: ICreateSession) {
+export async function startUserSession({ email, password }: ICreateSession) {
   const user = await prisma.user.findFirst({
     where: { email }
   })

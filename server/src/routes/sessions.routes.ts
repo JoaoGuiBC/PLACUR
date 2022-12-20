@@ -1,6 +1,6 @@
 import { Router } from "https://deno.land/x/oak@v11.1.0/mod.ts"
 
-import { createUserSession } from "../services/sessions/createUserSession.ts"
+import { startUserSession } from "../services/sessions/startUserSession.ts"
 
 const sessionsRouter = new Router()
 
@@ -13,7 +13,7 @@ sessionsRouter.post("/", async ({ request, response }) => {
   const body = request.body()
   const userCredentials = await body.value as ICreateSession
 
-  const session = await createUserSession(userCredentials)
+  const session = await startUserSession(userCredentials)
 
   return response.body = session
 })
