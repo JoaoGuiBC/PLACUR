@@ -12,7 +12,7 @@ Deno.test("Users services", async (test) => {
     password: "password123",
     name: "John Doe",
     document: "123.456.789-10",
-    phone: "99 99999-9999",
+    phone: "(99) 99999-9999",
     isPublicAgent: false,
     address: "Fake street, 123",
     neighborhood: "Fake neighborhood",

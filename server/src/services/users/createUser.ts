@@ -6,6 +6,7 @@ import { ICreateUser } from "../../routes/users.routes.ts"
 
 export async function createUser(userData: ICreateUser) {
   const cleanedDocument = userData.document.replace(/\D/g,'')
+  const cleanedPhone = userData.phone.replace(/\D/g,'')
 
   const checkIfUserAlreadyExists = await prisma.user.findFirst({
     where: { OR: [{ email: userData.email }, { document: cleanedDocument }] }
@@ -21,6 +22,7 @@ export async function createUser(userData: ICreateUser) {
     data: {
       ...userData,
       document: cleanedDocument,
+      phone: cleanedPhone,
       password: hashPassword
     },
   })
