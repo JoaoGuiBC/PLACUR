@@ -2,6 +2,7 @@ import { assertRejects, assertExists, assertEquals } from "https://deno.land/std
 
 import { AppError } from "../../lib/appError.ts"
 import { createUser } from "../users/createUser.ts"
+import { deleteUser } from "../users/deleteUser.ts"
 import { startUserSession } from "./startUserSession.ts"
 
 Deno.test("Sessions services", async (test) => {
@@ -53,4 +54,6 @@ Deno.test("Sessions services", async (test) => {
       )
     })
   })
+
+  await deleteUser("fakeSessionId")
 })

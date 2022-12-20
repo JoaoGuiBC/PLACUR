@@ -4,6 +4,7 @@ import { AppError } from "../../lib/appError.ts"
 
 import { createUser } from "./createUser.ts"
 import { getSingleUser } from "./getSingleUser.ts"
+import { deleteUser } from "./deleteUser.ts"
 
 Deno.test("Users services", async (test) => {
   const newUser = {
@@ -44,6 +45,17 @@ Deno.test("Users services", async (test) => {
 
       assertExists(user)
       assertEquals(user.email, "johndoe@example.com")
+    })
+  })
+
+  await test.step("User deletion", async (testStep) => {
+    await testStep.step("It should be able to delete a user using their ID", async () => {
+      await deleteUser("fakeUserId")
+
+      await assertRejects(
+        () => getSingleUser("fakeUserId"),
+        AppError,
+      )
     })
   })
 })
