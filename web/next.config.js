@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     domains: ['github.com'],
   },
+  pageExtensions: ['page.tsx', 'api.ts', 'api.tsx'],
 }
 
 module.exports = nextConfig
