@@ -1,5 +1,6 @@
 import { DotsThree } from 'phosphor-react'
-import { theme } from '../../../stitches.config'
+
+import { theme } from 'stitches.config'
 import { Container, PaginationItem } from './styles'
 
 interface PaginationProps {
@@ -17,7 +18,7 @@ function generatePagesArray(from: number, to: number) {
     .filter((page) => page > 0)
 }
 
-export function Pagination({
+function Pagination({
   totalCountOfRegisters,
   registerPerPage = 10,
   currentPage = 1,
@@ -84,3 +85,7 @@ export function Pagination({
     </Container>
   )
 }
+
+Pagination.displayName = 'Pagination'
+
+export { Pagination }

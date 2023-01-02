@@ -1,8 +1,8 @@
 import { LockKey } from 'phosphor-react'
 
-import { Button } from '../../../components/Button'
-import { TextInput } from '../../../components/TextInput'
-import { SectionTitle } from '../../../components/SectionTitle'
+import { Button } from '@components/Button'
+import { TextInput } from '@components/TextInput'
+import { SectionTitle } from '@components/SectionTitle'
 
 import { Container, Form, Span, InputContainer } from './styles'
 

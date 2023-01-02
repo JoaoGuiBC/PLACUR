@@ -1,6 +1,6 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
-import { styled } from '../../../stitches.config'
+import { styled } from 'stitches.config'
 
 export const Container = styled('header', {
   display: 'flex',

@@ -1,8 +1,8 @@
 import { ComponentProps } from 'react'
 
-import { styled } from '../../../stitches.config'
+import { styled } from 'stitches.config'
 
-export const SectionTitle = styled('h1', {
+const SectionTitle = styled('h1', {
   fontFamily: '$heading',
   fontWeight: '$medium',
   fontSize: '$xl',
@@ -27,3 +27,5 @@ export interface SectionTitleProps
   extends ComponentProps<typeof SectionTitle> {}
 
 SectionTitle.displayName = 'SectionTitle'
+
+export { SectionTitle }

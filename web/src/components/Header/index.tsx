@@ -14,7 +14,7 @@ import {
 import { Avatar } from '../Avatar'
 import { Separator } from '../Separator'
 
-import { theme } from '../../../stitches.config'
+import { theme } from 'stitches.config'
 import {
   Container,
   DropdownMenuContent,
@@ -27,7 +27,7 @@ import {
 
 interface HeaderProps extends ComponentProps<typeof Container> {}
 
-export function Header(props: HeaderProps) {
+function Header(props: HeaderProps) {
   return (
     <Container {...props}>
       <Link href="/">
@@ -149,3 +149,5 @@ export function Header(props: HeaderProps) {
 }
 
 Header.displayName = 'Header'
+
+export { Header }

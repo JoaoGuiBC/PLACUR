@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { EnvelopeSimple, LockKey } from 'phosphor-react'
 
-import { Button } from '../../components/Button'
-import { TextInput } from '../../components/TextInput'
-import { SectionTitle } from '../../components/SectionTitle'
+import { Button } from '@components/Button'
+import { TextInput } from '@components/TextInput'
+import { SectionTitle } from '@components/SectionTitle'
 
 import {
   ButtonContainer,

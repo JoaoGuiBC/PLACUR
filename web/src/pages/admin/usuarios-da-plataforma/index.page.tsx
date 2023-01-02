@@ -1,5 +1,5 @@
-import { Searchbar } from '../../../components/Searchbar'
-import { Pagination } from '../../../components/Pagination'
+import { Searchbar } from '@components/Searchbar'
+import { Pagination } from '@components/Pagination'
 
 import {
   SearchContainer,

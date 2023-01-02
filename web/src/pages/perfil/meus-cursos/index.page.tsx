@@ -1,5 +1,5 @@
-import { CourseCard } from '../../../components/CourseCard'
-import { SectionTitle } from '../../../components/SectionTitle'
+import { CourseCard } from '@components/CourseCard'
+import { SectionTitle } from '@components/SectionTitle'
 
 import {
   Container,

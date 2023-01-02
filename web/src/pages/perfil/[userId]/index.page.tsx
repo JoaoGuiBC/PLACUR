@@ -6,15 +6,17 @@ import {
   Phone,
 } from 'phosphor-react'
 
-import { Avatar } from '../../../components/Avatar'
-import { Select } from '../../../components/Select'
-import { Button } from '../../../components/Button'
-import { Checkbox } from '../../../components/Checkbox'
-import { TextInput } from '../../../components/TextInput'
-import { SectionTitle } from '../../../components/SectionTitle'
-import { UpdatePasswordDialog } from '../../../components/Dialogs/UpdatePasswordDialog'
+import { Avatar } from '@components/Avatar'
+import { Select } from '@components/Select'
+import { Button } from '@components/Button'
+import { Checkbox } from '@components/Checkbox'
+import { TextInput } from '@components/TextInput'
+import { SectionTitle } from '@components/SectionTitle'
+import { UpdatePasswordDialog } from '@components/Dialogs/UpdatePasswordDialog'
 
-import { theme } from '../../../../stitches.config'
+import { cityHallDivisions } from '@lib/selectValues'
+
+import { theme } from 'stitches.config'
 import {
   Container,
   PageHeader,
@@ -24,15 +26,6 @@ import {
   UserInfoSection,
   Title,
 } from './styles'
-
-const cityHallDivisions = [
-  { value: 'secretaria-de-educacao', text: 'Secretaria de Educação' },
-  {
-    value: 'secretaria-de-gestao-administrativa',
-    text: 'Secretaria de Gestão Administrativa',
-  },
-  { value: 'fundacao-cultural', text: 'Fundação Cultural' },
-]
 
 export default function Perfil() {
   return (

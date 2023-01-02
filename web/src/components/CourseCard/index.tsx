@@ -20,7 +20,7 @@ interface CourseCardProps extends ComponentProps<typeof Container> {
     | 'Outros'
 }
 
-export function CourseCard({
+function CourseCard({
   image,
   title,
   firstDate,
@@ -73,3 +73,5 @@ export function CourseCard({
 }
 
 CourseCard.displayName = 'CourseCard'
+
+export { CourseCard }

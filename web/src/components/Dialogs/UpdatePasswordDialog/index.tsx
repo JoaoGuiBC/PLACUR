@@ -4,6 +4,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { Button } from '../../Button'
 import { TextInput } from '../../TextInput'
 
+import { theme } from 'stitches.config'
 import {
   CloseButton,
   DialogContent,
@@ -12,9 +13,8 @@ import {
   DialogTitle,
   Form,
 } from './styles'
-import { theme } from '../../../../stitches.config'
 
-export function UpdatePasswordDialog() {
+function UpdatePasswordDialog() {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -66,3 +66,7 @@ export function UpdatePasswordDialog() {
     </Dialog.Root>
   )
 }
+
+UpdatePasswordDialog.displayName = 'UpdatePasswordDialog'
+
+export { UpdatePasswordDialog }

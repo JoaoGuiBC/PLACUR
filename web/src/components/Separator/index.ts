@@ -1,9 +1,9 @@
 import type { ComponentProps } from 'react'
 import * as BaseSeparator from '@radix-ui/react-separator'
 
-import { styled } from '../../../stitches.config'
+import { styled } from 'stitches.config'
 
-export const Separator = styled(BaseSeparator.Root, {
+const Separator = styled(BaseSeparator.Root, {
   $$baseColor: '$colors$gray300',
 
   backgroundColor: '$$baseColor',
@@ -30,3 +30,5 @@ export const Separator = styled(BaseSeparator.Root, {
 export interface SeparatorProps extends ComponentProps<typeof Separator> {}
 
 Separator.displayName = 'Separator'
+
+export { Separator }

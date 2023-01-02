@@ -1,6 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
 
-import { styled } from '../../../../stitches.config'
+import { styled } from 'stitches.config'
 
 export const DialogOverlay = styled(Dialog.Overlay, {
   inset: 0,

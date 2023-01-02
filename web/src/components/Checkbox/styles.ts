@@ -1,5 +1,6 @@
 import * as Checkbox from '@radix-ui/react-checkbox'
-import { keyframes, styled } from '../../../stitches.config'
+
+import { keyframes, styled } from 'stitches.config'
 
 const slideIn = keyframes({
   from: {

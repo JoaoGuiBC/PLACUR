@@ -8,7 +8,7 @@ export interface CheckboxProps
   title: string
 }
 
-export function Checkbox({ title, ...props }: CheckboxProps) {
+function Checkbox({ title, ...props }: CheckboxProps) {
   return (
     <Container>
       <CheckboxContainer {...props} id={title}>
@@ -24,3 +24,5 @@ export function Checkbox({ title, ...props }: CheckboxProps) {
 }
 
 Checkbox.displayName = 'Checkbox'
+
+export { Checkbox }

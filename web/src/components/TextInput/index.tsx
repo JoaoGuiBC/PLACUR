@@ -6,7 +6,7 @@ import {
 } from 'react'
 import { Eye, EyeSlash, IconProps } from 'phosphor-react'
 
-import { theme } from '../../../stitches.config'
+import { theme } from 'stitches.config'
 import {
   Container,
   Prefix,
@@ -20,12 +20,7 @@ interface TextInputProps extends ComponentProps<typeof Input> {
   Icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>
 }
 
-export function TextInput({
-  Icon,
-  type,
-  placeholder,
-  ...props
-}: TextInputProps) {
+function TextInput({ Icon, type, placeholder, ...props }: TextInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
   return (
@@ -65,3 +60,5 @@ export function TextInput({
 }
 
 TextInput.displayName = 'TextInput'
+
+export { TextInput }

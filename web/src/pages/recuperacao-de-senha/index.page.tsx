@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import { EnvelopeSimple } from 'phosphor-react'
 
-import { Button } from '../../components/Button'
-import { TextInput } from '../../components/TextInput'
-import { SectionTitle } from '../../components/SectionTitle'
+import { Button } from '@components/Button'
+import { TextInput } from '@components/TextInput'
+import { SectionTitle } from '@components/SectionTitle'
 
 import { ButtonContainer, Container, Form, Span } from './styles'
 

@@ -9,7 +9,7 @@ import { Contacts, Container, InstitutionalLogos } from './styles'
 
 interface FooterProps extends ComponentProps<typeof Container> {}
 
-export function Footer(props: FooterProps) {
+function Footer(props: FooterProps) {
   return (
     <Container {...props}>
       <Contacts>
@@ -49,3 +49,5 @@ export function Footer(props: FooterProps) {
 }
 
 Footer.displayName = 'Footer'
+
+export { Footer }

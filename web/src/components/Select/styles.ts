@@ -1,6 +1,6 @@
 import * as Select from '@radix-ui/react-select'
 
-import { styled, keyframes } from '../../../stitches.config'
+import { styled, keyframes } from 'stitches.config'
 
 const appear = keyframes({
   '0%': { transform: 'scale(0)', opacity: 0 },

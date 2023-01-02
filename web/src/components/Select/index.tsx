@@ -3,7 +3,8 @@ import { CaretDown, CaretUp } from 'phosphor-react'
 import * as BaseSelect from '@radix-ui/react-select'
 
 import { Separator } from '../Separator'
-import { theme } from '../../../stitches.config'
+
+import { theme } from 'stitches.config'
 import { SelectRoot, SelectTrigger, SelectPortal, SelectItem } from './styles'
 
 interface SelectProps extends ComponentProps<typeof SelectRoot> {
@@ -14,7 +15,7 @@ interface SelectProps extends ComponentProps<typeof SelectRoot> {
   }[]
 }
 
-export function Select({ emptyValue, content }: SelectProps) {
+function Select({ emptyValue, content }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [dataState, setDataState] = useState<'closed' | 'open'>('closed')
 
@@ -72,3 +73,7 @@ export function Select({ emptyValue, content }: SelectProps) {
     </SelectRoot>
   )
 }
+
+Select.displayName = 'Select'
+
+export { Select }

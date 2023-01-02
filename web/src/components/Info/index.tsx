@@ -5,15 +5,14 @@ import type {
 } from 'react'
 import type { IconProps } from 'phosphor-react'
 
-import { theme } from '../../../stitches.config'
-
+import { theme } from 'stitches.config'
 import { Container } from './styles'
 
 interface InfoProps extends ComponentProps<typeof Container> {
   Icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>
 }
 
-export function Info({ children, Icon }: InfoProps) {
+function Info({ children, Icon }: InfoProps) {
   return (
     <Container>
       <Icon size={32} color={theme.colors.gray900.value} weight="light" />
@@ -23,3 +22,5 @@ export function Info({ children, Icon }: InfoProps) {
 }
 
 Info.displayName = 'Info'
+
+export { Info }

@@ -1,8 +1,8 @@
 import { ComponentProps } from 'react'
 
-import { styled } from '../../../stitches.config'
+import { styled } from 'stitches.config'
 
-export const Button = styled('button', {
+const Button = styled('button', {
   all: 'unset',
   $$baseColor: '$colors$blue600',
 
@@ -110,3 +110,5 @@ export const Button = styled('button', {
 export interface ButtonProps extends ComponentProps<typeof Button> {}
 
 Button.displayName = 'Button'
+
+export { Button }
