@@ -1,6 +1,6 @@
-import { ComponentProps } from "react"
+import { ComponentProps } from 'react'
 
-import { styled } from "../../../stitches.config"
+import { styled } from '../../../stitches.config'
 
 export const Button = styled('button', {
   all: 'unset',
@@ -17,7 +17,7 @@ export const Button = styled('button', {
   padding: '0 1.5rem',
 
   fontFamily: '$text',
-  fontWeight: "$regular",
+  fontWeight: '$regular',
   fontSize: '$sm',
 
   borderWidth: '2px',
@@ -29,18 +29,18 @@ export const Button = styled('button', {
 
   '&:disabled': {
     cursor: 'not-allowed',
-    filter: 'brightness(75%)'
+    filter: 'brightness(75%)',
   },
 
   '& svg': {
     '& path': {
       transition: 'all 0.2s',
-      stroke: '$$baseColor'
+      stroke: '$$baseColor',
     },
     '& line': {
       transition: 'all 0.2s',
-      stroke: '$$baseColor'
-    }
+      stroke: '$$baseColor',
+    },
   },
 
   variants: {
@@ -52,8 +52,8 @@ export const Button = styled('button', {
 
         '&:not(:disabled):hover': {
           background: 'transparent',
-          color: '$$baseColor'
-        }
+          color: '$$baseColor',
+        },
       },
 
       secondary: {
@@ -65,14 +65,14 @@ export const Button = styled('button', {
 
         '&:not(:disabled):hover': {
           background: '$$baseColor',
-          color: '$white'
-        }
+          color: '$white',
+        },
       },
 
       withIcon: {
         borderColor: '$$baseColor',
         background: '$transparent',
-        
+
         height: 'fit-content',
         padding: '0.5rem',
 
@@ -81,32 +81,32 @@ export const Button = styled('button', {
 
           '& svg': {
             '& path': {
-              stroke: '$white'
+              stroke: '$white',
             },
             '& line': {
-              stroke: '$white'
-            }
-          }
-        }
-      }
+              stroke: '$white',
+            },
+          },
+        },
+      },
     },
 
     size: {
       min: {
-        width: 'fit-content'
+        width: 'fit-content',
       },
       max: {
-        width: '100%'
-      }
-    }
+        width: '100%',
+      },
+    },
   },
 
   defaultVariants: {
     variant: 'primary',
-    size: 'max'
-  }
+    size: 'max',
+  },
 })
 
-interface ButtonProps extends ComponentProps<typeof Button> {}
+export interface ButtonProps extends ComponentProps<typeof Button> {}
 
 Button.displayName = 'Button'

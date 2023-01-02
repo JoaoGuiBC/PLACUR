@@ -4,11 +4,11 @@ import { styled, keyframes } from '../../../stitches.config'
 
 const appear = keyframes({
   '0%': { transform: 'scale(0)', opacity: 0 },
-  '100%': { transform: 'scale(1)', opacity: 1 }
+  '100%': { transform: 'scale(1)', opacity: 1 },
 })
 const disappear = keyframes({
   '0%': { transform: 'scale(1)', opacity: 1 },
-  '100%': { transform: 'scale(0)', opacity: 0 }
+  '100%': { transform: 'scale(0)', opacity: 0 },
 })
 
 export const SelectRoot = styled(Select.Root, {
@@ -22,16 +22,16 @@ export const SelectTrigger = styled(Select.Trigger, {
   alignItems: 'center',
   padding: '0 1rem',
   height: '3rem',
-  
+
   width: 'fit-content',
-  
-  fontFamily: "$text",
-  fontWeight: "$medium",
-  fontSize: "$sm",
-  
+
+  fontFamily: '$text',
+  fontWeight: '$medium',
+  fontSize: '$sm',
+
   background: '$white',
   border: '1px solid $gray300',
-  borderRadius: '8px'
+  borderRadius: '8px',
 })
 
 export const SelectPortal = styled(Select.Portal, {
@@ -42,21 +42,21 @@ export const SelectPortal = styled(Select.Portal, {
   zIndex: '30',
 
   '&[data-state="open"]': {
-    animation: `${appear} 0.2s`
+    animation: `${appear} 0.2s`,
   },
   '&[data-state="closed"]': {
-    animation: `${disappear} 0.2s`
-  }
+    animation: `${disappear} 0.2s`,
+  },
 })
 
 export const SelectItem = styled(Select.Item, {
   userSelect: 'none',
-  fontFamily: "$text",
-  fontWeight: "$regular",
-  fontSize: "$sm",
+  fontFamily: '$text',
+  fontWeight: '$regular',
+  fontSize: '$sm',
   cursor: 'pointer',
 
   '&:hover': {
-    backgroundColor: '$gray100'
-  }
+    backgroundColor: '$gray100',
+  },
 })

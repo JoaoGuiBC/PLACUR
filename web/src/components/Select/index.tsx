@@ -2,16 +2,16 @@ import { ComponentProps, useState } from 'react'
 import { CaretDown, CaretUp } from 'phosphor-react'
 import * as BaseSelect from '@radix-ui/react-select'
 
-import { Separator } from '../Separator';
-import { theme } from '../../../stitches.config';
+import { Separator } from '../Separator'
+import { theme } from '../../../stitches.config'
 import { SelectRoot, SelectTrigger, SelectPortal, SelectItem } from './styles'
 
 interface SelectProps extends ComponentProps<typeof SelectRoot> {
-  emptyValue: string;
+  emptyValue: string
   content: {
-    value: string;
-    text: string;
-  }[];
+    value: string
+    text: string
+  }[]
 }
 
 export function Select({ emptyValue, content }: SelectProps) {
@@ -24,7 +24,7 @@ export function Select({ emptyValue, content }: SelectProps) {
     } else {
       setTimeout(() => setIsOpen(false), 200)
     }
-    setDataState(() => dataState === 'open' ? 'closed' : 'open')
+    setDataState(() => (dataState === 'open' ? 'closed' : 'open'))
   }
 
   return (
@@ -33,39 +33,42 @@ export function Select({ emptyValue, content }: SelectProps) {
         <BaseSelect.Value placeholder={emptyValue} />
 
         <BaseSelect.Icon>
-          <CaretDown size={16} color={theme.colors.gray900.value} weight="light" />
+          <CaretDown
+            size={16}
+            color={theme.colors.gray900.value}
+            weight="light"
+          />
         </BaseSelect.Icon>
       </SelectTrigger>
 
-        <SelectPortal data-state={dataState}>
-          <BaseSelect.Content>
-              <BaseSelect.ScrollUpButton>
-                <CaretUp />
-              </BaseSelect.ScrollUpButton>
+      <SelectPortal data-state={dataState}>
+        <BaseSelect.Content>
+          <BaseSelect.ScrollUpButton>
+            <CaretUp />
+          </BaseSelect.ScrollUpButton>
 
-              <BaseSelect.Viewport>
-                <SelectItem value="">
-                  <BaseSelect.ItemText>{emptyValue}</BaseSelect.ItemText>
+          <BaseSelect.Viewport>
+            <SelectItem value="">
+              <BaseSelect.ItemText>{emptyValue}</BaseSelect.ItemText>
+            </SelectItem>
+
+            {content.map((item) => (
+              <div key={item.value}>
+                <Separator
+                  css={{ $$baseColor: '$colors$gray500', margin: '8px 0' }}
+                />
+                <SelectItem value={item.value}>
+                  <BaseSelect.ItemText>{item.text}</BaseSelect.ItemText>
                 </SelectItem>
+              </div>
+            ))}
+          </BaseSelect.Viewport>
 
-                {content.map(item => (
-                  <div key={item.value}>
-                    <Separator css={{ $$baseColor: '$colors$gray500', margin: '8px 0' }} />
-                    <SelectItem value={item.value}>
-                      <BaseSelect.ItemText>{item.text}</BaseSelect.ItemText>
-                    </SelectItem>
-                  </div>
-                ))}
-              </BaseSelect.Viewport>
-
-              <BaseSelect.ScrollDownButton>
-                <CaretDown />
-              </BaseSelect.ScrollDownButton>
-
-          </BaseSelect.Content>
-        </SelectPortal>
-    
-
+          <BaseSelect.ScrollDownButton>
+            <CaretDown />
+          </BaseSelect.ScrollDownButton>
+        </BaseSelect.Content>
+      </SelectPortal>
     </SelectRoot>
   )
 }

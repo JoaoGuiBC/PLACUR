@@ -28,8 +28,8 @@ export const Container = styled('div', {
     fontWeight: '$regular',
     fontSize: '$sm',
     color: '$gray900',
-    cursor: 'pointer'
-  }
+    cursor: 'pointer',
+  },
 })
 
 export const CheckboxContainer = styled(Checkbox.Root, {

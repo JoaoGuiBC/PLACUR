@@ -1,7 +1,14 @@
-import { Searchbar } from "../../../components/Searchbar"
-import { Pagination } from "../../../components/Pagination"
+import { Searchbar } from '../../../components/Searchbar'
+import { Pagination } from '../../../components/Pagination'
 
-import { SearchContainer, Table, TableBody, TableRow, Separator, SeparatorTableRow } from "./styles"
+import {
+  SearchContainer,
+  Table,
+  TableBody,
+  TableRow,
+  Separator,
+  SeparatorTableRow,
+} from './styles'
 
 export default function AppUsers() {
   return (
@@ -11,7 +18,11 @@ export default function AppUsers() {
         <Searchbar placeholder="Pesquisar CPF" />
       </SearchContainer>
 
-      <Pagination totalCountOfRegisters={100} currentPage={4} registerPerPage={10} />
+      <Pagination
+        totalCountOfRegisters={100}
+        currentPage={4}
+        registerPerPage={10}
+      />
 
       <Table>
         <thead>
@@ -34,7 +45,9 @@ export default function AppUsers() {
           </TableRow>
 
           <SeparatorTableRow>
-            <td><Separator /></td>
+            <td>
+              <Separator />
+            </td>
           </SeparatorTableRow>
 
           <TableRow>
@@ -46,7 +59,9 @@ export default function AppUsers() {
           </TableRow>
 
           <SeparatorTableRow>
-            <td><Separator /></td>
+            <td>
+              <Separator />
+            </td>
           </SeparatorTableRow>
 
           <TableRow>

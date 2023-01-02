@@ -1,9 +1,11 @@
 import { Check } from 'phosphor-react'
 import { ComponentProps } from 'react'
+
 import { Container, CheckboxContainer, CheckboxIndicator } from './styles'
 
-export interface CheckboxProps extends ComponentProps<typeof CheckboxContainer> {
-  title: string;
+export interface CheckboxProps
+  extends ComponentProps<typeof CheckboxContainer> {
+  title: string
 }
 
 export function Checkbox({ title, ...props }: CheckboxProps) {
@@ -14,7 +16,9 @@ export function Checkbox({ title, ...props }: CheckboxProps) {
           <Check weight="bold" />
         </CheckboxIndicator>
       </CheckboxContainer>
-      <label className="Label" htmlFor={title}>{title}</label>
+      <label className="Label" htmlFor={title}>
+        {title}
+      </label>
     </Container>
   )
 }

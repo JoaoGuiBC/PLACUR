@@ -1,6 +1,6 @@
 import * as BaseSeparator from '@radix-ui/react-separator'
 
-import { styled } from "../../../../stitches.config"
+import { styled } from '../../../../stitches.config'
 
 export const SearchContainer = styled('div', {
   display: 'flex',
@@ -11,12 +11,12 @@ export const SearchContainer = styled('div', {
   marginBottom: '2rem',
 
   '@xs': {
-    flexDirection: 'row'
-  }
+    flexDirection: 'row',
+  },
 })
 
 export const Table = styled('table', {
-  marginTop: '0.5rem'
+  marginTop: '0.5rem',
 })
 
 export const TableBody = styled('tbody', {
@@ -29,12 +29,12 @@ export const TableBody = styled('tbody', {
   },
 
   '& tr:first-child': {
-    borderRadius: '8px 8px 0 0'
+    borderRadius: '8px 8px 0 0',
   },
 
   '& tr:last-child': {
-    borderRadius: '0 0 8px 8px'
-  }
+    borderRadius: '0 0 8px 8px',
+  },
 })
 
 export const TableRow = styled('tr', {
@@ -43,21 +43,21 @@ export const TableRow = styled('tr', {
   padding: '0 1rem',
 
   '@sm': {
-    gridTemplateColumns: '2fr 1fr 1fr'
+    gridTemplateColumns: '2fr 1fr 1fr',
   },
   '@md': {
-    gridTemplateColumns: '2fr 1fr 1fr 1fr'
+    gridTemplateColumns: '2fr 1fr 1fr 1fr',
   },
   '@lg': {
-    gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr'
+    gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr',
   },
 
   '& th': {
     fontFamily: '$heading',
-    fontWeight: "$medium",
-    fontSize: "$lg",
+    fontWeight: '$medium',
+    fontSize: '$lg',
     color: '$gray900',
-    textAlign: 'left'
+    textAlign: 'left',
   },
 
   '& td:last-child': {
@@ -65,31 +65,31 @@ export const TableRow = styled('tr', {
     display: 'none',
 
     '@md': {
-      display: 'initial'
-    }
+      display: 'initial',
+    },
   },
   '& th:last-child': {
     textAlign: 'right',
     display: 'none',
 
     '@md': {
-      display: 'initial'
-    }
+      display: 'initial',
+    },
   },
 
   '& th:nth-child(2)': {
     display: 'none',
 
     '@lg': {
-      display: 'initial'
-    }
+      display: 'initial',
+    },
   },
   '& td:nth-child(2)': {
     display: 'none',
 
     '@lg': {
-      display: 'initial'
-    }
+      display: 'initial',
+    },
   },
 
   '& th:nth-child(4)': {
@@ -97,10 +97,10 @@ export const TableRow = styled('tr', {
     textAlign: 'right',
 
     '@sm': {
-      display: 'initial'
+      display: 'initial',
     },
     '@md': {
-      textAlign: 'left'
+      textAlign: 'left',
     },
   },
   '& td:nth-child(4)': {
@@ -108,10 +108,10 @@ export const TableRow = styled('tr', {
     textAlign: 'right',
 
     '@sm': {
-      display: 'initial'
+      display: 'initial',
     },
     '@md': {
-      textAlign: 'left'
+      textAlign: 'left',
     },
   },
 })
@@ -119,7 +119,7 @@ export const TableRow = styled('tr', {
 export const SeparatorTableRow = styled('tr', {
   display: 'grid',
   gridTemplateColumns: '1fr',
-  padding: '0 1rem !important'
+  padding: '0 1rem !important',
 })
 
 export const Separator = styled(BaseSeparator.Root, {
@@ -127,5 +127,5 @@ export const Separator = styled(BaseSeparator.Root, {
   height: '1px',
 
   borderRadius: '8px',
-  backgroundColor: '$gray800'
+  backgroundColor: '$gray800',
 })

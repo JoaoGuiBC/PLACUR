@@ -13,20 +13,20 @@ export const Separator = styled(BaseSeparator.Root, {
     direction: {
       horizontal: {
         width: '100%',
-        height: '1px'
+        height: '1px',
       },
       vertical: {
         width: '1px',
-        height: '100%'
-      }
-    }
+        height: '100%',
+      },
+    },
   },
 
   defaultVariants: {
-    direction: 'horizontal'
-  }
+    direction: 'horizontal',
+  },
 })
 
-interface SeparatorProps extends ComponentProps<typeof Separator> {}
+export interface SeparatorProps extends ComponentProps<typeof Separator> {}
 
 Separator.displayName = 'Separator'

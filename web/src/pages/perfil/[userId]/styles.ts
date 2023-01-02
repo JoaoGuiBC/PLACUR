@@ -1,4 +1,4 @@
-import { styled } from "../../../../stitches.config"
+import { styled } from '../../../../stitches.config'
 
 export const Container = styled('div', {
   display: 'flex',
@@ -6,7 +6,7 @@ export const Container = styled('div', {
   gap: '1rem',
   alignItems: 'center',
 
-  width: '100%'
+  width: '100%',
 })
 
 export const PageHeader = styled('div', {
@@ -15,12 +15,12 @@ export const PageHeader = styled('div', {
   gap: '0.5rem',
 
   '& input': {
-    display: 'none'
+    display: 'none',
   },
 
   '@sm': {
-    flexDirection: 'row'
-  }
+    flexDirection: 'row',
+  },
 })
 
 export const Label = styled('label', {
@@ -34,8 +34,8 @@ export const Label = styled('label', {
     fontFamily: '$text',
     fontWeight: '$regular',
     fontSize: '$xs',
-    color: '$gray800'
-  }
+    color: '$gray800',
+  },
 })
 
 export const Content = styled('div', {
@@ -48,15 +48,15 @@ export const Content = styled('div', {
   '@sm': {
     gridTemplateColumns: '1fr 1fr',
     gridTemplateRows: '1fr',
-    gridGap: '0'
-  }
+    gridGap: '0',
+  },
 })
 
 export const UserInfoContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '1.5rem',
-  padding: '0 2rem'
+  padding: '0 2rem',
 })
 
 export const UserInfoSection = styled('div', {
@@ -69,5 +69,5 @@ export const Title = styled('h2', {
   fontFamily: '$text',
   fontWeight: '$regular',
   fontSize: '$md',
-  color: '$gray900'
+  color: '$gray900',
 })

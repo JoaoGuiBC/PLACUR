@@ -1,6 +1,6 @@
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
-import { styled } from "../../../stitches.config"
+import { styled } from '../../../stitches.config'
 
 export const Container = styled('header', {
   display: 'flex',
@@ -12,7 +12,7 @@ export const Container = styled('header', {
 
   '@md': {
     padding: '0 5rem',
-  }
+  },
 })
 
 export const UserInfoContainer = styled('div', {
@@ -28,7 +28,7 @@ export const UserInfoContainer = styled('div', {
     textAlign: 'right',
 
     color: '$gray100',
-  }
+  },
 })
 
 export const DropdownMenuContent = styled(DropdownMenu.Content, {
@@ -45,7 +45,7 @@ export const DropdownMenuContent = styled(DropdownMenu.Content, {
 
   border: '1px solid $gray300',
   filter: 'drop-shadow(0 8px 8px rgba(0, 0, 0, 0.15))',
-  borderRadius: '8px'
+  borderRadius: '8px',
 })
 
 export const DropdownMenuSubContent = styled(DropdownMenu.SubContent, {
@@ -62,14 +62,14 @@ export const DropdownMenuSubContent = styled(DropdownMenu.SubContent, {
 
   border: '1px solid $gray300',
   filter: 'drop-shadow(0 8px 8px rgba(0, 0, 0, 0.15))',
-  borderRadius: '8px'
+  borderRadius: '8px',
 })
 
 export const DropdownMenuArrow = styled(DropdownMenu.Arrow, {
   position: 'absolute',
   right: '96px',
 
-  fill: '$white'
+  fill: '$white',
 })
 
 export const DropdownMenuItem = styled(DropdownMenu.Item, {
@@ -88,8 +88,8 @@ export const DropdownMenuItem = styled(DropdownMenu.Item, {
     fontWeight: '$regular',
     fontSize: '$md',
     textAlign: 'left',
-    color: '$gray900'
-  }
+    color: '$gray900',
+  },
 })
 
 export const DropdownMenuSubTrigger = styled(DropdownMenu.SubTrigger, {
@@ -107,6 +107,6 @@ export const DropdownMenuSubTrigger = styled(DropdownMenu.SubTrigger, {
     fontWeight: '$regular',
     fontSize: '$md',
     textAlign: 'left',
-    color: '$gray900'
-  }
+    color: '$gray900',
+  },
 })

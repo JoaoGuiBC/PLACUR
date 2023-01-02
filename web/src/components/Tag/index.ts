@@ -1,6 +1,6 @@
-import { ComponentProps } from "react"
+import { ComponentProps } from 'react'
 
-import { styled } from "../../../stitches.config"
+import { styled } from '../../../stitches.config'
 
 export const Tag = styled('div', {
   position: 'absolute',
@@ -15,35 +15,35 @@ export const Tag = styled('div', {
 
   borderRadius: '8px 0 0 0',
 
-  fontFamily: "$text",
-  fontWeight: "$regular",
-  fontSize: "$xs",
+  fontFamily: '$text',
+  fontWeight: '$regular',
+  fontSize: '$xs',
   color: '$white',
 
   variants: {
     category: {
       Workshop: {
-        backgroundColor: "$pink500"
+        backgroundColor: '$pink500',
       },
       Palestra: {
-        backgroundColor: "$purple500"
+        backgroundColor: '$purple500',
       },
       EAD: {
-        backgroundColor: "$blue100"
+        backgroundColor: '$blue100',
       },
       Capacitação: {
-        backgroundColor: "$red500"
+        backgroundColor: '$red500',
       },
       Seminário: {
-        backgroundColor: "$green500"
+        backgroundColor: '$green500',
       },
       Outros: {
-        backgroundColor: "$gray800"
-      }
-    }
-  }
+        backgroundColor: '$gray800',
+      },
+    },
+  },
 })
 
-interface TagProps extends ComponentProps<typeof Tag> {}
+export interface TagProps extends ComponentProps<typeof Tag> {}
 
 Tag.displayName = 'Tag'

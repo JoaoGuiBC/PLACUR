@@ -4,7 +4,14 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { Button } from '../../Button'
 import { TextInput } from '../../TextInput'
 
-import { CloseButton, DialogContent, DialogDescription, DialogOverlay, DialogTitle, Form } from './styles'
+import {
+  CloseButton,
+  DialogContent,
+  DialogDescription,
+  DialogOverlay,
+  DialogTitle,
+  Form,
+} from './styles'
 import { theme } from '../../../../stitches.config'
 
 export function UpdatePasswordDialog() {
@@ -23,18 +30,29 @@ export function UpdatePasswordDialog() {
           <DialogTitle>Alteração de senha</DialogTitle>
 
           <DialogDescription>
-            Para atualizar a sua senha primeiramente informe a senha atual, após isso digite a senha nova e confirme ela em seguida.
+            Para atualizar a sua senha primeiramente informe a senha atual, após
+            isso digite a senha nova e confirme ela em seguida.
           </DialogDescription>
 
           <Form>
-            <TextInput Icon={LockKey} placeholder="Informe a senha atual" type="password" />
-            <TextInput Icon={LockKey} placeholder="Digite a senha nova" type="password" />
-            <TextInput Icon={LockKey} placeholder="Confirme a senha nova" type="password" />
+            <TextInput
+              Icon={LockKey}
+              placeholder="Informe a senha atual"
+              type="password"
+            />
+            <TextInput
+              Icon={LockKey}
+              placeholder="Digite a senha nova"
+              type="password"
+            />
+            <TextInput
+              Icon={LockKey}
+              placeholder="Confirme a senha nova"
+              type="password"
+            />
 
             <Dialog.Close asChild>
-              <Button type="submit">
-                Alterar
-              </Button>
+              <Button type="submit">Alterar</Button>
             </Dialog.Close>
           </Form>
 

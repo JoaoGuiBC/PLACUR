@@ -1,7 +1,13 @@
-import { CourseCard } from "../../../components/CourseCard"
-import { SectionTitle } from "../../../components/SectionTitle"
+import { CourseCard } from '../../../components/CourseCard'
+import { SectionTitle } from '../../../components/SectionTitle'
 
-import { Container, QuantityInfoContainer, Separator, CoursesContainer, CoursesSection } from "./styles"
+import {
+  Container,
+  QuantityInfoContainer,
+  Separator,
+  CoursesContainer,
+  CoursesSection,
+} from './styles'
 
 export default function MyCourses() {
   return (

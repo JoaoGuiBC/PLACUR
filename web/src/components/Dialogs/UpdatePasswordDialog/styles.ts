@@ -1,6 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
 
-import { styled } from "../../../../stitches.config"
+import { styled } from '../../../../stitches.config'
 
 export const DialogOverlay = styled(Dialog.Overlay, {
   inset: 0,
@@ -8,7 +8,7 @@ export const DialogOverlay = styled(Dialog.Overlay, {
 
   opacity: '0.2',
   backgroundColor: '$gray800',
-  animation: 'overlayShow 1050ms cubic-bezier(0.16, 1, 0.3, 1)'
+  animation: 'overlayShow 1050ms cubic-bezier(0.16, 1, 0.3, 1)',
 })
 
 export const DialogContent = styled(Dialog.Content, {
@@ -27,23 +27,23 @@ export const DialogContent = styled(Dialog.Content, {
   background: '$white',
   border: '1px solid $gray300',
   boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.25)',
-  borderRadius: '8px'
+  borderRadius: '8px',
 })
 
 export const DialogTitle = styled(Dialog.Title, {
   fontFamily: '$heading',
   fontWeight: '$medium',
-  fontSize: "$xl",
-  color: "$gray900"
+  fontSize: '$xl',
+  color: '$gray900',
 })
 
 export const DialogDescription = styled(Dialog.Description, {
   fontFamily: '$text',
   fontWeight: '$regular',
-  fontSize: "$sm",
-  color: "$gray800",
+  fontSize: '$sm',
+  color: '$gray800',
   textAlign: 'justify',
-  maxWidth: '20rem'
+  maxWidth: '20rem',
 })
 
 export const Form = styled('form', {
@@ -52,7 +52,7 @@ export const Form = styled('form', {
   gap: '1rem',
 
   width: '100%',
-  marginTop: '1rem'
+  marginTop: '1rem',
 })
 
 export const CloseButton = styled('button', {
@@ -62,5 +62,5 @@ export const CloseButton = styled('button', {
   right: 0,
   top: 0,
 
-  cursor: 'pointer'
+  cursor: 'pointer',
 })

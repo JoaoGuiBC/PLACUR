@@ -1,4 +1,4 @@
-import { styled } from "../../../stitches.config"
+import { styled } from '../../../stitches.config'
 
 export const Container = styled('main', {
   display: 'flex',
@@ -8,5 +8,5 @@ export const Container = styled('main', {
 
   '@md': {
     padding: '6.5rem 5rem 4rem',
-  }
+  },
 })

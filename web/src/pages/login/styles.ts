@@ -1,4 +1,4 @@
-import { styled } from "../../../stitches.config";
+import { styled } from '../../../stitches.config'
 
 export const Container = styled('div', {
   flex: 1,
@@ -9,15 +9,15 @@ export const Container = styled('div', {
 
 export const Span = styled('span', {
   fontFamily: '$text',
-  fontWeight: "$regular",
+  fontWeight: '$regular',
   fontSize: '$sm',
   color: '$gray800',
 
-  marginTop: '1rem'
+  marginTop: '1rem',
 })
 
 export const Form = styled('form', {
-  display: "flex",
+  display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
 
@@ -26,12 +26,12 @@ export const Form = styled('form', {
   marginTop: '2rem',
 
   '& a': {
-    marginTop: '1rem'
-  }
+    marginTop: '1rem',
+  },
 })
 
 export const InputContainer = styled('div', {
-  display: "flex",
+  display: 'flex',
   flexDirection: 'column',
   gap: '0.5rem',
 
@@ -39,7 +39,7 @@ export const InputContainer = styled('div', {
 })
 
 export const ButtonContainer = styled('div', {
-  display: "flex",
+  display: 'flex',
   flexDirection: 'column',
   gap: '0.5rem',
 

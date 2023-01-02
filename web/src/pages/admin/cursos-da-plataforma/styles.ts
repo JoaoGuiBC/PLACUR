@@ -1,4 +1,4 @@
-import { styled } from "../../../../stitches.config"
+import { styled } from '../../../../stitches.config'
 
 export const ActionsContainer = styled('div', {
   display: 'flex',
@@ -23,5 +23,5 @@ export const CoursesContainer = styled('div', {
   },
   '@lg': {
     gridTemplateColumns: '1fr 1fr 1fr',
-  }
+  },
 })

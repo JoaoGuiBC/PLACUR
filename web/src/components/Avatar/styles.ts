@@ -7,14 +7,14 @@ export const AvatarRoot = styled(Avatar.Root, {
   width: '40px',
   height: '40px',
   borderRadius: '100%',
-  backgroundColor: '$gray100'
+  backgroundColor: '$gray100',
 })
 
 export const AvatarImage = styled(Avatar.Image, {
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  borderRadius: 'inherit'
+  borderRadius: 'inherit',
 })
 
 export const AvatarFallback = styled(Avatar.Fallback, {
@@ -22,5 +22,5 @@ export const AvatarFallback = styled(Avatar.Fallback, {
   height: '100%',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center'
+  justifyContent: 'center',
 })

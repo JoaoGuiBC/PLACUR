@@ -1,12 +1,16 @@
-import type { IconProps } from "phosphor-react"
-import type { ComponentProps, ForwardRefExoticComponent } from "react"
+import type {
+  ComponentProps,
+  ForwardRefExoticComponent,
+  RefAttributes,
+} from 'react'
+import type { IconProps } from 'phosphor-react'
 
-import { theme } from "../../../stitches.config"
+import { theme } from '../../../stitches.config'
 
-import { Container } from "./styles"
+import { Container } from './styles'
 
 interface InfoProps extends ComponentProps<typeof Container> {
-  Icon: ForwardRefExoticComponent<IconProps & React.RefAttributes<SVGSVGElement>>;
+  Icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>
 }
 
 export function Info({ children, Icon }: InfoProps) {

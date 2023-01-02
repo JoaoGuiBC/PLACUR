@@ -1,11 +1,11 @@
 import { User } from 'phosphor-react'
-import { ComponentProps } from 'react';
+import { ComponentProps } from 'react'
 
-import { theme } from "../../../stitches.config"
+import { theme } from '../../../stitches.config'
 import { AvatarRoot, AvatarImage, AvatarFallback } from './styles'
 
 interface AvatarProps extends ComponentProps<typeof AvatarRoot> {
-  src?: string;
+  src?: string
 }
 
 export function Avatar({ src, ...rest }: AvatarProps) {

@@ -1,4 +1,4 @@
-import { styled } from "../../../stitches.config";
+import { styled } from '../../../stitches.config'
 
 export const Container = styled('div', {
   display: 'flex',
@@ -9,6 +9,6 @@ export const Container = styled('div', {
     fontWeight: '$regular',
     fontSize: '1rem',
 
-    color: '$gray900'
-  }
+    color: '$gray900',
+  },
 })

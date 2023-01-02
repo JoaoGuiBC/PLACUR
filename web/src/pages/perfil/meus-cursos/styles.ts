@@ -1,12 +1,12 @@
-import * as BaseSeparator from "@radix-ui/react-separator"
+import * as BaseSeparator from '@radix-ui/react-separator'
 
-import { styled } from "../../../../stitches.config"
+import { styled } from '../../../../stitches.config'
 
 export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
-  gap: '1rem'
+  gap: '1rem',
 })
 
 export const QuantityInfoContainer = styled('div', {
@@ -19,8 +19,8 @@ export const QuantityInfoContainer = styled('div', {
     fontWeight: '$medium',
     fontSize: '$lg',
 
-    color: '$gray900'
-  }
+    color: '$gray900',
+  },
 })
 
 export const Separator = styled(BaseSeparator.Root, {
@@ -38,8 +38,8 @@ export const CoursesContainer = styled('div', {
 
   '@sm': {
     gridTemplateColumns: '1fr 1fr',
-    gridTemplateRows: '1fr'
-  }
+    gridTemplateRows: '1fr',
+  },
 })
 
 export const CoursesSection = styled('div', {
@@ -52,7 +52,7 @@ export const CoursesSection = styled('div', {
   '& h2': {
     fontFamily: '$heading',
     fontWeight: '$medium',
-    fontSize: "$md",
-    color: "$blue600"
-  }
+    fontSize: '$md',
+    color: '$blue600',
+  },
 })

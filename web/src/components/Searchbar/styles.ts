@@ -1,4 +1,4 @@
-import { styled } from "../../../stitches.config"
+import { styled } from '../../../stitches.config'
 
 export const Container = styled('div', {
   display: 'flex',
@@ -11,20 +11,20 @@ export const Container = styled('div', {
 
   backgroundColor: '$white',
   border: '1px solid $gray300',
-  borderRadius: '8px'
+  borderRadius: '8px',
 })
 
 export const Input = styled('input', {
   flex: 1,
   padding: '1rem',
-  
-  fontFamily: "$text",
-  fontWeight: "$medium",
-  fontSize: "$sm",
-  color: "$blue900",
+
+  fontFamily: '$text',
+  fontWeight: '$medium',
+  fontSize: '$sm',
+  color: '$blue900',
 
   border: 'none',
-  outline: 'none'
+  outline: 'none',
 })
 
 export const Button = styled('button', {
@@ -38,5 +38,5 @@ export const Button = styled('button', {
   backgroundColor: 'transparent',
   border: 'none',
   cursor: 'pointer',
-  outline: 'none'
+  outline: 'none',
 })

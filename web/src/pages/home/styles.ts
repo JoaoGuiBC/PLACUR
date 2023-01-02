@@ -1,4 +1,4 @@
-import { styled } from "../../../stitches.config";
+import { styled } from '../../../stitches.config'
 
 export const FilterContainer = styled('div', {
   display: 'flex',
@@ -10,8 +10,8 @@ export const FilterContainer = styled('div', {
   height: 'fit-content',
 
   '@xs': {
-    flexDirection: 'row'
-  }
+    flexDirection: 'row',
+  },
 })
 
 export const CoursesContainer = styled('div', {
@@ -27,5 +27,5 @@ export const CoursesContainer = styled('div', {
   },
   '@lg': {
     gridTemplateColumns: '1fr 1fr 1fr',
-  }
+  },
 })

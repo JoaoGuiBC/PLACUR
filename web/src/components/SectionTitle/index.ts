@@ -1,28 +1,29 @@
-import { ComponentProps } from "react"
+import { ComponentProps } from 'react'
 
-import { styled } from "../../../stitches.config"
+import { styled } from '../../../stitches.config'
 
 export const SectionTitle = styled('h1', {
   fontFamily: '$heading',
   fontWeight: '$medium',
-  fontSize: "$xl",
+  fontSize: '$xl',
 
   variants: {
     style: {
       primary: {
-        color: "$blue600",
+        color: '$blue600',
       },
       secondary: {
-        color: "$gray900",
-      }
-    }
+        color: '$gray900',
+      },
+    },
   },
 
   defaultVariants: {
-    style: "primary"
-  }
+    style: 'primary',
+  },
 })
 
-interface SectionTitleProps extends ComponentProps<typeof SectionTitle> {}
+export interface SectionTitleProps
+  extends ComponentProps<typeof SectionTitle> {}
 
 SectionTitle.displayName = 'SectionTitle'

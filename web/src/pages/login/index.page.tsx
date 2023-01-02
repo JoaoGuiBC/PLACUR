@@ -1,11 +1,17 @@
-import Link from "next/link"
-import { EnvelopeSimple, LockKey } from "phosphor-react"
+import Link from 'next/link'
+import { EnvelopeSimple, LockKey } from 'phosphor-react'
 
-import { TextInput } from "../../components/TextInput"
-import { SectionTitle } from "../../components/SectionTitle"
+import { Button } from '../../components/Button'
+import { TextInput } from '../../components/TextInput'
+import { SectionTitle } from '../../components/SectionTitle'
 
-import { ButtonContainer, Container, Form, InputContainer, Span } from "./styles"
-import { Button } from "../../components/Button"
+import {
+  ButtonContainer,
+  Container,
+  Form,
+  InputContainer,
+  Span,
+} from './styles'
 
 export default function Login() {
   return (
@@ -26,11 +32,11 @@ export default function Login() {
 
         <ButtonContainer>
           <Button type="submit">Login</Button>
-          <Button type="button" variant="secondary">Criar conta</Button>
+          <Button type="button" variant="secondary">
+            Criar conta
+          </Button>
         </ButtonContainer>
       </Form>
-
     </Container>
-
   )
 }

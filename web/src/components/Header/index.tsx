@@ -1,13 +1,20 @@
-import Link from "next/link"
-import Image from "next/image"
-import { ComponentProps } from "react"
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
-import { BookBookmark, CaretRight, Gear, IdentificationBadge, SignOut, UsersFour } from "phosphor-react"
+import Link from 'next/link'
+import Image from 'next/image'
+import { ComponentProps } from 'react'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+import {
+  BookBookmark,
+  CaretRight,
+  Gear,
+  IdentificationBadge,
+  SignOut,
+  UsersFour,
+} from 'phosphor-react'
 
-import { Avatar } from "../Avatar"
-import { Separator } from "../Separator"
+import { Avatar } from '../Avatar'
+import { Separator } from '../Separator'
 
-import { theme } from "../../../stitches.config"
+import { theme } from '../../../stitches.config'
 import {
   Container,
   DropdownMenuContent,
@@ -15,30 +22,39 @@ import {
   UserInfoContainer,
   DropdownMenuArrow,
   DropdownMenuItem,
-  DropdownMenuSubTrigger
-} from "./styles"
+  DropdownMenuSubTrigger,
+} from './styles'
 
-interface HeaderProps extends ComponentProps<typeof Container> { }
+interface HeaderProps extends ComponentProps<typeof Container> {}
 
 export function Header(props: HeaderProps) {
   return (
     <Container {...props}>
       <Link href="/">
-        <Image src="/logo_egepe.png" alt="Logo EGEPE" quality={100} width={156} height={88} priority />
+        <Image
+          src="/logo_egepe.png"
+          alt="Logo EGEPE"
+          quality={100}
+          width={156}
+          height={88}
+          priority
+        />
       </Link>
 
-      {/*<Link href="/login">
+      {/* <Link href="/login">
         <UserInfoContainer>
           <span>Olá, <br /> Faça login</span>
 
           <Avatar />
         </UserInfoContainer>
-        </Link>*/}
+        </Link> */}
 
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
           <UserInfoContainer>
-            <span>Olá, <br /> João Guilherme Da Rocha</span>
+            <span>
+              Olá, <br /> João Guilherme Da Rocha
+            </span>
 
             <Avatar src="https://github.com/JoaoGuiBC.png" />
           </UserInfoContainer>
@@ -50,7 +66,11 @@ export function Header(props: HeaderProps) {
 
             <DropdownMenuItem>
               <Link href="/perfil/123">
-                <IdentificationBadge size={24} color={theme.colors.gray900.value} weight="light" />
+                <IdentificationBadge
+                  size={24}
+                  color={theme.colors.gray900.value}
+                  weight="light"
+                />
                 <span>Perfil</span>
               </Link>
             </DropdownMenuItem>
@@ -58,7 +78,11 @@ export function Header(props: HeaderProps) {
             <Separator />
             <DropdownMenuItem>
               <Link href="/perfil/meus-cursos">
-                <BookBookmark size={24} color={theme.colors.gray900.value} weight="light" />
+                <BookBookmark
+                  size={24}
+                  color={theme.colors.gray900.value}
+                  weight="light"
+                />
                 <span>Meus cursos</span>
               </Link>
             </DropdownMenuItem>
@@ -66,23 +90,39 @@ export function Header(props: HeaderProps) {
             <Separator />
             <DropdownMenu.Sub>
               <DropdownMenuSubTrigger>
-                <Gear size={24} color={theme.colors.gray900.value} weight="light" />
+                <Gear
+                  size={24}
+                  color={theme.colors.gray900.value}
+                  weight="light"
+                />
                 <span>Administrar plataforma</span>
-                <CaretRight size={16} color={theme.colors.gray900.value} weight="light" />
+                <CaretRight
+                  size={16}
+                  color={theme.colors.gray900.value}
+                  weight="light"
+                />
               </DropdownMenuSubTrigger>
 
               <DropdownMenu.Portal>
                 <DropdownMenuSubContent sideOffset={16}>
                   <DropdownMenuItem>
                     <Link href="/admin/usuarios-da-plataforma">
-                      <UsersFour size={24} color={theme.colors.gray900.value} weight="light" />
+                      <UsersFour
+                        size={24}
+                        color={theme.colors.gray900.value}
+                        weight="light"
+                      />
                       <span>Usuários</span>
                     </Link>
                   </DropdownMenuItem>
 
                   <DropdownMenuItem>
                     <Link href="/admin/cursos-da-plataforma">
-                      <BookBookmark size={24} color={theme.colors.gray900.value} weight="light" />
+                      <BookBookmark
+                        size={24}
+                        color={theme.colors.gray900.value}
+                        weight="light"
+                      />
                       <span>Cursos</span>
                     </Link>
                   </DropdownMenuItem>
@@ -93,11 +133,14 @@ export function Header(props: HeaderProps) {
             <Separator />
             <DropdownMenuItem>
               <Link href="/">
-                <SignOut size={24} color={theme.colors.gray900.value} weight="light" />
+                <SignOut
+                  size={24}
+                  color={theme.colors.gray900.value}
+                  weight="light"
+                />
                 <span>Sair</span>
               </Link>
             </DropdownMenuItem>
-
           </DropdownMenuContent>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
