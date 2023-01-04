@@ -1,9 +1,14 @@
-import { assertRejects, assertExists, assertEquals } from "https://deno.land/std@0.168.0/testing/asserts.ts"
+import {
+  assertEquals,
+  assertExists,
+  assertRejects,
+} from "https://deno.land/std@0.168.0/testing/asserts.ts";
 
-import { AppError } from "../../lib/appError.ts"
-import { createUser } from "../users/createUser.ts"
-import { deleteUser } from "../users/deleteUser.ts"
-import { startUserSession } from "./startUserSession.ts"
+import { AppError } from "../../lib/appError.ts";
+import { createUser } from "../users/createUser.ts";
+import { deleteUser } from "../users/deleteUser.ts";
+import { renewUserSession } from "./renewUserSession.ts";
+import { startUserSession } from "./startUserSession.ts";
 
 Deno.test("Sessions services", async (test) => {
   const newUser = {
@@ -19,41 +24,60 @@ Deno.test("Sessions services", async (test) => {
     city: "Fake city",
     haveVisualImpairment: false,
     haveHearingImpairment: false,
-    isAdmin: false
-  }
+    isAdmin: false,
+  };
 
   await test.step("Session start", async (testStep) => {
-    await testStep.step("It should start a new session", async () => {
-      await createUser(newUser)
+    await testStep.step(
+      "It should be able to start a new session",
+      async () => {
+        await createUser(newUser);
 
-      const { token, user } = await startUserSession({
-        email: "session@example.com",
-        password: "password123"
-      })
+        const { token, user } = await startUserSession({
+          email: "session@example.com",
+          password: "password123",
+        });
 
-      assertExists(user)
-      assertExists(token)
-      assertEquals(user.email, "session@example.com")
-    })
+        assertExists(user);
+        assertExists(token);
+        assertEquals(user.email, "session@example.com");
+      },
+    );
 
-    await testStep.step("It should not start a new session if user does not exist", async () => {
-      await assertRejects(
-        () => startUserSession({
-          email: "fakeemail@example.com", password: "password123"
-        }),
-        AppError,
-      )
-    })
+    await testStep.step("It should be able to renew sessions", async () => {
+      const { token } = await renewUserSession("fakeSessionId");
 
-    await testStep.step("It should not start a new session if given password is wrong", async () => {
-      await assertRejects(
-        () => startUserSession({
-          email: "session@example.com", password: "fakepassword123"
-        }),
-        AppError,
-      )
-    })
-  })
+      assertExists(token);
+    });
 
-  await deleteUser("fakeSessionId")
-})
+    await testStep.step(
+      "It should not be able to start a new session if user does not exist",
+      async () => {
+        await assertRejects(
+          () =>
+            startUserSession({
+              email: "fakeemail@example.com",
+              password: "password123",
+            }),
+          AppError,
+        );
+      },
+    );
+
+    await testStep.step(
+      "It should not be able to start a new session if given password is wrong",
+      async () => {
+        await assertRejects(
+          () =>
+            startUserSession({
+              email: "session@example.com",
+              password: "fakepassword123",
+            }),
+          AppError,
+        );
+      },
+    );
+  });
+
+  await deleteUser("fakeSessionId");
+});
