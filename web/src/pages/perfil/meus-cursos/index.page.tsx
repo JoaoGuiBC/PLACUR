@@ -1,5 +1,5 @@
+import { Heading } from '@components/Heading'
 import { CourseCard } from '@components/CourseCard'
-import { SectionTitle } from '@components/SectionTitle'
 
 import {
   Container,
@@ -12,19 +12,25 @@ import {
 export default function MyCourses() {
   return (
     <Container>
-      <SectionTitle>Meus cursos</SectionTitle>
+      <Heading>Meus cursos</Heading>
 
       <QuantityInfoContainer>
-        <h2>Cursos inscritos: 4</h2>
+        <Heading as="strong" size="md" style="secondary">
+          Cursos inscritos: 4
+        </Heading>
 
         <Separator decorative />
 
-        <h2>Cursos finalizados: 3</h2>
+        <Heading as="strong" size="md" style="secondary">
+          Cursos finalizados: 3
+        </Heading>
       </QuantityInfoContainer>
 
       <CoursesContainer>
         <CoursesSection>
-          <h2>CURSOS ABERTOS</h2>
+          <Heading as="h2" size="sm">
+            CURSOS ABERTOS
+          </Heading>
 
           <CourseCard
             image="/course_image_placeholder.png"
@@ -60,7 +66,9 @@ export default function MyCourses() {
         </CoursesSection>
 
         <CoursesSection>
-          <h2>CURSOS FINALIZADOS</h2>
+          <Heading as="h2" size="sm">
+            CURSOS FINALIZADOS
+          </Heading>
 
           <CourseCard
             image="/course_image_placeholder.png"

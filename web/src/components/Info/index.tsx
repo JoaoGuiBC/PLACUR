@@ -5,6 +5,8 @@ import type {
 } from 'react'
 import type { IconProps } from 'phosphor-react'
 
+import { Text } from '@components/Text'
+
 import { theme } from 'stitches.config'
 import { Container } from './styles'
 
@@ -16,7 +18,7 @@ function Info({ children, Icon }: InfoProps) {
   return (
     <Container>
       <Icon size={32} color={theme.colors.gray900.value} weight="light" />
-      <span>{children}</span>
+      <Text size="lg">{children}</Text>
     </Container>
   )
 }

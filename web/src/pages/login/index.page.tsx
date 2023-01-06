@@ -1,24 +1,19 @@
 import Link from 'next/link'
 import { EnvelopeSimple, LockKey } from 'phosphor-react'
 
+import { Text } from '@components/Text'
 import { Button } from '@components/Button'
+import { Heading } from '@components/Heading'
 import { TextInput } from '@components/TextInput'
-import { SectionTitle } from '@components/SectionTitle'
 
-import {
-  ButtonContainer,
-  Container,
-  Form,
-  InputContainer,
-  Span,
-} from './styles'
+import { ButtonContainer, Container, Form, InputContainer } from './styles'
 
 export default function Login() {
   return (
     <Container>
-      <SectionTitle style="secondary">Estamos quase lá.</SectionTitle>
+      <Heading style="secondary">Estamos quase lá.</Heading>
 
-      <Span>Faça seu login para começar a acessar os cursos</Span>
+      <Text>Faça seu login para começar a acessar os cursos</Text>
 
       <Form onSubmit={(e) => e.preventDefault()}>
         <InputContainer>
@@ -27,7 +22,7 @@ export default function Login() {
         </InputContainer>
 
         <Link href="/recuperacao-de-senha">
-          <Span>Esqueci minha senha</Span>
+          <Text>Esqueci minha senha</Text>
         </Link>
 
         <ButtonContainer>

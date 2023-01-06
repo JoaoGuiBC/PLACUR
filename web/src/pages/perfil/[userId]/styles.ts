@@ -1,3 +1,4 @@
+import { Text } from '@components/Text'
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
@@ -29,13 +30,6 @@ export const Label = styled('label', {
   alignItems: 'center',
 
   cursor: 'pointer',
-
-  '& span': {
-    fontFamily: '$text',
-    fontWeight: '$regular',
-    fontSize: '$xs',
-    color: '$gray800',
-  },
 })
 
 export const Content = styled('div', {
@@ -63,11 +57,8 @@ export const UserInfoSection = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '0.5rem',
-})
 
-export const Title = styled('h2', {
-  fontFamily: '$text',
-  fontWeight: '$regular',
-  fontSize: '$md',
-  color: '$gray900',
+  [`${Text}`]: {
+    color: '$gray900',
+  },
 })

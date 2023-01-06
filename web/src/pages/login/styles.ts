@@ -1,3 +1,4 @@
+import { Text } from '@components/Text'
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
@@ -5,15 +6,10 @@ export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-})
 
-export const Span = styled('span', {
-  fontFamily: '$text',
-  fontWeight: '$regular',
-  fontSize: '$sm',
-  color: '$gray800',
-
-  marginTop: '1rem',
+  [`> ${Text}`]: {
+    marginTop: '1rem',
+  },
 })
 
 export const Form = styled('form', {

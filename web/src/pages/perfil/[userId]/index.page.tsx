@@ -6,12 +6,13 @@ import {
   Phone,
 } from 'phosphor-react'
 
+import { Text } from '@components/Text'
 import { Avatar } from '@components/Avatar'
 import { Select } from '@components/Select'
 import { Button } from '@components/Button'
+import { Heading } from '@components/Heading'
 import { Checkbox } from '@components/Checkbox'
 import { TextInput } from '@components/TextInput'
-import { SectionTitle } from '@components/SectionTitle'
 import { UpdatePasswordDialog } from '@components/Dialogs/UpdatePasswordDialog'
 
 import { cityHallDivisions } from '@lib/selectValues'
@@ -24,7 +25,6 @@ import {
   Content,
   UserInfoContainer,
   UserInfoSection,
-  Title,
 } from './styles'
 
 export default function Perfil() {
@@ -38,15 +38,17 @@ export default function Perfil() {
         />
         <Label htmlFor="userImage">
           <Avatar src="https://github.com/JoaoGuiBC.png" />
-          <span>Trocar imagem</span>
+          <Text size="sm">Trocar imagem</Text>
         </Label>
-        <SectionTitle style="secondary">João Guilherme Da Rocha</SectionTitle>
+        <Heading style="secondary">João Guilherme Da Rocha</Heading>
       </PageHeader>
 
       <Content>
         <UserInfoContainer>
           <UserInfoSection>
-            <Title>Dados de login</Title>
+            <Text as="h2" size="lg">
+              Dados de login
+            </Text>
 
             <TextInput Icon={EnvelopeSimple} placeholder="E-Mail" />
 
@@ -54,7 +56,9 @@ export default function Perfil() {
           </UserInfoSection>
 
           <UserInfoSection>
-            <Title>Dados pessoais</Title>
+            <Text as="h2" size="lg">
+              Dados pessoais
+            </Text>
 
             <TextInput Icon={IdentificationBadge} placeholder="Nome completo" />
             <TextInput Icon={IdentificationCard} placeholder="CPF" />
@@ -75,7 +79,9 @@ export default function Perfil() {
 
         <UserInfoContainer>
           <UserInfoSection>
-            <Title>Endereço</Title>
+            <Text as="h2" size="lg">
+              Endereço
+            </Text>
 
             <TextInput Icon={GlobeHemisphereWest} placeholder="Endereço" />
             <TextInput Icon={GlobeHemisphereWest} placeholder="Bairro" />
@@ -83,7 +89,9 @@ export default function Perfil() {
           </UserInfoSection>
 
           <UserInfoSection>
-            <Title>Zona de risco</Title>
+            <Text as="h2" size="lg">
+              Zona de risco
+            </Text>
 
             <Button
               variant="secondary"

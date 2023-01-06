@@ -1,5 +1,6 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
+import { Text } from '@components/Text'
 import { styled } from 'stitches.config'
 
 export const Container = styled('header', {
@@ -83,10 +84,7 @@ export const DropdownMenuItem = styled(DropdownMenu.Item, {
     gap: '0.25rem',
   },
 
-  '& span': {
-    fontFamily: '$text',
-    fontWeight: '$regular',
-    fontSize: '$md',
+  [`${Text}`]: {
     textAlign: 'left',
     color: '$gray900',
   },
@@ -102,10 +100,7 @@ export const DropdownMenuSubTrigger = styled(DropdownMenu.SubTrigger, {
   cursor: 'pointer',
   userSelect: 'none',
 
-  '& span': {
-    fontFamily: '$text',
-    fontWeight: '$regular',
-    fontSize: '$md',
+  [`${Text}`]: {
     textAlign: 'left',
     color: '$gray900',
   },

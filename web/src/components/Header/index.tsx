@@ -24,6 +24,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSubTrigger,
 } from './styles'
+import { Text } from '@components/Text'
 
 interface HeaderProps extends ComponentProps<typeof Container> {}
 
@@ -71,7 +72,7 @@ function Header(props: HeaderProps) {
                   color={theme.colors.gray900.value}
                   weight="light"
                 />
-                <span>Perfil</span>
+                <Text size="lg">Perfil</Text>
               </Link>
             </DropdownMenuItem>
 
@@ -83,7 +84,7 @@ function Header(props: HeaderProps) {
                   color={theme.colors.gray900.value}
                   weight="light"
                 />
-                <span>Meus cursos</span>
+                <Text size="lg">Meus cursos</Text>
               </Link>
             </DropdownMenuItem>
 
@@ -95,7 +96,7 @@ function Header(props: HeaderProps) {
                   color={theme.colors.gray900.value}
                   weight="light"
                 />
-                <span>Administrar plataforma</span>
+                <Text size="lg">Administrar plataforma</Text>
                 <CaretRight
                   size={16}
                   color={theme.colors.gray900.value}
@@ -112,7 +113,7 @@ function Header(props: HeaderProps) {
                         color={theme.colors.gray900.value}
                         weight="light"
                       />
-                      <span>Usuários</span>
+                      <Text size="lg">Usuários</Text>
                     </Link>
                   </DropdownMenuItem>
 
@@ -123,7 +124,7 @@ function Header(props: HeaderProps) {
                         color={theme.colors.gray900.value}
                         weight="light"
                       />
-                      <span>Cursos</span>
+                      <Text size="lg">Cursos</Text>
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuSubContent>
@@ -138,7 +139,7 @@ function Header(props: HeaderProps) {
                   color={theme.colors.gray900.value}
                   weight="light"
                 />
-                <span>Sair</span>
+                <Text size="lg">Sair</Text>
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>

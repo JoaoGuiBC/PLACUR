@@ -1,3 +1,4 @@
+import { Text } from '@components/Text'
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
@@ -31,13 +32,10 @@ export const Content = styled('div', {
   justifyContent: 'center',
   alignItems: 'flex-start',
   gap: '0.5rem',
-})
 
-export const Title = styled('span', {
-  fontFamily: '$text',
-  fontWeight: '$regular',
-  fontSize: '$sm',
-  color: '$blue600',
+  [`${Text}`]: {
+    color: '$blue600',
+  },
 })
 
 export const InfoBar = styled('div', {
@@ -45,21 +43,11 @@ export const InfoBar = styled('div', {
   alignitems: 'flex-start',
   gap: '1rem',
 
-  '& div': {
-    '& p': {
-      fontFamily: '$text',
-      fontWeight: '$regular',
-      fontSize: '$sm',
+  [`${Text}:first-child`]: {
+    color: '$gray900',
+  },
 
-      color: '$gray900',
-    },
-
-    '& span': {
-      fontFamily: '$text',
-      fontWeight: '$regular',
-      fontSize: '$xs',
-
-      color: '$gray500',
-    },
+  [`${Text}:last-child`]: {
+    color: '$gray500',
   },
 })

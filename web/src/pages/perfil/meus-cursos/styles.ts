@@ -13,14 +13,6 @@ export const QuantityInfoContainer = styled('div', {
   display: 'flex',
   gap: '1rem',
   alignItems: 'center',
-
-  '& h2': {
-    fontFamily: '$heading',
-    fontWeight: '$medium',
-    fontSize: '$lg',
-
-    color: '$gray900',
-  },
 })
 
 export const Separator = styled(BaseSeparator.Root, {
@@ -48,11 +40,4 @@ export const CoursesSection = styled('div', {
   justifyContent: 'flex-start',
   alignItems: 'center',
   gap: '0.5rem',
-
-  '& h2': {
-    fontFamily: '$heading',
-    fontWeight: '$medium',
-    fontSize: '$md',
-    color: '$blue600',
-  },
 })

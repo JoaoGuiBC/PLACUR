@@ -1,17 +1,18 @@
 import { LockKey } from 'phosphor-react'
 
+import { Text } from '@components/Text'
 import { Button } from '@components/Button'
+import { Heading } from '@components/Heading'
 import { TextInput } from '@components/TextInput'
-import { SectionTitle } from '@components/SectionTitle'
 
-import { Container, Form, Span, InputContainer } from './styles'
+import { Container, Form, InputContainer } from './styles'
 
 export default function RecoverPassword() {
   return (
     <Container>
-      <SectionTitle style="secondary">Prontinho.</SectionTitle>
+      <Heading style="secondary">Prontinho.</Heading>
 
-      <Span>Por favor, insira a sua nova senha</Span>
+      <Text>Por favor, insira a sua nova senha</Text>
 
       <Form onSubmit={(e) => e.preventDefault()}>
         <InputContainer>

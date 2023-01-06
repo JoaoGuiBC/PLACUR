@@ -3,7 +3,7 @@ import { ComponentProps } from 'react'
 import { MapPin, WhatsappLogo } from 'phosphor-react'
 
 import { Info } from '../Info'
-import { SectionTitle } from '../SectionTitle'
+import { Heading } from '../Heading'
 
 import { Contacts, Container, InstitutionalLogos } from './styles'
 
@@ -13,7 +13,7 @@ function Footer(props: FooterProps) {
   return (
     <Container {...props}>
       <Contacts>
-        <SectionTitle>Contato</SectionTitle>
+        <Heading>Contato</Heading>
         <Info Icon={MapPin}>Rua paraguai, 401 - Nações</Info>
         <Info Icon={WhatsappLogo}>Telefone: (47) 98821-2008</Info>
       </Contacts>

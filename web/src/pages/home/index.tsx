@@ -1,7 +1,7 @@
 import { Select } from '@components/Select'
+import { Heading } from '@components/Heading'
 import { Searchbar } from '@components/Searchbar'
 import { CourseCard } from '@components/CourseCard'
-import { SectionTitle } from '@components/SectionTitle'
 
 import { axesOfKnowledge } from '@lib/selectValues'
 
@@ -18,7 +18,8 @@ export default function Home() {
         />
       </FilterContainer>
 
-      <SectionTitle>Cursos com inscrições abertas</SectionTitle>
+      <Heading>Cursos com inscrições abertas</Heading>
+
       <CoursesContainer>
         <CourseCard
           image="/course_image_placeholder.png"
@@ -53,7 +54,8 @@ export default function Home() {
         />
       </CoursesContainer>
 
-      <SectionTitle>Cursos Finalizados</SectionTitle>
+      <Heading>Cursos Finalizados</Heading>
+
       <CoursesContainer>
         <CourseCard
           image="/course_image_placeholder.png"

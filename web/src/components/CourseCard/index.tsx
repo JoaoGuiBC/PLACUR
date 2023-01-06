@@ -2,7 +2,9 @@ import Image from 'next/image'
 import { ComponentProps } from 'react'
 
 import { Tag } from '../Tag'
-import { Container, Content, InfoBar, Title } from './styles'
+import { Text } from '../Text'
+
+import { Container, Content, InfoBar } from './styles'
 
 interface CourseCardProps extends ComponentProps<typeof Container> {
   image: string
@@ -39,29 +41,29 @@ function CourseCard({
         height={88}
       />
       <Content>
-        <Title>{title}</Title>
+        <Text>{title}</Text>
 
         <InfoBar>
           {!finished ? (
             <>
               <div>
-                <p>Data:</p>
-                <span>
+                <Text as="p">Data:</Text>
+                <Text size="sm">
                   {firstDate === lastDate
                     ? firstDate
                     : `${firstDate} a ${lastDate}`}
-                </span>
+                </Text>
               </div>
 
               <div>
-                <p>Vagas disponíveis:</p>
-                <span>{availability ?? 'Sem limite de vagas'}</span>
+                <Text as="p">Vagas disponíveis:</Text>
+                <Text size="sm">{availability ?? 'Sem limite de vagas'}</Text>
               </div>
             </>
           ) : (
             <div>
-              <p>Concluído em:</p>
-              <span>{lastDate}</span>
+              <Text as="p">Concluído em:</Text>
+              <Text size="sm">{lastDate}</Text>
             </div>
           )}
         </InfoBar>
