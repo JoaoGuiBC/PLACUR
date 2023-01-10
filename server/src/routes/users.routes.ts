@@ -1,54 +1,81 @@
-import { Router } from "https://deno.land/x/oak@v11.1.0/mod.ts"
+import { Router } from "https://deno.land/x/oak@v11.1.0/mod.ts";
 
-import { prisma } from "../database/prismaClient.ts"
-import { createUser } from "../services/users/createUser.ts"
+import { ensureAuthenticatedMiddleware } from "../lib/middlewares/index.tsx";
+import {
+  createUser,
+  deleteUser,
+  findUser,
+  updateUser,
+} from "../services/users/index.ts";
 
-const usersRouter = new Router()
+const usersRouter = new Router();
 
-export interface ICreateUser {
-  email: string
-  password: string
-  name: string
-  document: string
-  phone: string
-  isPublicAgent: boolean
-  office?: string
-  address: string
-  neighborhood: string
-  city: string
-  haveVisualImpairment: boolean
-  haveHearingImpairment: boolean
-  isAdmin: boolean
+interface IUserData {
+  email: string;
+  name: string;
+  document: string;
+  phone: string;
+  isPublicAgent: boolean;
+  office?: string;
+  address: string;
+  neighborhood: string;
+  city: string;
+  haveVisualImpairment: boolean;
+  haveHearingImpairment: boolean;
+  hasPhysicalDisability: boolean;
+  isAdmin: boolean;
+}
+export interface ICreateUser extends IUserData {
+  password: string;
+}
+export interface IUpdateUser extends IUserData {
+  id: string;
 }
 
-usersRouter.get("/", async ({ request, response }) => {
-  const userId = String(request.url.searchParams.get("userId"))
+usersRouter.get(
+  "/find",
+  ensureAuthenticatedMiddleware,
+  async ({ request, response }) => {
+    const userId = String(request.url.searchParams.get("userId"));
 
-  const user = await prisma.user.findUnique({
-    where: { id: userId }
-  })
+    const user = await findUser(userId);
 
-  return response.body = user
-})
+    return response.body = user;
+  },
+);
 
-usersRouter.post("/", async ({ request, response }) => {
-  const body = request.body()
+usersRouter.post("/create", async ({ request, response }) => {
+  const body = request.body();
+  const userData = await body.value as ICreateUser;
 
-  const userData = await body.value as ICreateUser
-  const cleanedDocument = userData.document.replace(/\D/g,'')
+  const { user } = await createUser(userData);
 
-  const checkIfUserAlreadyExists = await prisma.user.findFirst({
-    where: { email: userData.email, OR: { document: cleanedDocument } }
-  })
+  return response.body = user;
+});
 
-  if (checkIfUserAlreadyExists) {
-    response.status = 406
-    return response.body = { message: "E-mail e/ou CPF já em uso, por favor revise os dados" }
-  }
+usersRouter.put(
+  "/update",
+  ensureAuthenticatedMiddleware,
+  async ({ request, response }) => {
+    const body = request.body();
+    const userData = await body.value as IUpdateUser;
 
-  const { user } = await createUser(userData, cleanedDocument)
+    const { user } = await updateUser(userData);
 
-  return response.body = user
-})
+    return response.body = user;
+  },
+);
 
-export { usersRouter }
+usersRouter.delete(
+  "/delete",
+  ensureAuthenticatedMiddleware,
+  async ({ request, response }) => {
+    const userId = String(request.url.searchParams.get("userId"));
+
+    await deleteUser(userId);
+
+    return response.body = { message: "Usuário deletado com sucesso" };
+  },
+);
+
+export { usersRouter };

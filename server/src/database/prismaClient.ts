@@ -1,8 +1,8 @@
-import { config } from "https://deno.land/std@0.163.0/dotenv/mod.ts";
+import { config } from "https://deno.land/std@0.163.0/dotenv/mod.ts"
 
-import { PrismaClient } from "../../generated/client/deno/edge.ts";
+import { PrismaClient } from "../../generated/client/deno/edge.ts"
 
-const envVars = await config();
+const envVars = await config()
 
 const prisma = new PrismaClient({
   datasources: {
@@ -10,6 +10,6 @@ const prisma = new PrismaClient({
       url: envVars.DATABASE_URL,
     },
   },
-});
+})
 
-export { prisma };
+export { prisma }
