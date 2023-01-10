@@ -6,9 +6,7 @@ import {
 
 import { AppError } from "../../lib/appError.ts";
 
-import { findUser } from "./findUser.ts";
-import { deleteUser } from "./deleteUser.ts";
-import { createUser } from "./createUser.ts";
+import { createUser, deleteUser, findUser, updateUser } from "./index.ts";
 
 Deno.test("Users services", async (test) => {
   const newUser = {
@@ -24,6 +22,23 @@ Deno.test("Users services", async (test) => {
     city: "Fake city",
     haveVisualImpairment: false,
     haveHearingImpairment: false,
+    hasPhysicalDisability: false,
+    isAdmin: false,
+  };
+  const comparativeUser = {
+    id: "fakeid",
+    email: "testemail@example.com",
+    password: "password123",
+    name: "John Doe",
+    document: "32132132100",
+    phone: "(99) 99999-9999",
+    isPublicAgent: false,
+    address: "Fake street, 123",
+    neighborhood: "Fake neighborhood",
+    city: "Fake city",
+    haveVisualImpairment: false,
+    haveHearingImpairment: false,
+    hasPhysicalDisability: false,
     isAdmin: false,
   };
 
@@ -53,6 +68,47 @@ Deno.test("Users services", async (test) => {
       assertExists(user);
       assertEquals(user.email, "johndoe@example.com");
     });
+  });
+
+  await test.step("User data update", async (testStep) => {
+    await testStep.step(
+      "It should be able to update the user data",
+      async () => {
+        newUser.email = "newemail@example.com";
+
+        const { user } = await updateUser(newUser);
+
+        assertEquals(user.email, "newemail@example.com");
+      },
+    );
+
+    await testStep.step(
+      "It should not be able to update the user data when using an already taken email or document",
+      async () => {
+        newUser.email = "testemail@example.com";
+        newUser.document = "32132132100";
+
+        await createUser(comparativeUser);
+
+        await assertRejects(
+          () => updateUser(newUser),
+          AppError,
+        );
+        await deleteUser("fakeid");
+      },
+    );
+
+    await testStep.step(
+      "It should throw a custom error when updating a non-existent user",
+      async () => {
+        newUser.id = "invalidId";
+
+        await assertRejects(
+          () => updateUser(newUser),
+          AppError,
+        );
+      },
+    );
   });
 
   await test.step("User deletion", async (testStep) => {

@@ -1,14 +1,12 @@
 import { Router } from "https://deno.land/x/oak@v11.1.0/mod.ts";
 
-import { findUser } from "../services/users/findUser.ts";
-import { createUser } from "../services/users/createUser.ts";
 import { ensureAuthenticatedMiddleware } from "../lib/middlewares/index.tsx";
+import { createUser, findUser, updateUser } from "../services/users/index.ts";
 
 const usersRouter = new Router();
 
-export interface ICreateUser {
+interface IUserData {
   email: string;
-  password: string;
   name: string;
   document: string;
   phone: string;
@@ -19,11 +17,18 @@ export interface ICreateUser {
   city: string;
   haveVisualImpairment: boolean;
   haveHearingImpairment: boolean;
+  hasPhysicalDisability: boolean;
   isAdmin: boolean;
+}
+export interface ICreateUser extends IUserData {
+  password: string;
+}
+export interface IUpdateUser extends IUserData {
+  id: string;
 }
 
 usersRouter.get(
-  "/",
+  "/find",
   ensureAuthenticatedMiddleware,
   async ({ request, response }) => {
     const userId = String(request.url.searchParams.get("userId"));
@@ -34,7 +39,7 @@ usersRouter.get(
   },
 );
 
-usersRouter.post("/", async ({ request, response }) => {
+usersRouter.post("/create", async ({ request, response }) => {
   const body = request.body();
   const userData = await body.value as ICreateUser;
 
@@ -42,5 +47,18 @@ usersRouter.post("/", async ({ request, response }) => {
 
   return response.body = user;
 });
+
+usersRouter.put(
+  "/update",
+  ensureAuthenticatedMiddleware,
+  async ({ request, response }) => {
+    const body = request.body();
+    const userData = await body.value as IUpdateUser;
+
+    const { user } = await updateUser(userData);
+
+    return response.body = user;
+  },
+);
 
 export { usersRouter };

@@ -5,10 +5,8 @@ import {
 } from "https://deno.land/std@0.168.0/testing/asserts.ts";
 
 import { AppError } from "../../lib/appError.ts";
-import { createUser } from "../users/createUser.ts";
-import { deleteUser } from "../users/deleteUser.ts";
-import { renewUserSession } from "./renewUserSession.ts";
-import { startUserSession } from "./startUserSession.ts";
+import { createUser, deleteUser } from "../users/index.ts";
+import { renewUserSession, startUserSession } from "./index.ts";
 
 Deno.test("Sessions services", async (test) => {
   const newUser = {
@@ -24,6 +22,7 @@ Deno.test("Sessions services", async (test) => {
     city: "Fake city",
     haveVisualImpairment: false,
     haveHearingImpairment: false,
+    hasPhysicalDisability: false,
     isAdmin: false,
   };
 
