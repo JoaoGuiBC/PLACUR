@@ -1,7 +1,12 @@
 import { Router } from "https://deno.land/x/oak@v11.1.0/mod.ts";
 
 import { ensureAuthenticatedMiddleware } from "../lib/middlewares/index.tsx";
-import { createUser, findUser, updateUser } from "../services/users/index.ts";
+import {
+  createUser,
+  deleteUser,
+  findUser,
+  updateUser,
+} from "../services/users/index.ts";
 
 const usersRouter = new Router();
 
@@ -58,6 +63,18 @@ usersRouter.put(
     const { user } = await updateUser(userData);
 
     return response.body = user;
+  },
+);
+
+usersRouter.delete(
+  "/delete",
+  ensureAuthenticatedMiddleware,
+  async ({ request, response }) => {
+    const userId = String(request.url.searchParams.get("userId"));
+
+    await deleteUser(userId);
+
+    return response.body = { message: "Usuário deletado com sucesso" };
   },
 );
 
