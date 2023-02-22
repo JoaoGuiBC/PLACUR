@@ -3,7 +3,7 @@ import { Heading } from '@components/Heading'
 import { Searchbar } from '@components/Searchbar'
 import { CourseCard } from '@components/CourseCard'
 
-import { axesOfKnowledge } from '@lib/selectValues'
+import { axesOfKnowledge } from '@utils/selectValues'
 
 import { CoursesContainer, FilterContainer } from './styles'
 

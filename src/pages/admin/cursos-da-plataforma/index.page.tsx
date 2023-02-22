@@ -8,7 +8,7 @@ import {
   axesOfKnowledge,
   courseCategories,
   courseStatus,
-} from '@lib/selectValues'
+} from '@utils/selectValues'
 
 import { ActionsContainer, CoursesContainer } from './styles'
 

@@ -15,7 +15,7 @@ import { Checkbox } from '@components/Checkbox'
 import { TextInput } from '@components/TextInput'
 import { UpdatePasswordDialog } from '@components/Dialogs/UpdatePasswordDialog'
 
-import { cityHallDivisions } from '@lib/selectValues'
+import { cityHallDivisions } from '@utils/selectValues'
 
 import { theme } from 'stitches.config'
 import {
