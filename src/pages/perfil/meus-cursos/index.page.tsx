@@ -1,7 +1,6 @@
 import { NextSeo } from 'next-seo'
 
-import { Heading } from '@components/Heading'
-import { CourseCard } from '@components/CourseCard'
+import { Heading, CourseCard } from '@components/index'
 
 import {
   Container,

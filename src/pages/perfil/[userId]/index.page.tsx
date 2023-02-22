@@ -7,14 +7,16 @@ import {
 } from 'phosphor-react'
 import { NextSeo } from 'next-seo'
 
-import { Text } from '@components/Text'
-import { Avatar } from '@components/Avatar'
-import { Select } from '@components/Select'
-import { Button } from '@components/Button'
-import { Heading } from '@components/Heading'
-import { Checkbox } from '@components/Checkbox'
-import { TextInput } from '@components/TextInput'
-import { UpdatePasswordDialog } from '@components/Dialogs/UpdatePasswordDialog'
+import {
+  Text,
+  Avatar,
+  Select,
+  Button,
+  Heading,
+  Checkbox,
+  TextInput,
+  UpdatePasswordDialog,
+} from '@components/index'
 
 import { cityHallDivisions } from '@utils/selectValues'
 

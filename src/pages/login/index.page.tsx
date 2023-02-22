@@ -2,10 +2,7 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import { EnvelopeSimple, LockKey } from 'phosphor-react'
 
-import { Text } from '@components/Text'
-import { Button } from '@components/Button'
-import { Heading } from '@components/Heading'
-import { TextInput } from '@components/TextInput'
+import { Text, Button, Heading, TextInput } from '@components/index'
 
 import { ButtonContainer, Container, Form, InputContainer } from './styles'
 

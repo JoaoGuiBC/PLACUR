@@ -1,4 +1,4 @@
-import { Text } from '@components/Text'
+import { Text } from '@components/index'
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
