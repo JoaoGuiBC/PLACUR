@@ -1,3 +1,5 @@
+import { NextSeo } from 'next-seo'
+
 import { Searchbar } from '@components/Searchbar'
 import { Pagination } from '@components/Pagination'
 
@@ -13,6 +15,11 @@ import {
 export default function AppUsers() {
   return (
     <>
+      <NextSeo
+        title="Administrar usuários | PLACUR"
+        description="Selecione um usuário para visualizar e editar as informações dele."
+      />
+
       <SearchContainer>
         <Searchbar placeholder="Pesquisar nome" />
         <Searchbar placeholder="Pesquisar CPF" />

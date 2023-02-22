@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { NextSeo } from 'next-seo'
 import { EnvelopeSimple, LockKey } from 'phosphor-react'
 
 import { Text } from '@components/Text'
@@ -10,28 +11,39 @@ import { ButtonContainer, Container, Form, InputContainer } from './styles'
 
 export default function Login() {
   return (
-    <Container>
-      <Heading style="secondary">Estamos quase lá.</Heading>
+    <>
+      <NextSeo
+        title="Login | PLACUR"
+        description="Informe suas credenciais para entrar na plataforma."
+      />
 
-      <Text>Faça seu login para começar a acessar os cursos</Text>
+      <Container>
+        <Heading style="secondary">Estamos quase lá.</Heading>
 
-      <Form onSubmit={(e) => e.preventDefault()}>
-        <InputContainer>
-          <TextInput Icon={EnvelopeSimple} type="email" placeholder="E-Mail" />
-          <TextInput Icon={LockKey} type="password" placeholder="Senha" />
-        </InputContainer>
+        <Text>Faça seu login para começar a acessar os cursos</Text>
 
-        <Link href="/recuperacao-de-senha">
-          <Text>Esqueci minha senha</Text>
-        </Link>
+        <Form onSubmit={(e) => e.preventDefault()}>
+          <InputContainer>
+            <TextInput
+              Icon={EnvelopeSimple}
+              type="email"
+              placeholder="E-Mail"
+            />
+            <TextInput Icon={LockKey} type="password" placeholder="Senha" />
+          </InputContainer>
 
-        <ButtonContainer>
-          <Button type="submit">Login</Button>
-          <Button type="button" variant="secondary">
-            Criar conta
-          </Button>
-        </ButtonContainer>
-      </Form>
-    </Container>
+          <Link href="/recuperacao-de-senha">
+            <Text>Esqueci minha senha</Text>
+          </Link>
+
+          <ButtonContainer>
+            <Button type="submit">Login</Button>
+            <Button type="button" variant="secondary">
+              Criar conta
+            </Button>
+          </ButtonContainer>
+        </Form>
+      </Container>
+    </>
   )
 }

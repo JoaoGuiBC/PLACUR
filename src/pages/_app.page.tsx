@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import { DefaultSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
 
@@ -14,9 +14,14 @@ export default function App({
 
   return (
     <SessionProvider session={session}>
-      <Head>
-        <title>EGEPE</title>
-      </Head>
+      <DefaultSeo
+        openGraph={{
+          type: 'website',
+          locale: 'pt_BR',
+          url: 'https://placur.site',
+          siteName: 'PLACUR',
+        }}
+      />
 
       <Layout>
         <Component {...pageProps} />

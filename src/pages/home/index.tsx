@@ -1,3 +1,5 @@
+import { NextSeo } from 'next-seo'
+
 import { Select } from '@components/Select'
 import { Heading } from '@components/Heading'
 import { Searchbar } from '@components/Searchbar'
@@ -10,6 +12,11 @@ import { CoursesContainer, FilterContainer } from './styles'
 export default function Home() {
   return (
     <>
+      <NextSeo
+        title="Cursos | PLACUR"
+        description="Escolha um curso para se inscrever, ou consulte um curso que já tenha sido finalizado."
+      />
+
       <FilterContainer>
         <Searchbar placeholder="Buscar curso" />
         <Select

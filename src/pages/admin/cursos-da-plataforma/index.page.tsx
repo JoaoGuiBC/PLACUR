@@ -1,3 +1,5 @@
+import { NextSeo } from 'next-seo'
+
 import { Select } from '@components/Select'
 import { Button } from '@components/Button'
 import { Searchbar } from '@components/Searchbar'
@@ -15,6 +17,11 @@ import { ActionsContainer, CoursesContainer } from './styles'
 export default function AppCourses() {
   return (
     <>
+      <NextSeo
+        title="Administrar cursos | PLACUR"
+        description="Selecione um curso para visualizar e editar as informações dele."
+      />
+
       <ActionsContainer>
         <Searchbar placeholder="Buscar curso" />
         <Select
