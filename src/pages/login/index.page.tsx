@@ -1,12 +1,33 @@
-import Link from 'next/link'
+import { z } from 'zod'
 import { NextSeo } from 'next-seo'
-import { EnvelopeSimple, LockKey } from 'phosphor-react'
+import { signIn } from 'next-auth/react'
+import { EnvelopeSimple } from 'phosphor-react'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Text, Button, Heading, TextInput } from '@components/index'
 
 import { ButtonContainer, Container, Form, InputContainer } from './styles'
+import { useForm } from 'react-hook-form'
+
+const informEmailFormSchema = z.object({
+  email: z.string().email({ message: 'Por favor, informe um e-mail válido.' }),
+})
+
+type InformEmailFormData = z.infer<typeof informEmailFormSchema>
 
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<InformEmailFormData>({
+    resolver: zodResolver(informEmailFormSchema),
+  })
+
+  async function handleLogin({ email }: InformEmailFormData) {
+    await signIn()
+  }
+
   return (
     <>
       <NextSeo
@@ -17,26 +38,26 @@ export default function Login() {
       <Container>
         <Heading style="secondary">Estamos quase lá.</Heading>
 
-        <Text>Faça seu login para começar a acessar os cursos</Text>
+        <Text>
+          Informe o seu e-mail, caso não tenha uma conta ela será criada
+          automaticamente.
+        </Text>
 
-        <Form onSubmit={(e) => e.preventDefault()}>
+        <Form onSubmit={handleSubmit(handleLogin)}>
           <InputContainer>
             <TextInput
               Icon={EnvelopeSimple}
               type="email"
-              placeholder="E-Mail"
+              placeholder={
+                errors.email ? `E-mail - ${errors.email.message}` : 'E-mail'
+              }
+              {...register('email')}
             />
-            <TextInput Icon={LockKey} type="password" placeholder="Senha" />
           </InputContainer>
 
-          <Link href="/recuperacao-de-senha">
-            <Text>Esqueci minha senha</Text>
-          </Link>
-
           <ButtonContainer>
-            <Button type="submit">Login</Button>
-            <Button type="button" variant="secondary">
-              Criar conta
+            <Button type="submit" disabled={isSubmitting}>
+              Login
             </Button>
           </ButtonContainer>
         </Form>
