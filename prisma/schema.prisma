@@ -78,3 +78,45 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map("verification_tokens")
 }
+
+model Course {
+  id String @id @default(cuid())
+
+  title           String
+  target_audience String
+  objective       String
+  observations    String
+  content         String
+
+  created_at DateTime @default(now())
+
+  courses_ministers CourseMinister[]
+
+  @@map("courses")
+}
+
+model Minister {
+  id String @id @default(cuid())
+
+  name          String @unique
+  qualification String
+
+  created_at DateTime @default(now())
+
+  courses_ministers CourseMinister[]
+
+  @@map("ministers")
+}
+
+model CourseMinister {
+  id String @id @default(cuid())
+
+  minister_id String?
+  course_id   String?
+
+  minister Minister? @relation(fields: [minister_id], references: [id])
+  course   Course?   @relation(fields: [course_id], references: [id])
+
+  @@unique([minister_id, course_id])
+  @@map("course_minister")
+}
