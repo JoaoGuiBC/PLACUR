@@ -25,7 +25,7 @@ export default function Login() {
   })
 
   async function handleLogin({ email }: InformEmailFormData) {
-    await signIn()
+    signIn('email', { email })
   }
 
   return (
