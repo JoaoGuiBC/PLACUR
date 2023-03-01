@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
+import type { GetStaticPaths, GetStaticProps } from 'next'
 
+import { prisma } from '@lib/prisma'
 import { Button, Heading, Text } from '@components/index'
 
 import {
@@ -12,28 +14,43 @@ import {
   Encounter,
   DateInfo,
 } from './styles'
-import { GetStaticPaths, GetStaticProps } from 'next'
 
-export default function Login() {
+interface CourseData {
+  id: string
+  title: string
+  target_audience: string
+  objective: string
+  observations: string
+  content: string
+}
+
+interface MinisterData {
+  id: string
+  name: string
+  qualification: string
+}
+
+interface CourseProps {
+  course: CourseData
+  ministers: MinisterData[]
+}
+
+export default function Course({ course, ministers }: CourseProps) {
   return (
     <>
       <NextSeo
-        title="Assistência Farmacêutica no Município de Balneário Camboriú - II | PLACUR"
-        description="Curso dedicado a Servidores públicos municipais prescritores (médicos) das
-        Unidades Básicas, Especializadas e Serviços de Urgência e
-        Emergência (PA, UPA, pronto atendimento HMRC)"
+        title={`${course.title} | PLACUR`}
+        description={`Curso dedicado a ${course.target_audience}`}
       />
 
       <Container>
         <InfoContainer>
-          <Heading size="lg">
-            Assistência Farmacêutica no Município de Balneário Camboriú - II
-          </Heading>
+          <Heading size="lg">{course.title}</Heading>
 
           <ImageInfo>
             <Image
               src="/course_image_placeholder.png"
-              alt="Assistência Farmacêutica no Município de Balneário Camboriú - II"
+              alt={course.title}
               width={160}
               height={160}
             />
@@ -41,70 +58,36 @@ export default function Login() {
             <div>
               <Section>
                 <Heading size="md">Público Alvo</Heading>
-                <Text size="lg">
-                  Servidores públicos municipais prescritores (médicos) das
-                  Unidades Básicas, Especializadas e Serviços de Urgência e
-                  Emergência (PA, UPA, pronto atendimento HMRC)
-                </Text>
+                <Text size="lg">{course.target_audience}</Text>
               </Section>
 
               <Section>
                 <Heading size="md">Objetivo</Heading>
-                <Text size="lg">
-                  Ao final do curso o servidor deverá ser capaz de: identificar
-                  os diferentes componentes da AF; reconhecer os medicamentos da
-                  REMUME e do CEAF; localizar e acessar os documentos
-                  necessários para abertura e renovação dos processos do CEAF
-                  bem como dominar o preenchimento correto da documentação;
-                  preencher formulários de revisão da REMUME elaborados pela
-                  CFT.
-                </Text>
+                <Text size="lg">{course.objective}</Text>
               </Section>
             </div>
           </ImageInfo>
 
           <Section>
             <Heading size="md">Observação</Heading>
-            <Text size="lg">
-              Módulo 1 será ministrado no auditório do NAI (Núcleo de atenção aí
-              idoso). Os módulos 2, 3 e 4 serão ministrados na sala 105 na
-              faculdade unisul em frente ao Balneario Camboriu Shopping.
-            </Text>
+            <Text size="lg">{course.observations}</Text>
           </Section>
 
           <Section>
             <Heading size="md">Conteúdo programático</Heading>
-            <Text size="lg">
-              O curso abordará os medicamentos constantes na REMUME, CEAF -
-              critérios para inclusão e abertura de processo administrativo e
-              abordagens CFT, ele será dividido em quatro modulos, sendo eles:
-              MÓDULO 1 - Assistência Farmacêutica para Idosos. MÓDULO 2 -
-              Assistência Farmacêutica na Saúde Mental. MÓDULO 3 - Assistência
-              Farmacêutica na Saúde da Mulher. MÓDULO 4 - Assistência
-              Farmacêutica na Infância e Adolescência
-            </Text>
+            <Text size="lg">{course.content}</Text>
           </Section>
 
           <Section>
             <Heading size="md">Ministrantes</Heading>
-            <Text size="lg" as="p">
-              <strong>Patrícia Schlichting</strong> - Graduada em Farmácia em
-              1998 pela Universidade Federal de Santa Catarina - UFSC,
-              habilitação Análises Clínicas em 2001 pela Universidade do Vale do
-              Itajaí – UNIVALI, especialista em Gestão de Assistência
-              Farmacêutica em 2012 pela Universidade Aberta do SUS – UNASUS
-              Ministério da Saúde em parceria com UFSC, especialista em
-              Assistência Farmacêutica Municipal em 2019 pelo Hospital Alemão
-              Osvaldo Cruz – HAOC, pós graduada em Análises Clínicas e
-              Toxicológicas em 2006 pela Universidade Positivo UNICENP – PR.
-            </Text>
 
-            <Text size="lg" as="p">
-              <strong>Mileine Mosca Hamedt</strong> - Graduada em Farmácia em
-              2011 pela Universidade da Região de Joinville – UNIVILLE,
-              especialista MBA Economia e Avaliação de Tecnologias em Saúde em
-              2014 pela Fundação Instituto de Pesquisas Econômicas – FIPE.
-            </Text>
+            {ministers.map((minister) => {
+              return (
+                <Text size="lg" as="p" key={minister.id}>
+                  <strong>{minister.name}</strong> - {minister.qualification}
+                </Text>
+              )
+            })}
           </Section>
         </InfoContainer>
 
@@ -136,10 +119,48 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const courseId = String(params?.course_id)
 
-  console.log(courseId)
+  const course = await prisma.course.findFirstOrThrow({
+    where: { id: courseId },
+    include: {
+      courses_ministers: true,
+    },
+  })
+
+  if (!course) {
+    return {
+      notFound: true,
+    }
+  }
+
+  const {
+    courses_ministers: coursesMinisters,
+    created_at: _,
+    ...parsedCourse
+  } = course
+
+  const ministersList = await prisma.minister.findMany({
+    where: {
+      id: {
+        in: coursesMinisters.map((courseMinister) =>
+          String(courseMinister.minister_id)
+        ),
+      },
+    },
+  })
+
+  const ministers = ministersList
+    .filter((minister) => minister !== null)
+    .map((minister) => {
+      const { created_at: _, ...parsedMinister } = minister
+
+      return parsedMinister
+    })
 
   return {
-    props: {},
+    props: {
+      course: parsedCourse,
+      ministers,
+    },
     revalidate: 60 * 60 * 2, // 2 hours
   }
 }
