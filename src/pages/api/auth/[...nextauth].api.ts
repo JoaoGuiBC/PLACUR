@@ -1,8 +1,8 @@
-import NextAuth from 'next-auth'
-import EmailProvider from 'next-auth/providers/email'
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import NextAuth from "next-auth";
+import EmailProvider from "next-auth/providers/email";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
-import { prisma } from '@lib/prisma'
+import { prisma } from "@lib/prisma";
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -13,6 +13,7 @@ export default NextAuth({
     }),
   ],
   pages: {
-    signIn: '/login',
+    signIn: "/login",
+    verifyRequest: "/login?message=verifyEmail",
   },
-})
+});

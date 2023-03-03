@@ -13,16 +13,16 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
-  document      String    @unique
-  phone         String
+  document      String?   @unique
+  phone         String?
   image         String?
 
-  is_public_agent Boolean
+  is_public_agent Boolean?
   office          String?
 
-  address      String
-  neighborhood String
-  city         String
+  address      String?
+  neighborhood String?
+  city         String?
 
   have_visual_impairment  Boolean @default(false)
   have_hearing_impairment Boolean @default(false)
