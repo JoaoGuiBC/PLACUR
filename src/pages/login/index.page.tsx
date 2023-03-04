@@ -1,13 +1,17 @@
 import { z } from 'zod'
 import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/react'
+import { useForm } from 'react-hook-form'
+import { getServerSession } from 'next-auth'
+import type { GetServerSideProps } from 'next'
 import { EnvelopeSimple } from 'phosphor-react'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+import { authOptions } from '@api/auth/[...nextauth].api'
 import { Text, Button, Heading, TextInput } from '@components/index'
 
 import { ButtonContainer, Container, Form, InputContainer } from './styles'
-import { useForm } from 'react-hook-form'
 
 const informEmailFormSchema = z.object({
   email: z.string().email({ message: 'Por favor, informe um e-mail válido.' }),
@@ -24,44 +28,82 @@ export default function Login() {
     resolver: zodResolver(informEmailFormSchema),
   })
 
+  const router = useRouter()
+  const { message } = router.query
+
   async function handleLogin({ email }: InformEmailFormData) {
-    signIn('email', { email })
+    await signIn('email', { email })
   }
 
   return (
     <>
       <NextSeo
         title="Login | PLACUR"
-        description="Informe suas credenciais para entrar na plataforma."
+        description="Informe seue e-mail para entrar na plataforma."
       />
 
       <Container>
         <Heading style="secondary">Estamos quase lá.</Heading>
 
-        <Text>
-          Informe o seu e-mail, caso não tenha uma conta ela será criada
-          automaticamente.
-        </Text>
+        {message === 'verifyEmail' ? (
+          <Text size="lg">
+            Por favor, confira o seu e-mail, enviamos a sua confirmação de login
+            por lá.
+          </Text>
+        ) : (
+          <>
+            <Text>
+              Informe o seu e-mail, caso não tenha uma conta ela será criada
+              automaticamente.
+            </Text>
 
-        <Form onSubmit={handleSubmit(handleLogin)}>
-          <InputContainer>
-            <TextInput
-              Icon={EnvelopeSimple}
-              type="email"
-              placeholder={
-                errors.email ? `E-mail - ${errors.email.message}` : 'E-mail'
-              }
-              {...register('email')}
-            />
-          </InputContainer>
+            <Form onSubmit={handleSubmit(handleLogin)}>
+              <InputContainer>
+                <TextInput
+                  Icon={EnvelopeSimple}
+                  type="email"
+                  placeholder={
+                    errors.email ? `E-mail - ${errors.email.message}` : 'E-mail'
+                  }
+                  {...register('email')}
+                />
+              </InputContainer>
 
-          <ButtonContainer>
-            <Button type="submit" disabled={isSubmitting}>
-              Login
-            </Button>
-          </ButtonContainer>
-        </Form>
+              <ButtonContainer>
+                <Button type="submit" disabled={isSubmitting}>
+                  Login
+                </Button>
+              </ButtonContainer>
+            </Form>
+          </>
+        )}
       </Container>
     </>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const session = await getServerSession(req, res, authOptions)
+
+  if (session) {
+    if (session.user?.name) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: '/',
+        },
+        props: {},
+      }
+    }
+
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/criar-conta',
+      },
+      props: {},
+    }
+  }
+
+  return { props: {} }
 }
