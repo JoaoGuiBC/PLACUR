@@ -2,18 +2,32 @@ import { NextSeo } from 'next-seo'
 import { getServerSession } from 'next-auth'
 import type { GetServerSideProps } from 'next'
 
+import { MultiStep } from '@components/index'
 import { authOptions } from '@api/auth/[...nextauth].api'
-import { Heading } from '@components/index'
+
+import {
+  HaveDisabilityStepForm,
+  HaveDisabilityStepHeader,
+} from './HaveDisabilityStep'
+import { AddressStepForm, AddressStepHeader } from './AddressStep'
+import { PersonalInfoForm, PersonalInfoHeader } from './PersonalInfoStep'
 
 import { Container } from './styles'
 
 export default function CreateAccount() {
   return (
     <>
-      <NextSeo title="Criar conta - passo 1 | PLACUR" description="" />
+      <NextSeo
+        title="Criar conta | PLACUR"
+        description="Complete o formulario para finalizar a sua conta."
+      />
 
       <Container>
-        <Heading style="secondary">Criar Conta.</Heading>
+        <PersonalInfoHeader />
+
+        <MultiStep size={3} currentStep={3} />
+
+        <PersonalInfoForm />
       </Container>
     </>
   )

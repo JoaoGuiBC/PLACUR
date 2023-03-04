@@ -2,7 +2,7 @@ import * as BaseLabel from '@radix-ui/react-label'
 
 import { styled } from 'stitches.config'
 
-export const Container = styled('div', {
+export const Container = styled(BaseLabel.Root, {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -16,7 +16,7 @@ export const Container = styled('div', {
   borderRadius: '8px',
 })
 
-export const Prefix = styled(BaseLabel.Root, {
+export const Prefix = styled('div', {
   all: 'unset',
 
   boxSizing: 'border-box',
@@ -58,7 +58,7 @@ export const InputContainer = styled('fieldset', {
   },
 })
 
-export const Label = styled(BaseLabel.Root, {
+export const Placeholder = styled('div', {
   padding: '0 0.5rem',
 
   fontFamily: '$text',
@@ -84,7 +84,7 @@ export const Input = styled('input', {
   border: 'none',
   outline: 'none',
 
-  [`&:focus ~ ${Label},&:not(:placeholder-shown) ~ ${Label}`]: {
+  [`&:focus ~ ${Placeholder},&:not(:placeholder-shown) ~ ${Placeholder}`]: {
     transform: 'translateY(75%)',
     fontSize: '$xs',
   },

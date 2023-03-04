@@ -15,7 +15,7 @@ import {
   ShowPasswordButton,
   Input,
   InputContainer,
-  Label,
+  Placeholder,
 } from './styles'
 
 interface TextInputProps extends ComponentProps<typeof Input> {
@@ -29,8 +29,8 @@ const TextInput = forwardRef(
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
     return (
-      <Container>
-        <Prefix htmlFor={placeholder}>
+      <Container htmlFor={placeholder}>
+        <Prefix>
           <Icon size={32} color={theme.colors.gray900.value} weight="light" />
         </Prefix>
 
@@ -42,7 +42,7 @@ const TextInput = forwardRef(
             placeholder=" "
             {...props}
           />
-          <Label htmlFor={placeholder}>{placeholder}</Label>
+          <Placeholder>{placeholder}</Placeholder>
         </InputContainer>
 
         {type === 'password' && (
