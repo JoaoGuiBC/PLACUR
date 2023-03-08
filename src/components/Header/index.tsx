@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { ComponentProps } from 'react'
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+import Link from "next/link";
+import Image from "next/image";
+import { ComponentProps } from "react";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {
   BookBookmark,
   CaretRight,
@@ -9,12 +9,12 @@ import {
   IdentificationBadge,
   SignOut,
   UsersFour,
-} from 'phosphor-react'
+} from "phosphor-react";
 
-import { Avatar } from '../Avatar'
-import { Separator } from '../Separator'
+import { Avatar } from "../Avatar";
+import { Separator } from "../Separator";
 
-import { theme } from 'stitches.config'
+import { theme } from "stitches.config";
 import {
   Container,
   DropdownMenuContent,
@@ -23,8 +23,8 @@ import {
   DropdownMenuArrow,
   DropdownMenuItem,
   DropdownMenuSubTrigger,
-} from './styles'
-import { Text } from '@components/Text'
+} from "./styles";
+import { Text } from "@components/Text";
 
 interface HeaderProps extends ComponentProps<typeof Container> {}
 
@@ -42,14 +42,17 @@ function Header(props: HeaderProps) {
         />
       </Link>
 
-      {/* <Link href="/login">
+      <Link href="/login">
         <UserInfoContainer>
-          <span>Olá, <br /> Faça login</span>
+          <span>
+            Olá, <br /> Faça login
+          </span>
 
           <Avatar />
         </UserInfoContainer>
-        </Link> */}
+      </Link>
 
+      {/* 
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
           <UserInfoContainer>
@@ -145,10 +148,11 @@ function Header(props: HeaderProps) {
           </DropdownMenuContent>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
+      */}
     </Container>
-  )
+  );
 }
 
-Header.displayName = 'Header'
+Header.displayName = "Header";
 
-export { Header }
+export { Header };

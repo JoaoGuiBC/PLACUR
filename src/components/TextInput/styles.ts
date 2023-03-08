@@ -1,91 +1,119 @@
-import * as BaseLabel from '@radix-ui/react-label'
+import * as BaseLabel from "@radix-ui/react-label";
 
-import { styled } from 'stitches.config'
+import { styled } from "stitches.config";
 
 export const Container = styled(BaseLabel.Root, {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 
-  height: '3rem',
-  overflow: 'clip',
-  width: '100%',
+  height: "3rem",
+  overflow: "clip",
+  width: "100%",
 
-  backgroundColor: '$white',
-  border: '1px solid $gray300',
-  borderRadius: '8px',
-})
+  backgroundColor: "$white",
+  border: "1px solid $gray300",
+  borderRadius: "8px",
 
-export const Prefix = styled('div', {
-  all: 'unset',
+  cursor: "pointer",
+});
 
-  boxSizing: 'border-box',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+export const Prefix = styled("div", {
+  all: "unset",
 
-  width: '3rem',
-  height: '3rem',
-})
+  boxSizing: "border-box",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 
-export const ShowPasswordButton = styled('button', {
-  all: 'unset',
+  width: "3rem",
+  height: "3rem",
+});
 
-  boxSizing: 'border-box',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+export const ShowPasswordButton = styled("button", {
+  all: "unset",
 
-  width: '2rem',
-  height: '2rem',
-})
+  boxSizing: "border-box",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 
-export const InputContainer = styled('fieldset', {
+  width: "2rem",
+  height: "2rem",
+});
+
+export const InputContainer = styled("fieldset", {
   flex: 1,
-  height: '100%',
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column-reverse',
-  position: 'relative',
+  height: "100%",
+  width: "100%",
+  display: "flex",
+  flexDirection: "column-reverse",
+  position: "relative",
 
-  borderLeft: '1px solid $gray300',
-  borderRight: 'none',
+  borderLeft: "1px solid $gray300",
+  borderRight: "none",
 
-  transition: 'all 0.2s',
+  transition: "all 0.2s",
 
-  '&:focus-within': {
-    borderColor: '$blue100',
+  variants: {
+    isErrored: {
+      true: {
+        borderColor: "$red500",
+      },
+      false: {
+        "&:focus-within": {
+          borderColor: "$blue100",
+        },
+        "&:has(input:not(:placeholder-shown))": {
+          borderColor: "$blue100",
+        },
+      },
+    },
   },
-})
 
-export const Placeholder = styled('div', {
-  padding: '0 0.5rem',
+  defaultVariants: { isErrored: "false" },
+});
 
-  fontFamily: '$text',
-  fontWeight: '$regular',
-  fontSize: '$sm',
-  color: '$gray500',
+export const Placeholder = styled("div", {
+  padding: "0 0.5rem",
 
-  cursor: 'pointer',
-  transform: 'translateY(115%)',
+  fontFamily: "$text",
+  fontWeight: "$regular",
+  fontSize: "$sm",
 
-  transition: 'all 0.2s',
-})
+  cursor: "pointer",
+  transform: "translateY(115%)",
 
-export const Input = styled('input', {
+  transition: "all 0.2s",
+
+  variants: {
+    isErrored: {
+      true: {
+        color: "$red500",
+      },
+      false: {
+        color: "$gray500",
+      },
+    },
+  },
+
+  defaultVariants: { isErrored: "false" },
+});
+
+export const Input = styled("input", {
   flex: 1,
-  padding: '0 0.5rem',
+  padding: "0 0.5rem",
 
-  fontFamily: '$text',
-  fontWeight: '$medium',
-  fontSize: '$sm',
-  color: '$gray900',
+  fontFamily: "$text",
+  fontWeight: "$medium",
+  fontSize: "$sm",
+  color: "$gray900",
 
-  border: 'none',
-  outline: 'none',
+  border: "none",
+  outline: "none",
 
   [`&:focus ~ ${Placeholder},&:not(:placeholder-shown) ~ ${Placeholder}`]: {
-    transform: 'translateY(75%)',
-    fontSize: '$xs',
+    transform: "translateY(75%)",
+    fontSize: "$xs",
   },
-})
+});

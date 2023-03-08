@@ -5,10 +5,10 @@ import {
   ForwardRefExoticComponent,
   RefAttributes,
   useState,
-} from 'react'
-import { Eye, EyeSlash, IconProps } from 'phosphor-react'
+} from "react";
+import { Eye, EyeSlash, IconProps } from "phosphor-react";
 
-import { theme } from 'stitches.config'
+import { theme } from "stitches.config";
 import {
   Container,
   Prefix,
@@ -16,17 +16,19 @@ import {
   Input,
   InputContainer,
   Placeholder,
-} from './styles'
+} from "./styles";
 
 interface TextInputProps extends ComponentProps<typeof Input> {
-  Icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>
+  Icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>;
+  isErrored?: boolean;
 }
+
 const TextInput = forwardRef(
   (
-    { Icon, type, placeholder, ...props }: TextInputProps,
+    { Icon, isErrored = false, type, placeholder, ...props }: TextInputProps,
     ref: ForwardedRef<any>
   ) => {
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     return (
       <Container htmlFor={placeholder}>
@@ -34,18 +36,18 @@ const TextInput = forwardRef(
           <Icon size={32} color={theme.colors.gray900.value} weight="light" />
         </Prefix>
 
-        <InputContainer>
+        <InputContainer isErrored={isErrored}>
           <Input
             ref={ref}
             id={placeholder}
-            type={isPasswordVisible ? 'text' : type}
+            type={isPasswordVisible ? "text" : type}
             placeholder=" "
             {...props}
           />
-          <Placeholder>{placeholder}</Placeholder>
+          <Placeholder isErrored={isErrored}>{placeholder}</Placeholder>
         </InputContainer>
 
-        {type === 'password' && (
+        {type === "password" && (
           <ShowPasswordButton
             type="button"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
@@ -66,10 +68,10 @@ const TextInput = forwardRef(
           </ShowPasswordButton>
         )}
       </Container>
-    )
+    );
   }
-)
+);
 
-TextInput.displayName = 'TextInput'
+TextInput.displayName = "TextInput";
 
-export { TextInput }
+export { TextInput };
