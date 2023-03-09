@@ -40,7 +40,7 @@ export default async function handler(
   ) {
     return res
       .status(401)
-      .json({ message: "Document already taken by other account." });
+      .json({ message: "Esse CPF já foi utilizado por outra conta." });
   }
 
   await prisma.user.update({

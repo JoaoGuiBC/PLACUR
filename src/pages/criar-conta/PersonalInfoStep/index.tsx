@@ -9,6 +9,9 @@ import { maskPhone, maskDocument } from "@utils/inputMasks/index";
 import { Button, Heading, Text, TextInput } from "@components/index";
 
 import { FormContainer, HeaderContainer } from "../styles";
+import { AxiosError } from "axios";
+import { useSetAtom } from "jotai";
+import { toastState } from "@components/Layout";
 
 const personalInfoFormSchema = z.object({
   name: z
@@ -42,13 +45,26 @@ export function PersonalInfoForm({ onCompleteStep }: PersonalInfoStepProps) {
     resolver: zodResolver(personalInfoFormSchema),
   });
 
+  const setToast = useSetAtom(toastState);
+
   const phone = watch("phone");
   const document = watch("document");
 
   async function handleSubmitPersonalInfo(data: PersonalInfoFormData) {
-    await api.put("/users/update-profile/profile", { ...data });
+    try {
+      await api.put("/users/update-profile/profile", { ...data });
 
-    onCompleteStep(2);
+      onCompleteStep(2);
+    } catch (error: any) {
+      const { response } = error as AxiosError<{ message: string }>;
+
+      setToast({
+        title: "Ops, temos um problema",
+        description: response?.data.message ?? "",
+        type: "error",
+        isOpen: true,
+      });
+    }
   }
 
   useEffect(() => {
