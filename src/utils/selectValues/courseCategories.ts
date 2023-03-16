@@ -1,8 +1,8 @@
 export const courseCategories = [
-  { value: 'Workshop', text: 'Workshop' },
-  { value: 'Palestra', text: 'Palestra' },
-  { value: 'EAD', text: 'EAD' },
-  { value: 'Capacitação', text: 'Capacitação' },
-  { value: 'Seminário', text: 'Seminário' },
-  { value: 'Outros', text: 'Outros' },
-]
+  { value: "workshop", text: "Workshop" },
+  { value: "palestra", text: "Palestra" },
+  { value: "ead", text: "EAD" },
+  { value: "capacitacao", text: "Capacitação" },
+  { value: "seminario", text: "Seminário" },
+  { value: "outros", text: "Outros" },
+];

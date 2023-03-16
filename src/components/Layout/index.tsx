@@ -1,23 +1,13 @@
-import { atom, useAtom } from "jotai";
+import { useAtom } from "jotai";
 import type { ReactNode } from "react";
 
 import { Toast } from "../Toast";
 import { Footer } from "../Footer";
 import { Header } from "../Header";
 
-import { Container } from "./styles";
+import { toastState } from "@atoms/toastAtom";
 
-export const toastState = atom<{
-  title: string;
-  description: string;
-  type: "message" | "error" | "success";
-  isOpen: boolean;
-}>({
-  title: "",
-  description: "",
-  type: "message",
-  isOpen: false,
-});
+import { Container } from "./styles";
 
 interface LayoutProps {
   children?: ReactNode;

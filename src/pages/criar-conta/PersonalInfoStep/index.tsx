@@ -1,17 +1,17 @@
 import { z } from "zod";
 import { useEffect } from "react";
+import { useSetAtom } from "jotai";
+import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IdentificationBadge, IdentificationCard, Phone } from "phosphor-react";
 
 import { api } from "@lib/axios";
+import { toastState } from "@atoms/toastAtom";
 import { maskPhone, maskDocument } from "@utils/inputMasks/index";
 import { Button, Heading, Text, TextInput } from "@components/index";
 
 import { FormContainer, HeaderContainer } from "../styles";
-import { AxiosError } from "axios";
-import { useSetAtom } from "jotai";
-import { toastState } from "@components/Layout";
 
 const personalInfoFormSchema = z.object({
   name: z

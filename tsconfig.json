@@ -20,8 +20,14 @@
       "@lib/*": ["./src/lib/*"],
       "@utils/*": ["./src/utils/*"],
       "@api/*": ["./src/pages/api/*"],
+      "@atoms/*": ["./src/atoms/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/recuperacao-de-senha/[recoverCode]"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/recuperacao-de-senha/[recoverCode]"
+  ],
   "exclude": ["node_modules"]
 }

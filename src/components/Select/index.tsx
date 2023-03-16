@@ -1,36 +1,37 @@
-import { ComponentProps, useState } from 'react'
-import { CaretDown, CaretUp } from 'phosphor-react'
-import * as BaseSelect from '@radix-ui/react-select'
+import { ComponentProps, useState } from "react";
+import { CaretDown, CaretUp } from "phosphor-react";
+import * as BaseSelect from "@radix-ui/react-select";
 
-import { Separator } from '../Separator'
+import { Separator } from "../Separator";
 
-import { theme } from 'stitches.config'
-import { SelectRoot, SelectTrigger, SelectPortal, SelectItem } from './styles'
+import { theme } from "stitches.config";
+import { SelectRoot, SelectTrigger, SelectPortal, SelectItem } from "./styles";
 
 interface SelectProps extends ComponentProps<typeof SelectRoot> {
-  emptyValue: string
+  size?: "sm" | "lg";
+  emptyValue: string;
   content: {
-    value: string
-    text: string
-  }[]
+    value: string;
+    text: string;
+  }[];
 }
 
-function Select({ emptyValue, content }: SelectProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [dataState, setDataState] = useState<'closed' | 'open'>('closed')
+function Select({ size, emptyValue, content, ...rest }: SelectProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [dataState, setDataState] = useState<"closed" | "open">("closed");
 
   function handleOpenAndCloseSelect() {
     if (!isOpen) {
-      setIsOpen(true)
+      setIsOpen(true);
     } else {
-      setTimeout(() => setIsOpen(false), 200)
+      setTimeout(() => setIsOpen(false), 200);
     }
-    setDataState(() => (dataState === 'open' ? 'closed' : 'open'))
+    setDataState(() => (dataState === "open" ? "closed" : "open"));
   }
 
   return (
-    <SelectRoot open={isOpen} onOpenChange={handleOpenAndCloseSelect}>
-      <SelectTrigger aria-label={emptyValue}>
+    <SelectRoot open={isOpen} onOpenChange={handleOpenAndCloseSelect} {...rest}>
+      <SelectTrigger size={size} aria-label={emptyValue}>
         <BaseSelect.Value placeholder={emptyValue} />
 
         <BaseSelect.Icon>
@@ -56,7 +57,7 @@ function Select({ emptyValue, content }: SelectProps) {
             {content.map((item) => (
               <div key={item.value}>
                 <Separator
-                  css={{ $$baseColor: '$colors$gray500', margin: '8px 0' }}
+                  css={{ $$baseColor: "$colors$gray500", margin: "8px 0" }}
                 />
                 <SelectItem value={item.value}>
                   <BaseSelect.ItemText>{item.text}</BaseSelect.ItemText>
@@ -71,9 +72,9 @@ function Select({ emptyValue, content }: SelectProps) {
         </BaseSelect.Content>
       </SelectPortal>
     </SelectRoot>
-  )
+  );
 }
 
-Select.displayName = 'Select'
+Select.displayName = "Select";
 
-export { Select }
+export { Select };

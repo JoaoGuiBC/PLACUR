@@ -4,8 +4,8 @@ import {
   IdentificationBadge,
   IdentificationCard,
   Phone,
-} from 'phosphor-react'
-import { NextSeo } from 'next-seo'
+} from "phosphor-react";
+import { NextSeo } from "next-seo";
 
 import {
   Text,
@@ -16,11 +16,11 @@ import {
   Checkbox,
   TextInput,
   UpdatePasswordDialog,
-} from '@components/index'
+} from "@components/index";
 
-import { cityHallDivisions } from '@utils/selectValues'
+import { cityHallDivisions } from "@utils/selectValues";
 
-import { theme } from 'stitches.config'
+import { theme } from "stitches.config";
 import {
   Container,
   PageHeader,
@@ -28,7 +28,7 @@ import {
   Content,
   UserInfoContainer,
   UserInfoSection,
-} from './styles'
+} from "./styles";
 
 export default function Perfil() {
   return (
@@ -118,5 +118,5 @@ export default function Perfil() {
         <Button size="min">Salvar alterações</Button>
       </Container>
     </>
-  )
+  );
 }
