@@ -5,10 +5,9 @@ import {
   ForwardRefExoticComponent,
   RefAttributes,
   useState,
-} from "react";
-import { Eye, EyeSlash, IconProps } from "phosphor-react";
+} from 'react'
+import { Eye, EyeSlash, IconProps } from 'phosphor-react'
 
-import { theme } from "stitches.config";
 import {
   Container,
   Prefix,
@@ -16,11 +15,12 @@ import {
   Input,
   InputContainer,
   Placeholder,
-} from "./styles";
+} from './styles'
+import { theme } from 'stitches.config'
 
 interface TextInputProps extends ComponentProps<typeof Input> {
-  Icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>;
-  isErrored?: boolean;
+  Icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>
+  isErrored?: boolean
 }
 
 const TextInput = forwardRef(
@@ -28,7 +28,7 @@ const TextInput = forwardRef(
     { Icon, isErrored = false, type, placeholder, ...props }: TextInputProps,
     ref: ForwardedRef<any>
   ) => {
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
     return (
       <Container htmlFor={placeholder}>
@@ -40,14 +40,14 @@ const TextInput = forwardRef(
           <Input
             ref={ref}
             id={placeholder}
-            type={isPasswordVisible ? "text" : type}
+            type={isPasswordVisible ? 'text' : type}
             placeholder=" "
             {...props}
           />
           <Placeholder isErrored={isErrored}>{placeholder}</Placeholder>
         </InputContainer>
 
-        {type === "password" && (
+        {type === 'password' && (
           <ShowPasswordButton
             type="button"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
@@ -68,10 +68,10 @@ const TextInput = forwardRef(
           </ShowPasswordButton>
         )}
       </Container>
-    );
+    )
   }
-);
+)
 
-TextInput.displayName = "TextInput";
+TextInput.displayName = 'TextInput'
 
-export { TextInput };
+export { TextInput }

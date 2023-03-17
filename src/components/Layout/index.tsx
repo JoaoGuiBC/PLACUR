@@ -1,23 +1,23 @@
-import { useAtom } from "jotai";
-import type { ReactNode } from "react";
+import { useAtom } from 'jotai'
+import type { ReactNode } from 'react'
 
-import { Toast } from "../Toast";
-import { Footer } from "../Footer";
-import { Header } from "../Header";
+import { Toast } from '../Toast'
+import { Footer } from '../Footer'
+import { Header } from '../Header'
 
-import { toastState } from "@atoms/toastAtom";
+import { toastState } from '@atoms/toastAtom'
 
-import { Container } from "./styles";
+import { Container } from './styles'
 
 interface LayoutProps {
-  children?: ReactNode;
+  children?: ReactNode
 }
 
 export default function Layout({ children }: LayoutProps) {
-  const [toastData, setToastData] = useAtom(toastState);
+  const [toastData, setToastData] = useAtom(toastState)
 
   function handleCloseToast() {
-    setToastData({ ...toastData, isOpen: false });
+    setToastData({ ...toastData, isOpen: false })
   }
 
   return (
@@ -33,5 +33,5 @@ export default function Layout({ children }: LayoutProps) {
       <Container>{children}</Container>
       <Footer />
     </>
-  );
+  )
 }

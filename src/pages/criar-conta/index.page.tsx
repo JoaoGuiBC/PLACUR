@@ -1,28 +1,26 @@
-import { useState } from "react";
-import { NextSeo } from "next-seo";
-import { getServerSession } from "next-auth";
-import type { GetServerSideProps } from "next";
+import { useState } from 'react'
+import { NextSeo } from 'next-seo'
+import { getServerSession } from 'next-auth'
+import type { GetServerSideProps } from 'next'
 
-import { MultiStep } from "@components/index";
-import { authOptions } from "@api/auth/[...nextauth].api";
+import { MultiStep } from '@components/index'
+import { authOptions } from '@api/auth/[...nextauth].api'
 
 import {
   HaveDisabilityStepForm,
   HaveDisabilityStepHeader,
-  DisabilityFormData,
-} from "./HaveDisabilityStep";
-import { AddressStepForm, AddressStepHeader } from "./AddressStep";
-import { PersonalInfoForm, PersonalInfoHeader } from "./PersonalInfoStep";
+} from './HaveDisabilityStep'
+import { AddressStepForm, AddressStepHeader } from './AddressStep'
+import { PersonalInfoForm, PersonalInfoHeader } from './PersonalInfoStep'
 
-import { Container } from "./styles";
-import { prisma } from "@lib/prisma";
+import { Container } from './styles'
 
 interface CreateAccountProps {
-  initialStep: number;
+  initialStep: number
 }
 
 export default function CreateAccount({ initialStep }: CreateAccountProps) {
-  const [currentStep, setCurrentStep] = useState(initialStep);
+  const [currentStep, setCurrentStep] = useState(initialStep)
 
   return (
     <>
@@ -47,39 +45,39 @@ export default function CreateAccount({ initialStep }: CreateAccountProps) {
         {currentStep === 3 && <HaveDisabilityStepForm />}
       </Container>
     </>
-  );
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const session = await getServerSession(req, res, authOptions);
+  const session = await getServerSession(req, res, authOptions)
 
   if (!session?.user) {
     return {
       redirect: {
         permanent: false,
-        destination: "/login",
+        destination: '/login',
       },
       props: {},
-    };
+    }
   }
 
   if (session.user.updated_at) {
     return {
       redirect: {
         permanent: false,
-        destination: "/",
+        destination: '/',
       },
       props: {},
-    };
+    }
   }
 
   if (session.user.address) {
-    return { props: { initialStep: 3 } };
+    return { props: { initialStep: 3 } }
   }
 
   if (session.user.document) {
-    return { props: { initialStep: 2 } };
+    return { props: { initialStep: 2 } }
   }
 
-  return { props: { initialStep: 1 } };
-};
+  return { props: { initialStep: 1 } }
+}

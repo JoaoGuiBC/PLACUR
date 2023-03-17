@@ -5,15 +5,16 @@ import {
   IdentificationBadge,
   SignOut,
   UsersFour,
-} from "phosphor-react";
-import Link from "next/link";
-import Image from "next/image";
-import { ComponentProps } from "react";
-import { useSession, signOut } from "next-auth/react";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+} from 'phosphor-react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { ComponentProps } from 'react'
+import { useSession, signOut } from 'next-auth/react'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
-import { Avatar } from "../Avatar";
-import { Separator } from "../Separator";
+import { Text } from '../Text'
+import { Avatar } from '../Avatar'
+import { Separator } from '../Separator'
 
 import {
   Container,
@@ -24,14 +25,13 @@ import {
   DropdownMenuItem,
   DropdownMenuSubTrigger,
   SignOutButton,
-} from "./styles";
-import { Text } from "@components/Text";
-import { theme } from "stitches.config";
+} from './styles'
+import { theme } from 'stitches.config'
 
 interface HeaderProps extends ComponentProps<typeof Container> {}
 
 function Header(props: HeaderProps) {
-  const { data: session } = useSession();
+  const { data: session } = useSession()
 
   return (
     <Container {...props}>
@@ -158,9 +158,9 @@ function Header(props: HeaderProps) {
         </Link>
       )}
     </Container>
-  );
+  )
 }
 
-Header.displayName = "Header";
+Header.displayName = 'Header'
 
-export { Header };
+export { Header }

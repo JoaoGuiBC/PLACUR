@@ -7,8 +7,8 @@ import type { IconProps } from 'phosphor-react'
 
 import { Text } from '@components/Text'
 
-import { theme } from 'stitches.config'
 import { Container } from './styles'
+import { theme } from 'stitches.config'
 
 interface InfoProps extends ComponentProps<typeof Container> {
   Icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>

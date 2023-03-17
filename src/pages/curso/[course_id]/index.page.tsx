@@ -1,10 +1,10 @@
-import Image from "next/image";
-import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
-import type { GetStaticPaths, GetStaticProps } from "next";
+import Image from 'next/image'
+import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
+import type { GetStaticPaths, GetStaticProps } from 'next'
 
-import { prisma } from "@lib/prisma";
-import { Button, Heading, Text } from "@components/index";
+import { prisma } from '@lib/prisma'
+import { Button, Heading, Text } from '@components/index'
 
 import {
   Container,
@@ -14,30 +14,30 @@ import {
   RegisterContainer,
   Encounter,
   DateInfo,
-} from "./styles";
+} from './styles'
 
 interface CourseData {
-  id: string;
-  title: string;
-  target_audience: string;
-  objective: string;
-  observations: string;
-  content: string;
+  id: string
+  title: string
+  target_audience: string
+  objective: string
+  observations: string
+  content: string
 }
 
 interface MinisterData {
-  id: string;
-  name: string;
-  qualification: string;
+  id: string
+  name: string
+  qualification: string
 }
 
 interface CourseProps {
-  course: CourseData;
-  ministers: MinisterData[];
+  course: CourseData
+  ministers: MinisterData[]
 }
 
 export default function Course({ course, ministers }: CourseProps) {
-  const router = useRouter();
+  const router = useRouter()
 
   return (
     <>
@@ -89,7 +89,7 @@ export default function Course({ course, ministers }: CourseProps) {
                 <Text size="lg" as="p" key={minister.id}>
                   <strong>{minister.name}</strong> - {minister.qualification}
                 </Text>
-              );
+              )
             })}
           </Section>
         </InfoContainer>
@@ -105,43 +105,43 @@ export default function Course({ course, ministers }: CourseProps) {
             <DateInfo>30/09/2022 das 13h00 às 14h30</DateInfo>
           </Encounter>
 
-          <Button variant="secondary" onClick={() => router.push("/login")}>
+          <Button variant="secondary" onClick={() => router.push('/login')}>
             Faça login para se inscrever
           </Button>
         </RegisterContainer>
       </Container>
     </>
-  );
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: "blocking",
-  };
-};
+    fallback: 'blocking',
+  }
+}
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const courseId = String(params?.course_id);
+  const courseId = String(params?.course_id)
 
   const course = await prisma.course.findFirstOrThrow({
     where: { id: courseId },
     include: {
       courses_ministers: true,
     },
-  });
+  })
 
   if (!course) {
     return {
       notFound: true,
-    };
+    }
   }
 
   const {
     courses_ministers: coursesMinisters,
     created_at: _,
     ...parsedCourse
-  } = course;
+  } = course
 
   const ministersList = await prisma.minister.findMany({
     where: {
@@ -151,15 +151,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         ),
       },
     },
-  });
+  })
 
   const ministers = ministersList
     .filter((minister) => minister !== null)
     .map((minister) => {
-      const { created_at: _, ...parsedMinister } = minister;
+      const { created_at: _, ...parsedMinister } = minister
 
-      return parsedMinister;
-    });
+      return parsedMinister
+    })
 
   return {
     props: {
@@ -167,5 +167,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       ministers,
     },
     revalidate: 60 * 60 * 2, // 2 hours
-  };
-};
+  }
+}

@@ -1,4 +1,4 @@
-import { X } from "phosphor-react";
+import { X } from 'phosphor-react'
 
 import {
   ToastProvider,
@@ -7,14 +7,14 @@ import {
   ToastRoot,
   ToastTitle,
   ToastViewport,
-} from "./styles";
+} from './styles'
 
 interface ToastProps {
-  title: string;
-  description: string;
-  type: "message" | "error" | "success";
-  isOpen?: boolean;
-  onClose: () => void;
+  title: string
+  description: string
+  type: 'message' | 'error' | 'success'
+  isOpen?: boolean
+  onClose: () => void
 }
 
 function Toast({
@@ -37,9 +37,9 @@ function Toast({
 
       <ToastViewport />
     </ToastProvider>
-  );
+  )
 }
 
-Toast.displayName = "Toast";
+Toast.displayName = 'Toast'
 
-export { Toast };
+export { Toast }

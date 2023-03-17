@@ -1,2 +1,2 @@
-export * from "./maskPhone";
-export * from "./maskDocument";
+export * from './maskPhone'
+export * from './maskDocument'

@@ -1,10 +1,9 @@
-import { NextSeo } from "next-seo";
+import { NextSeo } from 'next-seo'
 
-import { Select, Heading, Searchbar, CourseCard } from "@components/index";
+import { axesOfKnowledge } from '@utils/selectValues'
+import { Select, Heading, Searchbar, CourseCard } from '@components/index'
 
-import { axesOfKnowledge } from "@utils/selectValues";
-
-import { CoursesContainer, FilterContainer } from "./styles";
+import { CoursesContainer, FilterContainer } from './styles'
 
 export default function Home() {
   return (
@@ -90,5 +89,5 @@ export default function Home() {
         />
       </CoursesContainer>
     </>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import { ComponentProps, ForwardedRef, forwardRef } from "react";
+import { ComponentProps, ForwardedRef, forwardRef } from 'react'
 
-import { Container, Input, Placeholder } from "./styles";
+import { Container, Input, Placeholder } from './styles'
 
 interface TextAreaProps extends ComponentProps<typeof Input> {
-  isErrored?: boolean;
+  isErrored?: boolean
 }
 
 const TextArea = forwardRef(
@@ -16,10 +16,10 @@ const TextArea = forwardRef(
         <Input ref={ref} id={placeholder} placeholder=" " {...props} />
         <Placeholder isErrored={isErrored}>{placeholder}</Placeholder>
       </Container>
-    );
+    )
   }
-);
+)
 
-TextArea.displayName = "TextArea";
+TextArea.displayName = 'TextArea'
 
-export { TextArea };
+export { TextArea }
