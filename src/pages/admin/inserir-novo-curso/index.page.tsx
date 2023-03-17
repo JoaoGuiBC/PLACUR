@@ -1,8 +1,11 @@
-import { useAtom } from "jotai";
-import { useCallback, useEffect, useState } from "react";
+import { AxiosError } from "axios";
 import { NextSeo } from "next-seo";
+import { useAtom, useSetAtom } from "jotai";
+import { useCallback, useEffect, useState } from "react";
 
+import { api } from "@lib/axios";
 import { MultiStep } from "@components/index";
+import { toastState } from "@atoms/toastAtom";
 import { newCourse } from "@atoms/newCourseAtom";
 
 import { BasicInfoForm, BasicInfoHeader } from "./BasicInfoStep";
@@ -12,13 +15,31 @@ import { SelectAxesForm, SelectAxesHeader } from "./SelectAxesStep";
 import { SetCategoryForm, SetCategoryHeader } from "./SetCategoryStep";
 
 import { Container } from "./styles";
+import { useRouter } from "next/router";
 
 export default function InsertNewCourse() {
   const [currentStep, setCurrentStep] = useState(1);
+
   const [course] = useAtom(newCourse);
+  const setToast = useSetAtom(toastState);
+
+  const router = useRouter();
 
   const handleCreateCourse = useCallback(async () => {
-    console.log(course);
+    try {
+      await api.post("/courses/insert", { ...course });
+
+      router.push("/admin/cursos-da-plataforma");
+    } catch (error: any) {
+      const { response } = error as AxiosError<{ message: string }>;
+
+      setToast({
+        title: "Ops, temos um problema",
+        description: response?.data.message ?? "",
+        type: "error",
+        isOpen: true,
+      });
+    }
   }, [course]);
 
   useEffect(() => {
