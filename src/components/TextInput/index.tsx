@@ -8,33 +8,35 @@ import {
 } from 'react'
 import { Eye, EyeSlash, IconProps } from 'phosphor-react'
 
-import { theme } from 'stitches.config'
 import {
   Container,
   Prefix,
   ShowPasswordButton,
   Input,
   InputContainer,
-  Label,
+  Placeholder,
 } from './styles'
+import { theme } from 'stitches.config'
 
 interface TextInputProps extends ComponentProps<typeof Input> {
   Icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>
+  isErrored?: boolean
 }
+
 const TextInput = forwardRef(
   (
-    { Icon, type, placeholder, ...props }: TextInputProps,
+    { Icon, isErrored = false, type, placeholder, ...props }: TextInputProps,
     ref: ForwardedRef<any>
   ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
     return (
-      <Container>
-        <Prefix htmlFor={placeholder}>
+      <Container htmlFor={placeholder}>
+        <Prefix>
           <Icon size={32} color={theme.colors.gray900.value} weight="light" />
         </Prefix>
 
-        <InputContainer>
+        <InputContainer isErrored={isErrored}>
           <Input
             ref={ref}
             id={placeholder}
@@ -42,7 +44,7 @@ const TextInput = forwardRef(
             placeholder=" "
             {...props}
           />
-          <Label htmlFor={placeholder}>{placeholder}</Label>
+          <Placeholder isErrored={isErrored}>{placeholder}</Placeholder>
         </InputContainer>
 
         {type === 'password' && (

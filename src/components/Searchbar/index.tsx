@@ -1,5 +1,5 @@
-import { MagnifyingGlass } from 'phosphor-react'
 import type { ComponentProps } from 'react'
+import { MagnifyingGlass } from 'phosphor-react'
 
 import { theme } from 'stitches.config'
 import { Container, Input, Button } from './styles'

@@ -8,6 +8,7 @@ import { theme } from 'stitches.config'
 import { SelectRoot, SelectTrigger, SelectPortal, SelectItem } from './styles'
 
 interface SelectProps extends ComponentProps<typeof SelectRoot> {
+  size?: 'sm' | 'lg'
   emptyValue: string
   content: {
     value: string
@@ -15,7 +16,7 @@ interface SelectProps extends ComponentProps<typeof SelectRoot> {
   }[]
 }
 
-function Select({ emptyValue, content }: SelectProps) {
+function Select({ size, emptyValue, content, ...rest }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [dataState, setDataState] = useState<'closed' | 'open'>('closed')
 
@@ -29,8 +30,8 @@ function Select({ emptyValue, content }: SelectProps) {
   }
 
   return (
-    <SelectRoot open={isOpen} onOpenChange={handleOpenAndCloseSelect}>
-      <SelectTrigger aria-label={emptyValue}>
+    <SelectRoot open={isOpen} onOpenChange={handleOpenAndCloseSelect} {...rest}>
+      <SelectTrigger size={size} aria-label={emptyValue}>
         <BaseSelect.Value placeholder={emptyValue} />
 
         <BaseSelect.Icon>

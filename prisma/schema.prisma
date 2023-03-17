@@ -17,23 +17,25 @@ model User {
   phone         String?
   image         String?
 
-  is_public_agent Boolean?
-  office          String?
-
   address      String?
   neighborhood String?
   city         String?
 
-  have_visual_impairment  Boolean @default(false)
-  have_hearing_impairment Boolean @default(false)
-  has_physical_disability Boolean @default(false)
+  have_visual_disability       Boolean @default(false)
+  have_physical_disability     Boolean @default(false)
+  have_hearing_disability      Boolean @default(false)
+  have_intellectual_disability Boolean @default(false)
+  have_psychosocial_disability Boolean @default(false)
 
   is_admin Boolean @default(false)
 
-  created_at DateTime @default(now())
+  created_at DateTime  @default(now())
+  updated_at DateTime?
 
-  accounts Account[]
-  sessions Session[]
+  accounts               Account[]
+  sessions               Session[]
+  CourseEnrollment       CourseEnrollment[]
+  MeetingClassEnrollment MeetingClassEnrollment[]
 
   @@map("users")
 }
@@ -76,6 +78,16 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+model CourseCategory {
+  id String @id
+
+  title String @unique
+
+  courses Course[]
+
+  @@map("course_categories")
+}
+
 model Course {
   id String @id @default(cuid())
 
@@ -88,9 +100,80 @@ model Course {
 
   created_at DateTime @default(now())
 
+  category_id String?
+  category    CourseCategory? @relation(fields: [category_id], references: [id])
+
+  axes_of_knowledge String[]
+
+  classes           Class[]
+  meetings          Meeting[]
   courses_ministers CourseMinister[]
+  enrollments       CourseEnrollment[]
 
   @@map("courses")
+}
+
+model Meeting {
+  id String @id @default(cuid())
+
+  date                  DateTime
+  start_time_in_minutes Int
+  end_time_in_minutes   Int
+
+  course_id String?
+  course    Course? @relation(fields: [course_id], references: [id])
+
+  enrollments MeetingClassEnrollment[]
+
+  @@map("meetings")
+}
+
+model Class {
+  id String @id @default(cuid())
+
+  name String
+
+  date                  DateTime
+  start_time_in_minutes Int
+  end_time_in_minutes   Int
+
+  course_id String?
+  course    Course? @relation(fields: [course_id], references: [id])
+
+  enrollments MeetingClassEnrollment[]
+
+  @@map("classes")
+}
+
+model CourseEnrollment {
+  id String @id @default(cuid())
+
+  user_id String?
+  user    User?   @relation(fields: [user_id], references: [id])
+
+  course_id String?
+  course    Course? @relation(fields: [course_id], references: [id])
+
+  @@index([user_id, course_id])
+  @@map("course_enrollments")
+}
+
+model MeetingClassEnrollment {
+  id String @id @default(cuid())
+
+  user_was_present Boolean @default(false)
+
+  user_id String?
+  user    User?   @relation(fields: [user_id], references: [id])
+
+  meeting_id String?
+  meeting    Meeting? @relation(fields: [meeting_id], references: [id])
+
+  class_id String?
+  class    Class?  @relation(fields: [class_id], references: [id])
+
+  @@index([user_id, meeting_id, class_id])
+  @@map("meeting_class_enrollments")
 }
 
 model Minister {
@@ -98,8 +181,6 @@ model Minister {
 
   name          String @unique
   qualification String
-
-  created_at DateTime @default(now())
 
   courses_ministers CourseMinister[]
 

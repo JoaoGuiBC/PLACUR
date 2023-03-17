@@ -1,3 +1,4 @@
+import { Provider } from 'jotai'
 import { DefaultSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
@@ -22,10 +23,11 @@ export default function App({
           siteName: 'PLACUR',
         }}
       />
-
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Provider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
     </SessionProvider>
   )
 }

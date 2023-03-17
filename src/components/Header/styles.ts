@@ -27,6 +27,7 @@ export const UserInfoContainer = styled('div', {
     fontWeight: '$medium',
     fontSize: '1rem',
     textAlign: 'right',
+    textTransform: 'capitalize',
 
     color: '$gray100',
   },
@@ -104,4 +105,14 @@ export const DropdownMenuSubTrigger = styled(DropdownMenu.SubTrigger, {
     textAlign: 'left',
     color: '$gray900',
   },
+})
+
+export const SignOutButton = styled('button', {
+  all: 'unset',
+
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  gap: '0.25rem',
+  cursor: 'pointer',
 })

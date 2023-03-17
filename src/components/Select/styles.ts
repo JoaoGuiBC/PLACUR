@@ -20,10 +20,9 @@ export const SelectTrigger = styled(Select.Trigger, {
   display: 'flex',
   gap: '0.5rem',
   alignItems: 'center',
+  justifyContent: 'space-between',
   padding: '0 1rem',
   height: '3rem',
-
-  width: 'fit-content',
 
   fontFamily: '$text',
   fontWeight: '$medium',
@@ -32,6 +31,19 @@ export const SelectTrigger = styled(Select.Trigger, {
   background: '$white',
   border: '1px solid $gray300',
   borderRadius: '8px',
+
+  variants: {
+    size: {
+      sm: {
+        width: 'fit-content',
+      },
+      lg: {
+        width: '100%',
+      },
+    },
+  },
+
+  defaultVariants: { size: 'sm' },
 })
 
 export const SelectPortal = styled(Select.Portal, {

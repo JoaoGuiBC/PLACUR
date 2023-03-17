@@ -2,7 +2,7 @@ import * as BaseLabel from '@radix-ui/react-label'
 
 import { styled } from 'stitches.config'
 
-export const Container = styled('div', {
+export const Container = styled(BaseLabel.Root, {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -14,9 +14,11 @@ export const Container = styled('div', {
   backgroundColor: '$white',
   border: '1px solid $gray300',
   borderRadius: '8px',
+
+  cursor: 'pointer',
 })
 
-export const Prefix = styled(BaseLabel.Root, {
+export const Prefix = styled('div', {
   all: 'unset',
 
   boxSizing: 'border-box',
@@ -53,23 +55,49 @@ export const InputContainer = styled('fieldset', {
 
   transition: 'all 0.2s',
 
-  '&:focus-within': {
-    borderColor: '$blue100',
+  variants: {
+    isErrored: {
+      true: {
+        borderColor: '$red500',
+      },
+      false: {
+        '&:focus-within': {
+          borderColor: '$blue100',
+        },
+        '&:has(input:not(:placeholder-shown))': {
+          borderColor: '$blue100',
+        },
+      },
+    },
   },
+
+  defaultVariants: { isErrored: 'false' },
 })
 
-export const Label = styled(BaseLabel.Root, {
+export const Placeholder = styled('div', {
   padding: '0 0.5rem',
 
   fontFamily: '$text',
   fontWeight: '$regular',
   fontSize: '$sm',
-  color: '$gray500',
 
   cursor: 'pointer',
   transform: 'translateY(115%)',
 
   transition: 'all 0.2s',
+
+  variants: {
+    isErrored: {
+      true: {
+        color: '$red500',
+      },
+      false: {
+        color: '$gray500',
+      },
+    },
+  },
+
+  defaultVariants: { isErrored: 'false' },
 })
 
 export const Input = styled('input', {
@@ -84,7 +112,7 @@ export const Input = styled('input', {
   border: 'none',
   outline: 'none',
 
-  [`&:focus ~ ${Label},&:not(:placeholder-shown) ~ ${Label}`]: {
+  [`&:focus ~ ${Placeholder},&:not(:placeholder-shown) ~ ${Placeholder}`]: {
     transform: 'translateY(75%)',
     fontSize: '$xs',
   },

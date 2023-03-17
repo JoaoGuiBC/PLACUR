@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import type { GetStaticPaths, GetStaticProps } from 'next'
 
 import { prisma } from '@lib/prisma'
@@ -36,6 +37,8 @@ interface CourseProps {
 }
 
 export default function Course({ course, ministers }: CourseProps) {
+  const router = useRouter()
+
   return (
     <>
       <NextSeo
@@ -102,7 +105,9 @@ export default function Course({ course, ministers }: CourseProps) {
             <DateInfo>30/09/2022 das 13h00 às 14h30</DateInfo>
           </Encounter>
 
-          <Button variant="secondary">Faça login para se inscrever</Button>
+          <Button variant="secondary" onClick={() => router.push('/login')}>
+            Faça login para se inscrever
+          </Button>
         </RegisterContainer>
       </Container>
     </>

@@ -41,6 +41,14 @@ const Button = styled('button', {
       transition: 'all 0.2s',
       stroke: '$$baseColor',
     },
+    '& circle': {
+      transition: 'all 0.2s',
+      stroke: '$$baseColor',
+    },
+    '& rect': {
+      transition: 'all 0.2s',
+      color: '$$baseColor',
+    },
   },
 
   variants: {
@@ -85,6 +93,12 @@ const Button = styled('button', {
             },
             '& line': {
               stroke: '$white',
+            },
+            '& circle': {
+              stroke: '$white',
+            },
+            '& rect': {
+              color: '$white',
             },
           },
         },

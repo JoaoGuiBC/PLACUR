@@ -1,8 +1,7 @@
 import { NextSeo } from 'next-seo'
 
-import { Select, Heading, Searchbar, CourseCard } from '@components/index'
-
 import { axesOfKnowledge } from '@utils/selectValues'
+import { Select, Heading, Searchbar, CourseCard } from '@components/index'
 
 import { CoursesContainer, FilterContainer } from './styles'
 

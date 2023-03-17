@@ -16,6 +16,14 @@ export const authOptions: NextAuthOptions = {
     signIn: '/login',
     verifyRequest: '/login?message=verifyEmail',
   },
+  callbacks: {
+    async session({ session, user }) {
+      return {
+        ...session,
+        user,
+      }
+    },
+  },
 }
 
 export default NextAuth(authOptions)
