@@ -7,11 +7,10 @@ import { Text } from '../Text'
 import { Container, Content, InfoBar } from './styles'
 
 interface CourseCardProps extends ComponentProps<typeof Container> {
-  image: string
+  image?: string
   title: string
-  firstDate: string
-  lastDate: string
-  availability?: number
+  firstDate: string | null
+  lastDate: string | null
   finished?: boolean
   category:
     | 'Workshop'
@@ -23,11 +22,10 @@ interface CourseCardProps extends ComponentProps<typeof Container> {
 }
 
 function CourseCard({
-  image,
+  image = '/course_image_placeholder.png',
   title,
   firstDate,
   lastDate,
-  availability,
   finished = false,
   category,
   ...rest
@@ -43,30 +41,27 @@ function CourseCard({
       <Content>
         <Text>{title}</Text>
 
-        <InfoBar>
-          {!finished ? (
-            <>
+        {firstDate && lastDate && (
+          <InfoBar>
+            {!finished ? (
+              <>
+                <div>
+                  <Text as="p">Data:</Text>
+                  <Text size="sm">
+                    {firstDate === lastDate
+                      ? firstDate
+                      : `${firstDate} a ${lastDate}`}
+                  </Text>
+                </div>
+              </>
+            ) : (
               <div>
-                <Text as="p">Data:</Text>
-                <Text size="sm">
-                  {firstDate === lastDate
-                    ? firstDate
-                    : `${firstDate} a ${lastDate}`}
-                </Text>
+                <Text as="p">Concluído em:</Text>
+                <Text size="sm">{lastDate}</Text>
               </div>
-
-              <div>
-                <Text as="p">Vagas disponíveis:</Text>
-                <Text size="sm">{availability ?? 'Sem limite de vagas'}</Text>
-              </div>
-            </>
-          ) : (
-            <div>
-              <Text as="p">Concluído em:</Text>
-              <Text size="sm">{lastDate}</Text>
-            </div>
-          )}
-        </InfoBar>
+            )}
+          </InfoBar>
+        )}
       </Content>
 
       <Tag category={category}>{category}</Tag>

@@ -39,15 +39,16 @@ export const Content = styled('div', {
 })
 
 export const InfoBar = styled('div', {
-  display: 'flex',
-  alignitems: 'flex-start',
-  gap: '1rem',
-
   [`${Text}:first-child`]: {
     color: '$gray900',
   },
 
   [`${Text}:last-child`]: {
     color: '$gray500',
+  },
+
+  '& div': {
+    display: 'flex',
+    flexDirection: 'column',
   },
 })

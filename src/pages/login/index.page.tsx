@@ -1,25 +1,25 @@
-import { z } from "zod";
-import { useSetAtom } from "jotai";
-import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
-import { signIn } from "next-auth/react";
-import { useForm } from "react-hook-form";
-import { getServerSession } from "next-auth";
-import { toastState } from "@atoms/toastAtom";
-import type { GetServerSideProps } from "next";
-import { EnvelopeSimple } from "phosphor-react";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from 'zod'
+import { useSetAtom } from 'jotai'
+import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
+import { signIn } from 'next-auth/react'
+import { useForm } from 'react-hook-form'
+import { getServerSession } from 'next-auth'
+import { toastState } from '@atoms/toastAtom'
+import type { GetServerSideProps } from 'next'
+import { EnvelopeSimple } from 'phosphor-react'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-import { authOptions } from "@api/auth/[...nextauth].api";
-import { Text, Button, Heading, TextInput } from "@components/index";
+import { authOptions } from '@api/auth/[...nextauth].api'
+import { Text, Button, Heading, TextInput } from '@components/index'
 
-import { ButtonContainer, Container, Form, InputContainer } from "./styles";
+import { ButtonContainer, Container, Form, InputContainer } from './styles'
 
 const informEmailFormSchema = z.object({
-  email: z.string().email({ message: "Por favor, informe um e-mail válido." }),
-});
+  email: z.string().email({ message: 'Por favor, informe um e-mail válido.' }),
+})
 
-type InformEmailFormData = z.infer<typeof informEmailFormSchema>;
+type InformEmailFormData = z.infer<typeof informEmailFormSchema>
 
 export default function Login() {
   const {
@@ -28,23 +28,23 @@ export default function Login() {
     formState: { errors, isSubmitting },
   } = useForm<InformEmailFormData>({
     resolver: zodResolver(informEmailFormSchema),
-  });
+  })
 
-  const setToast = useSetAtom(toastState);
+  const setToast = useSetAtom(toastState)
 
-  const router = useRouter();
-  const { message } = router.query;
+  const router = useRouter()
+  const { message } = router.query
 
   async function handleLogin({ email }: InformEmailFormData) {
     try {
-      await signIn("email", { email });
+      await signIn('email', { email })
     } catch (error: any) {
       setToast({
-        title: "Ops, temos um problema",
-        description: error.message ?? "",
-        type: "error",
+        title: 'Ops, temos um problema',
+        description: error.message ?? '',
+        type: 'error',
         isOpen: true,
-      });
+      })
     }
   }
 
@@ -58,7 +58,7 @@ export default function Login() {
       <Container>
         <Heading style="secondary">Estamos quase lá.</Heading>
 
-        {message === "verifyEmail" ? (
+        {message === 'verifyEmail' ? (
           <Text size="lg">
             Por favor, confira o seu e-mail, enviamos a sua confirmação de login
             por lá.
@@ -76,9 +76,9 @@ export default function Login() {
                   Icon={EnvelopeSimple}
                   type="email"
                   placeholder={
-                    errors.email ? `E-mail - ${errors.email.message}` : "E-mail"
+                    errors.email ? `E-mail - ${errors.email.message}` : 'E-mail'
                   }
-                  {...register("email")}
+                  {...register('email')}
                 />
               </InputContainer>
 
@@ -92,31 +92,31 @@ export default function Login() {
         )}
       </Container>
     </>
-  );
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const session = await getServerSession(req, res, authOptions);
+  const session = await getServerSession(req, res, authOptions)
 
   if (session) {
     if (session.user?.name) {
       return {
         redirect: {
           permanent: false,
-          destination: "/",
+          destination: '/',
         },
         props: {},
-      };
+      }
     }
 
     return {
       redirect: {
         permanent: false,
-        destination: "/criar-conta",
+        destination: '/criar-conta',
       },
       props: {},
-    };
+    }
   }
 
-  return { props: {} };
-};
+  return { props: {} }
+}

@@ -41,6 +41,7 @@ export const TableRow = styled('tr', {
   display: 'grid',
   gridTemplateColumns: '2fr 1fr',
   padding: '0 1rem',
+  color: '$gray800',
 
   '@sm': {
     gridTemplateColumns: '2fr 1fr 1fr',

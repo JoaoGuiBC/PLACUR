@@ -1,8 +1,9 @@
-import { z } from "zod";
-import { useAtom } from "jotai";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useFieldArray, useForm } from "react-hook-form";
-import { IdentificationCard, Trash, UserPlus } from "phosphor-react";
+import { z } from 'zod'
+import { useAtom } from 'jotai'
+import { Fragment } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useFieldArray, useForm } from 'react-hook-form'
+import { IdentificationCard, Trash, UserPlus } from 'phosphor-react'
 
 import {
   Button,
@@ -11,28 +12,27 @@ import {
   Text,
   TextArea,
   TextInput,
-} from "@components/index";
-import { newCourse } from "@atoms/newCourseAtom";
+} from '@components/index'
+import { newCourse } from '@atoms/newCourseAtom'
 
-import { FormContainer, HeaderContainer } from "../styles";
-import { MinisterInfoSection, InputsContainer } from "./styles";
-import { Fragment } from "react";
+import { FormContainer, HeaderContainer } from '../styles'
+import { MinisterInfoSection, InputsContainer } from './styles'
 
 const MinisterInfoFormSchema = z.object({
   ministers: z.array(
     z.object({
-      name: z.string().min(5, { message: "Informe o nome completo" }),
+      name: z.string().min(5, { message: 'Informe o nome completo' }),
       qualification: z
         .string()
-        .min(5, { message: "Informe a formação completa" }),
+        .min(5, { message: 'Informe a formação completa' }),
     })
   ),
-});
+})
 
-type MinisterInfoFormData = z.infer<typeof MinisterInfoFormSchema>;
+type MinisterInfoFormData = z.infer<typeof MinisterInfoFormSchema>
 
 interface MinisterInfoStepProps {
-  onCompleteStep: (step: number) => void;
+  onCompleteStep: (step: number) => void
 }
 
 export function MinisterInfoForm({ onCompleteStep }: MinisterInfoStepProps) {
@@ -46,24 +46,24 @@ export function MinisterInfoForm({ onCompleteStep }: MinisterInfoStepProps) {
     defaultValues: {
       ministers: [
         {
-          name: "",
-          qualification: "",
+          name: '',
+          qualification: '',
         },
       ],
     },
-  });
+  })
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "ministers",
-  });
+    name: 'ministers',
+  })
 
-  const [newCourseData, setNewCourse] = useAtom(newCourse);
+  const [newCourseData, setNewCourse] = useAtom(newCourse)
 
   async function MinisterInfo(data: MinisterInfoFormData) {
-    setNewCourse({ ...newCourseData, ministers: [...data.ministers] });
+    setNewCourse({ ...newCourseData, ministers: [...data.ministers] })
 
-    onCompleteStep(4);
+    onCompleteStep(4)
   }
 
   return (
@@ -78,7 +78,7 @@ export function MinisterInfoForm({ onCompleteStep }: MinisterInfoStepProps) {
               placeholder={
                 errors?.ministers?.[index]?.name
                   ? `Ministrante - ${errors?.ministers?.[index]?.name?.message}`
-                  : "Ministrante"
+                  : 'Ministrante'
               }
               {...register(`ministers.${index}.name`)}
             />
@@ -88,14 +88,14 @@ export function MinisterInfoForm({ onCompleteStep }: MinisterInfoStepProps) {
               placeholder={
                 errors?.ministers?.[index]?.qualification
                   ? `Resumo - ${errors?.ministers?.[index]?.qualification?.message}`
-                  : "Resumo"
+                  : 'Resumo'
               }
               {...register(`ministers.${index}.qualification`)}
             />
           </Fragment>
         ) : (
           <Fragment key={field.id}>
-            <Separator css={{ $$baseColor: "$colors$gray100" }} />
+            <Separator css={{ $$baseColor: '$colors$gray100' }} />
 
             <MinisterInfoSection>
               <InputsContainer>
@@ -105,7 +105,7 @@ export function MinisterInfoForm({ onCompleteStep }: MinisterInfoStepProps) {
                   placeholder={
                     errors?.ministers?.[index]?.name
                       ? `Ministrante - ${errors?.ministers?.[index]?.name?.message}`
-                      : "Ministrante"
+                      : 'Ministrante'
                   }
                   {...register(`ministers.${index}.name`)}
                 />
@@ -115,7 +115,7 @@ export function MinisterInfoForm({ onCompleteStep }: MinisterInfoStepProps) {
                   placeholder={
                     errors?.ministers?.[index]?.qualification
                       ? `Resumo - ${errors?.ministers?.[index]?.qualification?.message}`
-                      : "Resumo"
+                      : 'Resumo'
                   }
                   {...register(`ministers.${index}.qualification`)}
                 />
@@ -124,7 +124,7 @@ export function MinisterInfoForm({ onCompleteStep }: MinisterInfoStepProps) {
               <Button
                 variant="withIcon"
                 size="min"
-                css={{ $$baseColor: "$colors$red500" }}
+                css={{ $$baseColor: '$colors$red500' }}
                 type="button"
                 onClick={() => remove(index)}
               >
@@ -132,22 +132,22 @@ export function MinisterInfoForm({ onCompleteStep }: MinisterInfoStepProps) {
               </Button>
             </MinisterInfoSection>
           </Fragment>
-        );
+        )
       })}
 
       <Button
         variant="withIcon"
         size="min"
-        css={{ $$baseColor: "$colors$green500" }}
+        css={{ $$baseColor: '$colors$green500' }}
         type="button"
-        onClick={() => append({ name: "", qualification: "" })}
+        onClick={() => append({ name: '', qualification: '' })}
       >
         <UserPlus size={32} />
       </Button>
 
       <Button disabled={isSubmitting}>Próximo passo</Button>
     </FormContainer>
-  );
+  )
 }
 
 export function MinisterInfoHeader() {
@@ -160,5 +160,5 @@ export function MinisterInfoHeader() {
         sobre ele (formação, trabalhos relevantes, etc...)
       </Text>
     </HeaderContainer>
-  );
+  )
 }

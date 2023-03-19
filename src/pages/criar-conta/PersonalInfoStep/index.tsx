@@ -1,37 +1,37 @@
-import { z } from "zod";
-import { useEffect } from "react";
-import { useSetAtom } from "jotai";
-import { AxiosError } from "axios";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { IdentificationBadge, IdentificationCard, Phone } from "phosphor-react";
+import { z } from 'zod'
+import { useEffect } from 'react'
+import { useSetAtom } from 'jotai'
+import { AxiosError } from 'axios'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { IdentificationBadge, IdentificationCard, Phone } from 'phosphor-react'
 
-import { api } from "@lib/axios";
-import { toastState } from "@atoms/toastAtom";
-import { maskPhone, maskDocument } from "@utils/inputMasks/index";
-import { Button, Heading, Text, TextInput } from "@components/index";
+import { api } from '@lib/axios'
+import { toastState } from '@atoms/toastAtom'
+import { maskPhone, maskDocument } from '@utils/inputMasks/index'
+import { Button, Heading, Text, TextInput } from '@components/index'
 
-import { FormContainer, HeaderContainer } from "../styles";
+import { FormContainer, HeaderContainer } from '../styles'
 
 const personalInfoFormSchema = z.object({
   name: z
     .string()
-    .min(4, { message: "Informe o seu nome completo." })
+    .min(4, { message: 'Informe o seu nome completo.' })
     .transform((value) => value.toLowerCase()),
   document: z
     .string()
-    .min(14, { message: "Informe um CPF válido" })
-    .transform((value) => value.replace(/\D/g, "")),
+    .min(14, { message: 'Informe um CPF válido' })
+    .transform((value) => value.replace(/\D/g, '')),
   phone: z
     .string()
-    .min(14, { message: "Informe um telefone válido" })
-    .transform((value) => value.replace(/\D/g, "")),
-});
+    .min(14, { message: 'Informe um telefone válido' })
+    .transform((value) => value.replace(/\D/g, '')),
+})
 
-type PersonalInfoFormData = z.infer<typeof personalInfoFormSchema>;
+type PersonalInfoFormData = z.infer<typeof personalInfoFormSchema>
 
 interface PersonalInfoStepProps {
-  onCompleteStep: (step: number) => void;
+  onCompleteStep: (step: number) => void
 }
 
 export function PersonalInfoForm({ onCompleteStep }: PersonalInfoStepProps) {
@@ -43,40 +43,40 @@ export function PersonalInfoForm({ onCompleteStep }: PersonalInfoStepProps) {
     formState: { errors, isSubmitting },
   } = useForm<PersonalInfoFormData>({
     resolver: zodResolver(personalInfoFormSchema),
-  });
+  })
 
-  const setToast = useSetAtom(toastState);
+  const setToast = useSetAtom(toastState)
 
-  const phone = watch("phone");
-  const document = watch("document");
+  const phone = watch('phone')
+  const document = watch('document')
 
   async function handleSubmitPersonalInfo(data: PersonalInfoFormData) {
     try {
-      await api.put("/users/update-profile/profile", { ...data });
+      await api.put('/users/update-profile/profile', { ...data })
 
-      onCompleteStep(2);
+      onCompleteStep(2)
     } catch (error: any) {
-      const { response } = error as AxiosError<{ message: string }>;
+      const { response } = error as AxiosError<{ message: string }>
 
       setToast({
-        title: "Ops, temos um problema",
-        description: response?.data.message ?? "",
-        type: "error",
+        title: 'Ops, temos um problema',
+        description: response?.data.message ?? '',
+        type: 'error',
         isOpen: true,
-      });
+      })
     }
   }
 
   useEffect(() => {
     if (document) {
-      const maskedDocument = maskDocument(document);
-      setValue("document", maskedDocument);
+      const maskedDocument = maskDocument(document)
+      setValue('document', maskedDocument)
     }
     if (phone) {
-      const maskedPhone = maskPhone(phone);
-      setValue("phone", maskedPhone);
+      const maskedPhone = maskPhone(phone)
+      setValue('phone', maskedPhone)
     }
-  }, [document, phone, setValue]);
+  }, [document, phone, setValue])
 
   return (
     <FormContainer onSubmit={handleSubmit(handleSubmitPersonalInfo)}>
@@ -86,30 +86,30 @@ export function PersonalInfoForm({ onCompleteStep }: PersonalInfoStepProps) {
         placeholder={
           errors.name
             ? `Nome completo - ${errors.name.message}`
-            : "Nome completo"
+            : 'Nome completo'
         }
-        {...register("name")}
+        {...register('name')}
       />
       <TextInput
         Icon={IdentificationCard}
         isErrored={!!errors.document}
         placeholder={
-          errors.document ? `CPF - ${errors.document.message}` : "CPF"
+          errors.document ? `CPF - ${errors.document.message}` : 'CPF'
         }
-        {...register("document")}
+        {...register('document')}
       />
       <TextInput
         Icon={Phone}
         isErrored={!!errors.phone}
         placeholder={
-          errors.phone ? `Telefone - ${errors.phone.message}` : "Telefone"
+          errors.phone ? `Telefone - ${errors.phone.message}` : 'Telefone'
         }
-        {...register("phone")}
+        {...register('phone')}
       />
 
       <Button disabled={isSubmitting}>Próximo passo</Button>
     </FormContainer>
-  );
+  )
 }
 
 export function PersonalInfoHeader() {
@@ -122,5 +122,5 @@ export function PersonalInfoHeader() {
         editar essas informações depois.
       </Text>
     </HeaderContainer>
-  );
+  )
 }

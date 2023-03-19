@@ -5,43 +5,43 @@ import {
   UserPlus,
   UsersFour,
   UserMinus,
-} from "phosphor-react";
-import { Fragment } from "react";
-import { UseFieldArrayReturn } from "react-hook-form";
+} from 'phosphor-react'
+import { Fragment } from 'react'
+import { UseFieldArrayReturn } from 'react-hook-form'
 
-import { Button, Separator, TextInput } from "@components/index";
+import { Button, Separator, TextInput } from '@components/index'
 
-import { Container, ClassInfoSection, InputsContainer } from "./styles";
+import { Container, ClassInfoSection, InputsContainer } from './styles'
 
 interface ClassFormProps {
-  register: any;
-  errors: any;
+  register: any
+  errors: any
   classesFields: UseFieldArrayReturn<
     {
-      category: string;
-      type: string;
-      meetings: any;
+      category: string
+      type: string
+      meetings: any
       classes: {
-        name: string;
-        date: Date;
-        startTimeInMinutes: number;
-        endTimeInMinutes: number;
-      }[];
+        name: string
+        date: Date
+        startTimeInMinutes: number
+        endTimeInMinutes: number
+      }[]
     },
-    "classes",
-    "id"
-  >;
+    'classes',
+    'id'
+  >
 }
 
 export function ClassForm({ register, errors, classesFields }: ClassFormProps) {
-  const { fields, append, remove } = classesFields;
+  const { fields, append, remove } = classesFields
 
   return (
     <>
       {fields.map((field, index) => {
         return (
           <Fragment key={field.id}>
-            <Separator css={{ $$baseColor: "$colors$gray100" }} />
+            <Separator css={{ $$baseColor: '$colors$gray100' }} />
 
             <ClassInfoSection>
               <InputsContainer>
@@ -51,7 +51,7 @@ export function ClassForm({ register, errors, classesFields }: ClassFormProps) {
                   placeholder={
                     errors?.classes?.[index]?.name
                       ? `Nome da turma - ${errors?.classes?.[index]?.name?.message}`
-                      : "Nome da turma"
+                      : 'Nome da turma'
                   }
                   {...register(`classes.${index}.name`)}
                 />
@@ -63,7 +63,7 @@ export function ClassForm({ register, errors, classesFields }: ClassFormProps) {
                   placeholder={
                     errors?.classes?.[index]?.date
                       ? `Data - ${errors?.classes?.[index]?.date?.message}`
-                      : "Data"
+                      : 'Data'
                   }
                   {...register(`classes.${index}.date`)}
                 />
@@ -76,7 +76,7 @@ export function ClassForm({ register, errors, classesFields }: ClassFormProps) {
                     placeholder={
                       errors?.classes?.[index]?.startTimeInMinutes
                         ? `Horário do início - ${errors?.classes?.[index]?.startTimeInMinutes.message}`
-                        : "Horário do início"
+                        : 'Horário do início'
                     }
                     {...register(`classes.${index}.startTime`)}
                   />
@@ -88,7 +88,7 @@ export function ClassForm({ register, errors, classesFields }: ClassFormProps) {
                     placeholder={
                       errors?.classes?.[index]?.endTimeInMinutes
                         ? `Horário do fim - ${errors?.classes?.[index]?.endTimeInMinutes.message}`
-                        : "Horário do fim"
+                        : 'Horário do fim'
                     }
                     {...register(`classes.${index}.endTime`)}
                   />
@@ -98,7 +98,7 @@ export function ClassForm({ register, errors, classesFields }: ClassFormProps) {
               <Button
                 variant="withIcon"
                 size="min"
-                css={{ $$baseColor: "$colors$red500" }}
+                css={{ $$baseColor: '$colors$red500' }}
                 type="button"
                 onClick={() => remove(0)}
               >
@@ -106,7 +106,7 @@ export function ClassForm({ register, errors, classesFields }: ClassFormProps) {
               </Button>
             </ClassInfoSection>
           </Fragment>
-        );
+        )
       })}
 
       {errors?.classes?.message && <span>{errors?.classes?.message}</span>}
@@ -114,11 +114,11 @@ export function ClassForm({ register, errors, classesFields }: ClassFormProps) {
       <Button
         variant="withIcon"
         size="min"
-        css={{ $$baseColor: "$colors$green500" }}
+        css={{ $$baseColor: '$colors$green500' }}
         type="button"
         onClick={() =>
           append({
-            name: "",
+            name: '',
             date: new Date(),
             endTimeInMinutes: 0,
             startTimeInMinutes: 0,
@@ -128,5 +128,5 @@ export function ClassForm({ register, errors, classesFields }: ClassFormProps) {
         <UserPlus size={32} />
       </Button>
     </>
-  );
+  )
 }

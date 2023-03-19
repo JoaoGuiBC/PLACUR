@@ -1,12 +1,12 @@
-import { z } from "zod";
-import { useRouter } from "next/router";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from 'zod'
+import { useRouter } from 'next/router'
+import { useForm, Controller } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-import { api } from "@lib/axios";
-import { Button, Checkbox, Heading, Text } from "@components/index";
+import { api } from '@lib/axios'
+import { Button, Checkbox, Heading, Text } from '@components/index'
 
-import { FormContainer, HeaderContainer } from "../styles";
+import { FormContainer, HeaderContainer } from '../styles'
 
 const disabilityFormSchema = z.object({
   visualDisability: z.boolean(),
@@ -14,9 +14,9 @@ const disabilityFormSchema = z.object({
   hearingDisability: z.boolean(),
   intellectualDisability: z.boolean(),
   psychosocialDisability: z.boolean(),
-});
+})
 
-export type DisabilityFormData = z.infer<typeof disabilityFormSchema>;
+export type DisabilityFormData = z.infer<typeof disabilityFormSchema>
 
 export function HaveDisabilityStepForm() {
   const {
@@ -32,20 +32,20 @@ export function HaveDisabilityStepForm() {
       intellectualDisability: false,
       psychosocialDisability: false,
     },
-  });
+  })
 
-  const router = useRouter();
+  const router = useRouter()
 
   async function handleSubmitDisability(data: DisabilityFormData) {
-    await api.put("/users/update-profile/disabilities", { ...data });
+    await api.put('/users/update-profile/disabilities', { ...data })
 
-    router.push("/");
+    router.push('/')
   }
 
   return (
     <FormContainer onSubmit={handleSubmit(handleSubmitDisability)}>
       <Controller
-        name={"visualDisability"}
+        name={'visualDisability'}
         control={control}
         render={({ field }) => {
           return (
@@ -53,14 +53,14 @@ export function HaveDisabilityStepForm() {
               title="Visual"
               checked={field.value}
               onCheckedChange={(checked) => {
-                field.onChange(checked === true);
+                field.onChange(checked === true)
               }}
             />
-          );
+          )
         }}
       />
       <Controller
-        name={"physicalDisability"}
+        name={'physicalDisability'}
         control={control}
         render={({ field }) => {
           return (
@@ -68,14 +68,14 @@ export function HaveDisabilityStepForm() {
               title="Física"
               checked={field.value}
               onCheckedChange={(checked) => {
-                field.onChange(checked === true);
+                field.onChange(checked === true)
               }}
             />
-          );
+          )
         }}
       />
       <Controller
-        name={"hearingDisability"}
+        name={'hearingDisability'}
         control={control}
         render={({ field }) => {
           return (
@@ -83,14 +83,14 @@ export function HaveDisabilityStepForm() {
               title="Auditiva"
               checked={field.value}
               onCheckedChange={(checked) => {
-                field.onChange(checked === true);
+                field.onChange(checked === true)
               }}
             />
-          );
+          )
         }}
       />
       <Controller
-        name={"intellectualDisability"}
+        name={'intellectualDisability'}
         control={control}
         render={({ field }) => {
           return (
@@ -98,14 +98,14 @@ export function HaveDisabilityStepForm() {
               title="Intelectual"
               checked={field.value}
               onCheckedChange={(checked) => {
-                field.onChange(checked === true);
+                field.onChange(checked === true)
               }}
             />
-          );
+          )
         }}
       />
       <Controller
-        name={"psychosocialDisability"}
+        name={'psychosocialDisability'}
         control={control}
         render={({ field }) => {
           return (
@@ -113,16 +113,16 @@ export function HaveDisabilityStepForm() {
               title="Psicosocial"
               checked={field.value}
               onCheckedChange={(checked) => {
-                field.onChange(checked === true);
+                field.onChange(checked === true)
               }}
             />
-          );
+          )
         }}
       />
 
       <Button disabled={isSubmitting}>Finalizar</Button>
     </FormContainer>
-  );
+  )
 }
 
 export function HaveDisabilityStepHeader() {
@@ -135,5 +135,5 @@ export function HaveDisabilityStepHeader() {
         editar essas informações depois.
       </Text>
     </HeaderContainer>
-  );
+  )
 }

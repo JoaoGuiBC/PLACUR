@@ -1,4 +1,18 @@
+import dayjs from 'dayjs'
+import Link from 'next/link'
+import { useSetAtom } from 'jotai'
 import { NextSeo } from 'next-seo'
+import { AxiosError } from 'axios'
+import { getServerSession } from 'next-auth'
+import type { GetServerSideProps } from 'next'
+import { useQuery } from '@tanstack/react-query'
+import { FormEvent, useEffect, useState } from 'react'
+
+import { prisma } from '@lib/prisma'
+import { toastState } from '@atoms/toastAtom'
+import { authOptions } from '@api/auth/[...nextauth].api'
+import { axesOfKnowledge, courseCategories } from '@utils/selectValues'
+import { listAllCoursesQuery } from '@utils/queries/list-all-courses-query'
 
 import { Select } from '@components/Select'
 import { Button } from '@components/Button'
@@ -6,15 +20,75 @@ import { Searchbar } from '@components/Searchbar'
 import { CourseCard } from '@components/CourseCard'
 import { Pagination } from '@components/Pagination'
 
-import {
-  axesOfKnowledge,
-  courseCategories,
-  courseStatus,
-} from '@utils/selectValues'
-
 import { ActionsContainer, CoursesContainer } from './styles'
 
-export default function AppCourses() {
+interface Course {
+  id: string
+  title: string
+  category: string
+  isFinished: boolean
+  firstDate: string | null
+  lastDate: string | null
+}
+
+interface AppCoursesProps {
+  courses: Course[]
+  countCourses: number
+  coursesPerPage: number
+}
+
+export default function AppCourses({
+  courses,
+  countCourses,
+  coursesPerPage,
+}: AppCoursesProps) {
+  const [title, setTitle] = useState('')
+  const [category, setCategory] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [axisOfKnowledge, setAxisOfKnowledge] = useState('')
+
+  const setToast = useSetAtom(toastState)
+
+  const { data: coursesList, refetch } = useQuery<{
+    courses: Course[]
+    countCourses: number
+  }>(
+    ['allCoursesList'],
+    async () => {
+      try {
+        return await listAllCoursesQuery({
+          title,
+          axisOfKnowledge,
+          category,
+          take: coursesPerPage,
+          skip: (currentPage - 1) * coursesPerPage,
+        })
+      } catch (error: any) {
+        const { response } = error as AxiosError<{ message: string }>
+
+        setToast({
+          title: 'Ops, temos um problema',
+          description: response?.data.message ?? 'Erro ao recuperar cursos.',
+          type: 'error',
+          isOpen: true,
+        })
+
+        return { courses, countCourses }
+      }
+    },
+    { enabled: false, initialData: { courses, countCourses } }
+  )
+
+  async function handleSearch(event?: FormEvent) {
+    event && event.preventDefault()
+
+    refetch()
+  }
+
+  useEffect(() => {
+    handleSearch()
+  }, [axisOfKnowledge, category])
+
   return (
     <>
       <NextSeo
@@ -23,86 +97,115 @@ export default function AppCourses() {
       />
 
       <ActionsContainer>
-        <Searchbar placeholder="Buscar curso" />
+        <Searchbar
+          placeholder="Buscar curso"
+          value={title}
+          onChange={({ currentTarget }) => setTitle(currentTarget.value)}
+          onSearch={handleSearch}
+        />
+
         <Select
           content={axesOfKnowledge}
           emptyValue="Filtrar por eixo de conhecimento"
+          onValueChange={(value) => setAxisOfKnowledge(value)}
         />
-        <Select content={courseCategories} emptyValue="Filtrar por categoria" />
+
         <Select
-          content={courseStatus}
-          emptyValue="Filtrar por estado de conclusão"
+          content={courseCategories}
+          emptyValue="Filtrar por categoria"
+          onValueChange={(value) => setCategory(value)}
         />
-        <Button size="min">Adicionar um curso</Button>
+
+        <Link href="/admin/inserir-novo-curso">
+          <Button size="min">Adicionar um curso</Button>
+        </Link>
       </ActionsContainer>
 
       <Pagination
-        totalCountOfRegisters={20}
-        currentPage={1}
+        totalCountOfRegisters={coursesList.countCourses}
+        currentPage={currentPage}
         registerPerPage={12}
+        onPageChange={setCurrentPage}
       />
 
       <CoursesContainer>
-        <CourseCard
-          image="/course_image_placeholder.png"
-          title="Formação Continuada Multiprofissional da equipe de visitadores dos Programas Bem-Estar da Família e Criança Feliz MODULO XVII"
-          firstDate="16/11/2022"
-          lastDate="16/11/2022"
-          availability={12}
-          category="Workshop"
-        />
-        <CourseCard
-          image="/course_image_placeholder.png"
-          title="Primeiras intervenções nas urgências e emergências no ambiente laboral - Inclusão Social"
-          firstDate="24/10/2022"
-          lastDate="24/10/2022"
-          availability={0}
-          finished
-          category="Capacitação"
-        />
-        <CourseCard
-          image="/course_image_placeholder.png"
-          title="Assistência Farmacêutica no Município de Balneário Camboriú - II"
-          firstDate="26/08/2022"
-          lastDate="25/11/2022"
-          availability={1}
-          category="Workshop"
-        />
-
-        <CourseCard
-          image="/course_image_placeholder.png"
-          title="Anestesiologia"
-          firstDate="29/09/22"
-          lastDate="29/09/22"
-          availability={0}
-          finished
-          category="Palestra"
-        />
-        <CourseCard
-          image="/course_image_placeholder.png"
-          title="Formação Continuada Multiprofissional da equipe de visitadores dos Programas Bem-Estar da Família e Criança Feliz MODULO XVI"
-          firstDate="27/10/2022"
-          lastDate="27/10/2022"
-          availability={0}
-          finished
-          category="Workshop"
-        />
-        <CourseCard
-          image="/course_image_placeholder.png"
-          title="Primeiras intervenções nas urgências e emergências no ambiente escolar - SEDUC"
-          firstDate="26/08/2022"
-          lastDate="23/11/2022"
-          availability={91}
-          category="Capacitação"
-        />
-        <CourseCard
-          image="/course_image_placeholder.png"
-          title="Boas Práticas nos Serviços de Alimentação na Execução do PNAE no Município de Balneário Camboriú/SC"
-          firstDate="1/03/2022"
-          lastDate="1/12/2023"
-          category="EAD"
-        />
+        {coursesList.courses.map((course) => (
+          <Link key={course.id} href={`/curso/${course.id}`}>
+            <CourseCard
+              title={course.title}
+              firstDate={course.firstDate}
+              lastDate={course.lastDate}
+              finished={course.isFinished}
+              category={course.category}
+            />
+          </Link>
+        ))}
       </CoursesContainer>
     </>
   )
+}
+
+export const getServerSideProps: GetServerSideProps<AppCoursesProps> = async ({
+  req,
+  res,
+}) => {
+  const session = await getServerSession(req, res, authOptions)
+
+  if (!session) {
+    return {
+      notFound: true,
+    }
+  }
+
+  if (!session.user.is_admin) {
+    return {
+      notFound: true,
+    }
+  }
+
+  const coursesPerPage = 12
+
+  const countCourses = await prisma.course.count()
+  const courses = await prisma.course.findMany({
+    orderBy: { created_at: 'desc' },
+    take: coursesPerPage,
+    select: {
+      id: true,
+      title: true,
+      category: true,
+      classes: true,
+      meetings: true,
+    },
+  })
+
+  const parsedCourses = courses.map((course) => {
+    const allDates =
+      course.classes.length > 0
+        ? course.classes.map((item) => item.date)
+        : course.meetings.map((item) => item.date)
+
+    const dates = {
+      firstDate: allDates.length === 0 ? null : allDates[0],
+      lastDate: allDates.length === 0 ? null : allDates[allDates.length - 1],
+    }
+
+    const isFinished = dates.lastDate
+      ? dayjs(dates.lastDate).startOf('day').isAfter(new Date())
+      : false
+
+    return {
+      id: course.id,
+      title: course.title,
+      category: String(course.category?.title),
+      isFinished,
+      firstDate: dates.firstDate
+        ? dayjs(dates.firstDate).format('DD/MM/YYYY')
+        : null,
+      lastDate: dates.lastDate
+        ? dayjs(dates.lastDate).format('DD/MM/YYYY')
+        : null,
+    }
+  })
+
+  return { props: { courses: parsedCourses, countCourses, coursesPerPage } }
 }
