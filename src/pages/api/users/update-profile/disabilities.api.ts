@@ -1,9 +1,9 @@
-import { z } from 'zod'
-import { getServerSession } from 'next-auth'
-import { NextApiRequest, NextApiResponse } from 'next'
+import { z } from "zod";
+import { getServerSession } from "next-auth";
+import { NextApiRequest, NextApiResponse } from "next";
 
-import { prisma } from '@lib/prisma'
-import { authOptions } from '../../auth/[...nextauth].api'
+import { prisma } from "@lib/prisma";
+import { authOptions } from "@api/auth/[...nextauth].api";
 
 const updateAddressBodySchema = z.object({
   visualDisability: z.boolean(),
@@ -11,20 +11,20 @@ const updateAddressBodySchema = z.object({
   hearingDisability: z.boolean(),
   intellectualDisability: z.boolean(),
   psychosocialDisability: z.boolean(),
-})
+});
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== 'PUT') {
-    return res.status(405).end()
+  if (req.method !== "PUT") {
+    return res.status(405).end();
   }
 
-  const session = await getServerSession(req, res, authOptions)
+  const session = await getServerSession(req, res, authOptions);
 
   if (!session?.user?.email) {
-    return res.status(401).end()
+    return res.status(401).end();
   }
 
   const {
@@ -33,7 +33,7 @@ export default async function handler(
     physicalDisability,
     psychosocialDisability,
     visualDisability,
-  } = updateAddressBodySchema.parse(req.body)
+  } = updateAddressBodySchema.parse(req.body);
 
   await prisma.user.update({
     where: { email: session.user.email },
@@ -45,7 +45,7 @@ export default async function handler(
       have_visual_disability: visualDisability,
       updated_at: new Date(),
     },
-  })
+  });
 
-  return res.status(204).end()
+  return res.status(204).end();
 }

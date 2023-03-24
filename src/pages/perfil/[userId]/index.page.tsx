@@ -4,23 +4,20 @@ import {
   IdentificationBadge,
   IdentificationCard,
   Phone,
-} from 'phosphor-react'
-import { NextSeo } from 'next-seo'
+} from "phosphor-react";
+import { NextSeo } from "next-seo";
 
 import {
   Text,
   Avatar,
-  Select,
   Button,
   Heading,
   Checkbox,
   TextInput,
-  UpdatePasswordDialog,
-} from '@components/index'
+} from "@components/index";
 
-import { cityHallDivisions } from '@utils/selectValues'
 
-import { theme } from 'stitches.config'
+import { theme } from "stitches.config";
 import {
   Container,
   PageHeader,
@@ -28,7 +25,7 @@ import {
   Content,
   UserInfoContainer,
   UserInfoSection,
-} from './styles'
+} from "./styles";
 
 export default function Perfil() {
   return (
@@ -60,8 +57,6 @@ export default function Perfil() {
               </Text>
 
               <TextInput Icon={EnvelopeSimple} placeholder="E-Mail" />
-
-              <UpdatePasswordDialog />
             </UserInfoSection>
 
             <UserInfoSection>
@@ -75,15 +70,6 @@ export default function Perfil() {
               />
               <TextInput Icon={IdentificationCard} placeholder="CPF" />
               <TextInput Icon={Phone} placeholder="Telefone" />
-            </UserInfoSection>
-
-            <UserInfoSection>
-              <Checkbox title="Você é funcionário público de Balneário Camboriú?" />
-
-              <Select
-                emptyValue="Em qual secretaria você trabalha?"
-                content={cityHallDivisions}
-              />
             </UserInfoSection>
 
             <Checkbox title="Essa pessoa é administradora da plataforma?" />
@@ -118,5 +104,5 @@ export default function Perfil() {
         <Button size="min">Salvar alterações</Button>
       </Container>
     </>
-  )
+  );
 }
