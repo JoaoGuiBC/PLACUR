@@ -130,7 +130,7 @@ export default function AppCourses({
 
       <CoursesContainer>
         {coursesList.courses.map((course) => (
-          <Link key={course.id} href={`/curso/${course.id}`}>
+          <Link key={course.id} href={`/admin/curso/${course.id}`}>
             <CourseCard
               title={course.title}
               firstDate={course.firstDate}
