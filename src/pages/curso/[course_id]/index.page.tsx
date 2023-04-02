@@ -1,21 +1,21 @@
-import dayjs from "dayjs";
-import Image from "next/image";
-import { NextSeo } from "next-seo";
-import { AxiosError } from "axios";
-import { useSetAtom } from "jotai";
-import { useRouter } from "next/router";
-import { Fragment, useState } from "react";
-import { useSession } from "next-auth/react";
-import { getServerSession } from "next-auth";
-import { FileArrowDown } from "phosphor-react";
-import type { GetServerSideProps } from "next";
+import dayjs from 'dayjs'
+import Image from 'next/image'
+import { NextSeo } from 'next-seo'
+import { AxiosError } from 'axios'
+import { useSetAtom } from 'jotai'
+import { useRouter } from 'next/router'
+import { Fragment, useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { getServerSession } from 'next-auth'
+import { FileArrowDown } from 'phosphor-react'
+import type { GetServerSideProps } from 'next'
 
-import { api } from "@lib/axios";
-import { prisma } from "@lib/prisma";
-import { toastState } from "@atoms/toastAtom";
-import { authOptions } from "@api/auth/[...nextauth].api";
-import { capitalizeSentence } from "@utils/capitalize-sentence";
-import { convertMinutesToString } from "@utils/convert-minutes-to-string";
+import { api } from '@lib/axios'
+import { prisma } from '@lib/prisma'
+import { toastState } from '@atoms/toastAtom'
+import { authOptions } from '@api/auth/[...nextauth].api'
+import { capitalizeSentence } from '@utils/capitalize-sentence'
+import { convertMinutesToString } from '@utils/convert-minutes-to-string'
 
 import {
   Section,
@@ -26,48 +26,48 @@ import {
   InfoContainer,
   RegisterContainer,
   EncounterContainer,
-} from "./styles";
-import { Button, Heading, Text, EnrollInClassDialog } from "@components/index";
+} from './styles'
+import { Button, Heading, Text, EnrollInClassDialog } from '@components/index'
 
 interface CourseData {
-  id: string;
-  title: string;
-  target_audience: string;
-  objective: string;
-  observations: string;
-  content: string;
+  id: string
+  title: string
+  target_audience: string
+  objective: string
+  observations: string
+  content: string
 }
 
 interface MinisterData {
-  id: string;
-  name: string;
-  qualification: string;
+  id: string
+  name: string
+  qualification: string
 }
 
 interface Class {
-  id: string;
-  name: string;
-  date: string;
-  startTime: string;
-  endTime: string;
-  wasUserPresent: boolean;
-  isUserEnrolled: boolean;
+  id: string
+  name: string
+  date: string
+  startTime: string
+  endTime: string
+  wasUserPresent: boolean
+  isUserEnrolled: boolean
 }
 
 interface Meeting {
-  id: string;
-  date: string;
-  startTime: string;
-  endTime: string;
-  wasUserPresent: boolean;
+  id: string
+  date: string
+  startTime: string
+  endTime: string
+  wasUserPresent: boolean
 }
 
 interface CourseProps {
-  course: CourseData;
-  ministers: MinisterData[];
-  classes: Class[];
-  meetings: Meeting[];
-  isUserEnrolled: boolean;
+  course: CourseData
+  ministers: MinisterData[]
+  classes: Class[]
+  meetings: Meeting[]
+  isUserEnrolled: boolean
 }
 
 export default function Course({
@@ -77,75 +77,75 @@ export default function Course({
   meetings,
   isUserEnrolled,
 }: CourseProps) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [enrollment, setEnrollment] = useState(isUserEnrolled);
+  const [isLoading, setIsLoading] = useState(false)
+  const [enrollment, setEnrollment] = useState(isUserEnrolled)
 
-  const router = useRouter();
-  const setToast = useSetAtom(toastState);
-  const { data: session, status } = useSession();
+  const router = useRouter()
+  const setToast = useSetAtom(toastState)
+  const { data: session, status } = useSession()
 
   async function handleEnroll() {
-    setIsLoading(true);
+    setIsLoading(true)
 
     try {
-      await api.post("/courses/enrollments", {
+      await api.post('/courses/enrollments', {
         courseId: course.id,
         userId: session!.user.id,
         meetings: meetings.map((meeting) => meeting.id),
-      });
+      })
 
       setToast({
-        title: "Uhuu!",
-        description: "A sua inscrição foi realizada!",
-        type: "success",
+        title: 'Uhuu!',
+        description: 'A sua inscrição foi realizada!',
+        type: 'success',
         isOpen: true,
-      });
+      })
 
-      setEnrollment(true);
+      setEnrollment(true)
     } catch (error: any) {
-      const { response } = error as AxiosError<{ message: string }>;
+      const { response } = error as AxiosError<{ message: string }>
 
       setToast({
-        title: "Ops, temos um problema",
-        description: response?.data.message ?? "",
-        type: "error",
+        title: 'Ops, temos um problema',
+        description: response?.data.message ?? '',
+        type: 'error',
         isOpen: true,
-      });
+      })
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
   }
 
   async function handleUnenroll() {
-    setIsLoading(true);
+    setIsLoading(true)
 
     try {
-      await api.delete("/courses/enrollments/unenroll", {
+      await api.delete('/courses/enrollments/unenroll', {
         params: {
           courseId: course.id,
           userId: session!.user.id,
         },
-      });
+      })
 
       setToast({
-        title: "Esperamos te ver outra vez",
-        description: "A sua inscrição foi removida",
-        type: "success",
+        title: 'Esperamos te ver outra vez',
+        description: 'A sua inscrição foi removida',
+        type: 'success',
         isOpen: true,
-      });
+      })
 
-      setEnrollment(false);
+      setEnrollment(false)
     } catch (error: any) {
-      const { response } = error as AxiosError<{ message: string }>;
+      const { response } = error as AxiosError<{ message: string }>
 
       setToast({
-        title: "Ops, temos um problema",
-        description: response?.data.message ?? "",
-        type: "error",
+        title: 'Ops, temos um problema',
+        description: response?.data.message ?? '',
+        type: 'error',
         isOpen: true,
-      });
+      })
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
   }
 
@@ -197,10 +197,10 @@ export default function Course({
             {ministers.map((minister) => {
               return (
                 <Text size="lg" as="p" key={minister.id}>
-                  <strong>{capitalizeSentence(minister.name)}</strong> -{" "}
+                  <strong>{capitalizeSentence(minister.name)}</strong> -{' '}
                   {minister.qualification}
                 </Text>
-              );
+              )
             })}
           </Section>
         </InfoContainer>
@@ -213,18 +213,18 @@ export default function Course({
                   <Encounter>
                     <Heading size="sm">Encontro</Heading>
                     <DateInfo>
-                      {`${dayjs(meetings[0].date).format("DD/MM/YYYY")}
+                      {`${dayjs(meetings[0].date).format('DD/MM/YYYY')}
                     das ${meetings[0].startTime} ás ${meetings[0].endTime}`}
                     </DateInfo>
                   </Encounter>
 
                   {dayjs(meetings[0].date).isAfter(
-                    dayjs(new Date()).add(3, "day")
+                    dayjs(new Date()).add(3, 'day')
                   ) ? (
                     <p>
                       {`Disponível a partir de ${dayjs(meetings[0].date)
-                        .add(3, "day")
-                        .format("DD/MM/YYYY")}`}
+                        .add(3, 'day')
+                        .format('DD/MM/YYYY')}`}
                     </p>
                   ) : (
                     <span>
@@ -240,19 +240,19 @@ export default function Course({
                       <Encounter>
                         <Heading size="sm">{`${index + 1}º encontro`}</Heading>
                         <DateInfo>
-                          {`${dayjs(meeting.date).format("DD/MM/YYYY")}
+                          {`${dayjs(meeting.date).format('DD/MM/YYYY')}
                           das ${meeting.startTime} ás ${meeting.endTime}`}
                         </DateInfo>
                       </Encounter>
 
                       {enrollment &&
                         (dayjs(meeting.date).isAfter(
-                          dayjs(new Date()).add(3, "day")
+                          dayjs(new Date()).add(3, 'day')
                         ) ? (
                           <p>
                             {`Disponível a partir de ${dayjs(meeting.date)
-                              .add(3, "day")
-                              .format("DD/MM/YYYY")}`}
+                              .add(3, 'day')
+                              .format('DD/MM/YYYY')}`}
                           </p>
                         ) : meeting.wasUserPresent ? (
                           <span>
@@ -276,7 +276,7 @@ export default function Course({
                   <Encounter>
                     <Heading size="sm">{capitalizeSentence(item.name)}</Heading>
                     <DateInfo>
-                      {`${dayjs(item.date).format("DD/MM/YYYY")}
+                      {`${dayjs(item.date).format('DD/MM/YYYY')}
                     das ${item.startTime} ás ${item.endTime}`}
                     </DateInfo>
                   </Encounter>
@@ -284,12 +284,12 @@ export default function Course({
                   {item.isUserEnrolled &&
                     enrollment &&
                     (dayjs(item.date).isAfter(
-                      dayjs(new Date()).add(3, "day")
+                      dayjs(new Date()).add(3, 'day')
                     ) ? (
                       <p>
                         {`Disponível a partir de ${dayjs(item.date)
-                          .add(3, "day")
-                          .format("DD/MM/YYYY")}`}
+                          .add(3, 'day')
+                          .format('DD/MM/YYYY')}`}
                       </p>
                     ) : (
                       <span>
@@ -302,8 +302,8 @@ export default function Course({
             </Fragment>
           )}
 
-          {status !== "authenticated" ? (
-            <Button variant="secondary" onClick={() => router.push("/login")}>
+          {status !== 'authenticated' ? (
+            <Button variant="secondary" onClick={() => router.push('/login')}>
               Faça login para se inscrever
             </Button>
           ) : session?.user.is_admin ? (
@@ -342,7 +342,7 @@ export default function Course({
         </RegisterContainer>
       </Container>
     </>
-  );
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({
@@ -350,7 +350,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   res,
   params,
 }) => {
-  const courseId = String(params?.course_id);
+  const courseId = String(params?.course_id)
 
   const course = await prisma.course.findFirst({
     where: { id: courseId },
@@ -362,25 +362,25 @@ export const getServerSideProps: GetServerSideProps = async ({
       observations: true,
       target_audience: true,
       courses_ministers: true,
-      classes: { orderBy: { date: "asc" } },
-      meetings: { orderBy: { date: "asc" } },
+      classes: { orderBy: { date: 'asc' } },
+      meetings: { orderBy: { date: 'asc' } },
     },
-  });
+  })
 
   if (!course) {
     return {
       notFound: true,
-    };
+    }
   }
 
-  const session = await getServerSession(req, res, authOptions);
+  const session = await getServerSession(req, res, authOptions)
 
   const {
     courses_ministers: coursesMinisters,
     classes,
     meetings,
     ...parsedCourse
-  } = course;
+  } = course
 
   const ministersList = await prisma.minister.findMany({
     where: {
@@ -390,57 +390,57 @@ export const getServerSideProps: GetServerSideProps = async ({
         ),
       },
     },
-  });
+  })
 
-  const ministers = ministersList.filter((minister) => minister !== null);
+  const ministers = ministersList.filter((minister) => minister !== null)
 
   const userEnrollment = await prisma.courseEnrollment.findFirst({
-    where: { user_id: session?.user.id ?? "", course_id: course.id },
-  });
+    where: { user_id: session?.user.id ?? '', course_id: course.id },
+  })
 
   const classesEnrollments = await prisma.meetingClassEnrollment.findMany({
     where: {
-      user_id: session?.user.id ?? "",
+      user_id: session?.user.id ?? '',
       class_id: { in: course.classes.map((item) => item.id) },
     },
-  });
+  })
 
   const meetingsEnrollments = await prisma.meetingClassEnrollment.findMany({
     where: {
-      user_id: session?.user.id ?? "",
+      user_id: session?.user.id ?? '',
       meeting_id: { in: course.meetings.map((item) => item.id) },
     },
-  });
+  })
 
   const parsedClasses = classes.map((item) => {
     const [filterClass] = classesEnrollments.filter(
       (enrollment) => enrollment.class_id === item.id
-    );
+    )
 
     return {
       id: item.id,
       name: item.name,
-      date: dayjs(item.date).format("YYYY-MM-DD"),
+      date: dayjs(item.date).format('YYYY-MM-DD'),
       startTime: convertMinutesToString(item.start_time_in_minutes),
       endTime: convertMinutesToString(item.end_time_in_minutes),
       wasUserPresent: filterClass ? filterClass.user_was_present : false,
       isUserEnrolled: !!filterClass,
-    };
-  });
+    }
+  })
 
   const parsedMeetings = meetings.map((item) => {
     const [filterMeeting] = meetingsEnrollments.filter(
       (enrollment) => enrollment.meeting_id === item.id
-    );
+    )
 
     return {
       id: item.id,
-      date: dayjs(item.date).endOf("day").format("YYYY-MM-DD"),
+      date: dayjs(item.date).endOf('day').format('YYYY-MM-DD'),
       startTime: convertMinutesToString(item.start_time_in_minutes),
       endTime: convertMinutesToString(item.end_time_in_minutes),
       wasUserPresent: filterMeeting ? filterMeeting.user_was_present : false,
-    };
-  });
+    }
+  })
 
   return {
     props: {
@@ -450,5 +450,5 @@ export const getServerSideProps: GetServerSideProps = async ({
       meetings: parsedMeetings,
       isUserEnrolled: !!userEnrollment,
     },
-  };
-};
+  }
+}

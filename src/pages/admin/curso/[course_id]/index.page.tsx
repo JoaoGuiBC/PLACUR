@@ -1,5 +1,5 @@
-import { Heading } from "@components/index";
+import { Heading } from '@components/index'
 
 export default function AdminCourse() {
-  return <Heading>Administrar Curso</Heading>;
+  return <Heading>Administrar Curso</Heading>
 }

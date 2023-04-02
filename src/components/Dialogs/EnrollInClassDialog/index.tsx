@@ -1,22 +1,23 @@
-import { useState } from "react";
-import { useSetAtom } from "jotai";
-import { X } from "phosphor-react";
-import * as Dialog from "@radix-ui/react-dialog";
+import { useState } from 'react'
+import { useSetAtom } from 'jotai'
+import { X } from 'phosphor-react'
+import { AxiosError } from 'axios'
+import * as Dialog from '@radix-ui/react-dialog'
 
-import { api } from "@lib/axios";
-import { toastState } from "@atoms/toastAtom";
+import { api } from '@lib/axios'
+import { toastState } from '@atoms/toastAtom'
 
-import { Button } from "../../Button";
-import { Select } from "../../Select";
+import { Button } from '../../Button'
+import { Select } from '../../Select'
 
-import { theme } from "stitches.config";
-import { CloseButton, DialogContent, DialogOverlay } from "./styles";
+import { theme } from 'stitches.config'
+import { CloseButton, DialogContent, DialogOverlay } from './styles'
 
 interface EnrollInClassDialogProps {
-  userId: string;
-  courseId: string;
-  onEnroll: (value: boolean) => void;
-  options: { value: string; text: string }[];
+  userId: string
+  courseId: string
+  onEnroll: (value: boolean) => void
+  options: { value: string; text: string }[]
 }
 
 function EnrollInClassDialog({
@@ -25,45 +26,45 @@ function EnrollInClassDialog({
   userId,
   onEnroll,
 }: EnrollInClassDialogProps) {
-  const [selectedClass, setSelectedClass] = useState("");
+  const [selectedClass, setSelectedClass] = useState('')
 
-  const setToast = useSetAtom(toastState);
+  const setToast = useSetAtom(toastState)
 
   async function handleEnroll() {
     if (!selectedClass) {
-      return;
+      return
     }
 
-    onEnroll(true);
+    onEnroll(true)
 
     try {
-      await api.post("/courses/enrollments", {
+      await api.post('/courses/enrollments', {
         courseId,
         userId,
         chosenClass: selectedClass,
-      });
+      })
 
       const className = options
         .filter((item) => item.value === selectedClass)
-        .map((item) => item.text);
+        .map((item) => item.text)
 
       setToast({
-        title: "Uhuu!",
+        title: 'Uhuu!',
         description: `A sua inscrição foi realizada em ${className[0]}!`,
-        type: "success",
+        type: 'success',
         isOpen: true,
-      });
+      })
     } catch (error: any) {
-      const { response } = error as AxiosError<{ message: string }>;
+      const { response } = error as AxiosError<{ message: string }>
 
       setToast({
-        title: "Ops, temos um problema",
-        description: response?.data.message ?? "",
-        type: "error",
+        title: 'Ops, temos um problema',
+        description: response?.data.message ?? '',
+        type: 'error',
         isOpen: true,
-      });
+      })
     } finally {
-      onEnroll(false);
+      onEnroll(false)
     }
   }
 
@@ -97,9 +98,9 @@ function EnrollInClassDialog({
         </DialogContent>
       </Dialog.Portal>
     </Dialog.Root>
-  );
+  )
 }
 
-EnrollInClassDialog.displayName = "EnrollInClassDialog";
+EnrollInClassDialog.displayName = 'EnrollInClassDialog'
 
-export { EnrollInClassDialog };
+export { EnrollInClassDialog }

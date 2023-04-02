@@ -4,8 +4,8 @@ import {
   IdentificationBadge,
   IdentificationCard,
   Phone,
-} from "phosphor-react";
-import { NextSeo } from "next-seo";
+} from 'phosphor-react'
+import { NextSeo } from 'next-seo'
 
 import {
   Text,
@@ -14,10 +14,9 @@ import {
   Heading,
   Checkbox,
   TextInput,
-} from "@components/index";
+} from '@components/index'
 
-
-import { theme } from "stitches.config";
+import { theme } from 'stitches.config'
 import {
   Container,
   PageHeader,
@@ -25,7 +24,7 @@ import {
   Content,
   UserInfoContainer,
   UserInfoSection,
-} from "./styles";
+} from './styles'
 
 export default function Perfil() {
   return (
@@ -104,5 +103,5 @@ export default function Perfil() {
         <Button size="min">Salvar alterações</Button>
       </Container>
     </>
-  );
+  )
 }
