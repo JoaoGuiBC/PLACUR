@@ -98,8 +98,9 @@ model Course {
   content         String
   image           String?
 
-  end_date   DateTime?
-  created_at DateTime  @default(now())
+  initial_date DateTime?
+  end_date     DateTime?
+  created_at   DateTime  @default(now())
 
   category_id String?
   category    CourseCategory? @relation(fields: [category_id], references: [id])
@@ -172,7 +173,7 @@ model MeetingClassEnrollment {
 
   class_id String?
   class    Class?  @relation(fields: [class_id], references: [id])
-  
+
   @@index([user_id, meeting_id, class_id])
   @@map("meeting_class_enrollments")
 }

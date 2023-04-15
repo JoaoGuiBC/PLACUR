@@ -75,7 +75,7 @@ function Header(props: HeaderProps) {
 
               <Separator />
               <DropdownMenuItem>
-                <Link href="/perfil/meus-cursos">
+                <Link href={`/perfil/${session.user.id}/meus-cursos`}>
                   <BookBookmark
                     size={24}
                     color={theme.colors.gray900.value}

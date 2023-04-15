@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import dayjs from 'dayjs'
 import { getServerSession } from 'next-auth'
 import { NextApiRequest, NextApiResponse } from 'next'
 
@@ -92,12 +93,27 @@ export default async function handler(
     })
   )
 
+  const dates =
+    meetings.length > 0
+      ? meetings
+          .sort((a, b) => {
+            return dayjs(a.date).unix() - dayjs(b.date).unix()
+          })
+          .map((item) => item.date)
+      : classes
+          .sort((a, b) => {
+            return dayjs(a.date).unix() - dayjs(b.date).unix()
+          })
+          .map((item) => item.date)
+
   const newCourse = await prisma.course.create({
     data: {
       title,
       content,
       objective,
       observations,
+      end_date: dates.at(-1),
+      initial_date: dates.at(0),
       target_audience: targetAudience,
       category: { connect: { id: category } },
       axes_of_knowledge: axesOfKnowledge,

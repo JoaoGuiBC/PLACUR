@@ -33,3 +33,12 @@ export const InputContainer = styled('div', {
 
   width: '100%',
 })
+
+export const ButtonContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.5rem',
+
+  marginTop: '2rem',
+  width: '100%',
+})

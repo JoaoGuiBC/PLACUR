@@ -12,13 +12,7 @@ interface CourseCardProps extends ComponentProps<typeof Container> {
   firstDate: string | null
   lastDate: string | null
   finished?: boolean
-  category:
-    | 'Workshop'
-    | 'Palestra'
-    | 'EAD'
-    | 'Capacitação'
-    | 'Seminário'
-    | 'Outros'
+  category: string
 }
 
 function CourseCard({
