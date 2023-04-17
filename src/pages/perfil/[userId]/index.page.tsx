@@ -6,17 +6,10 @@ import {
   Phone,
 } from 'phosphor-react'
 import { NextSeo } from 'next-seo'
+import { ChangeEvent } from 'react'
 
-import {
-  Text,
-  Avatar,
-  Button,
-  Heading,
-  Checkbox,
-  TextInput,
-} from '@components/index'
+import { api } from '@lib/axios'
 
-import { theme } from 'stitches.config'
 import {
   Container,
   PageHeader,
@@ -25,8 +18,34 @@ import {
   UserInfoContainer,
   UserInfoSection,
 } from './styles'
+import {
+  Text,
+  Avatar,
+  Button,
+  Heading,
+  Checkbox,
+  TextInput,
+} from '@components/index'
+import { theme } from 'stitches.config'
 
 export default function Perfil() {
+  async function handleUpdateUserImage(event: ChangeEvent<HTMLInputElement>) {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0]
+
+      const reader = new FileReader()
+
+      reader.readAsDataURL(file)
+
+      reader.onload = async () => {
+        await api.put('/users/update-profile/image', {
+          image: reader.result,
+          userId: 'user.id',
+        })
+      }
+    }
+  }
+
   return (
     <>
       <NextSeo
@@ -40,6 +59,7 @@ export default function Perfil() {
             type="file"
             accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"
             id="userImage"
+            onChange={handleUpdateUserImage}
           />
           <Label htmlFor="userImage">
             <Avatar src="https://github.com/JoaoGuiBC.png" />

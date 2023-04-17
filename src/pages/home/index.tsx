@@ -29,7 +29,6 @@ export default function Home() {
           title="Formação Continuada Multiprofissional da equipe de visitadores dos Programas Bem-Estar da Família e Criança Feliz MODULO XVII"
           firstDate="16/11/2022"
           lastDate="16/11/2022"
-          availability={12}
           category="Workshop"
         />
         <CourseCard
@@ -37,7 +36,6 @@ export default function Home() {
           title="Assistência Farmacêutica no Município de Balneário Camboriú - II"
           firstDate="26/08/2022"
           lastDate="25/11/2022"
-          availability={1}
           category="Workshop"
         />
         <CourseCard
@@ -45,7 +43,6 @@ export default function Home() {
           title="Primeiras intervenções nas urgências e emergências no ambiente escolar - SEDUC"
           firstDate="26/08/2022"
           lastDate="23/11/2022"
-          availability={91}
           category="Capacitação"
         />
         <CourseCard
@@ -65,7 +62,6 @@ export default function Home() {
           title="Primeiras intervenções nas urgências e emergências no ambiente laboral - Inclusão Social"
           firstDate="24/10/2022"
           lastDate="24/10/2022"
-          availability={0}
           finished
           category="Capacitação"
         />
@@ -74,7 +70,6 @@ export default function Home() {
           title="Anestesiologia"
           firstDate="29/09/22"
           lastDate="29/09/22"
-          availability={0}
           finished
           category="Palestra"
         />
@@ -83,7 +78,6 @@ export default function Home() {
           title="Formação Continuada Multiprofissional da equipe de visitadores dos Programas Bem-Estar da Família e Criança Feliz MODULO XVI"
           firstDate="27/10/2022"
           lastDate="27/10/2022"
-          availability={0}
           finished
           category="Workshop"
         />

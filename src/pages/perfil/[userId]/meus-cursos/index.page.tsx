@@ -16,10 +16,10 @@ import { Heading, CourseCard } from '@components/index'
 interface Course {
   id: string
   title: string
-  image: string
   category: string
   end_date: string
   initial_date: string
+  image: string | null
 }
 
 interface MyCoursesProps {
@@ -61,8 +61,8 @@ export default function MyCourses({
             {ongoingCourses.map((course) => (
               <CourseCard
                 key={course.id}
-                image={course.image}
                 title={course.title}
+                image={course.image || undefined}
                 category={course.category}
                 lastDate={course.end_date}
                 firstDate={course.initial_date}
@@ -75,12 +75,12 @@ export default function MyCourses({
               CURSOS FINALIZADOS
             </Heading>
 
-            {ongoingCourses.map((course) => (
+            {endedCourses.map((course) => (
               <CourseCard
                 finished
                 key={course.id}
-                image={course.image}
                 title={course.title}
+                image={course.image || undefined}
                 category={course.category}
                 lastDate={course.end_date}
                 firstDate={course.initial_date}
@@ -137,7 +137,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     .map((course) => ({
       id: course.id,
       title: course.title,
-      image: course.image!,
+      image: course.image,
       category: course.category!.title,
       end_date: dayjs(course.end_date!).format('DD/MM/YYYY'),
       initial_date: dayjs(course.initial_date).format('DD/MM/YYYY'),
@@ -147,7 +147,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     .map((course) => ({
       id: course.id,
       title: course.title,
-      image: course.image!,
+      image: course.image,
       category: course.category!.title,
       end_date: dayjs(course.end_date!).format('DD/MM/YYYY'),
       initial_date: dayjs(course.initial_date).format('DD/MM/YYYY'),
