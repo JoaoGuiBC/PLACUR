@@ -10,8 +10,8 @@ import { FormContainer, HeaderContainer } from '../styles'
 
 const disabilityFormSchema = z.object({
   visualDisability: z.boolean(),
-  physicalDisability: z.boolean(),
   hearingDisability: z.boolean(),
+  physicalDisability: z.boolean(),
   intellectualDisability: z.boolean(),
   psychosocialDisability: z.boolean(),
 })

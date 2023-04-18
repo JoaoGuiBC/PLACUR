@@ -45,5 +45,5 @@ export default async function handler(
     data: { image: uploadedImage.url },
   })
 
-  return res.status(204).end()
+  return res.status(204).json({ userImage: uploadedImage.url })
 }

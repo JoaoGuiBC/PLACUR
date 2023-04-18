@@ -37,11 +37,11 @@ function Header(props: HeaderProps) {
     <Container {...props}>
       <Link href="/">
         <Image
-          src="/logo_egepe.png"
-          alt="Logo EGEPE"
+          src="/logo_placur.png"
+          alt="Logo PLACUR"
           quality={100}
-          width={156}
-          height={88}
+          width={294}
+          height={90}
           priority
         />
       </Link>

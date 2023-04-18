@@ -14,18 +14,20 @@ import { authOptions } from '@api/auth/[...nextauth].api'
 import { axesOfKnowledge, courseCategories } from '@utils/selectValues'
 import { listAllCoursesQuery } from '@utils/queries/list-all-courses-query'
 
-import { Select } from '@components/Select'
-import { Button } from '@components/Button'
-import { Searchbar } from '@components/Searchbar'
-import { CourseCard } from '@components/CourseCard'
-import { Pagination } from '@components/Pagination'
-
+import {
+  Select,
+  Button,
+  Searchbar,
+  CourseCard,
+  Pagination,
+  Categories,
+} from '@components/index'
 import { ActionsContainer, CoursesContainer } from './styles'
 
 interface Course {
   id: string
   title: string
-  category: string
+  category: Categories
   isFinished: boolean
   firstDate: string | null
   lastDate: string | null
@@ -43,9 +45,9 @@ export default function AppCourses({
   coursesPerPage,
 }: AppCoursesProps) {
   const [title, setTitle] = useState('')
-  const [category, setCategory] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [axisOfKnowledge, setAxisOfKnowledge] = useState('')
+  const [category, setCategory] = useState<Categories>('Outros')
 
   const setToast = useSetAtom(toastState)
 
@@ -113,7 +115,7 @@ export default function AppCourses({
         <Select
           content={courseCategories}
           emptyValue="Filtrar por categoria"
-          onValueChange={(value) => setCategory(value)}
+          onValueChange={(value: Categories) => setCategory(value)}
         />
 
         <Link href="/admin/inserir-novo-curso">
@@ -196,7 +198,7 @@ export const getServerSideProps: GetServerSideProps<AppCoursesProps> = async ({
     return {
       id: course.id,
       title: course.title,
-      category: String(course.category?.title),
+      category: String(course.category?.title) as Categories,
       isFinished,
       firstDate: dates.firstDate
         ? dayjs(dates.firstDate).format('DD/MM/YYYY')

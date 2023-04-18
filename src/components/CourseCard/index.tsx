@@ -6,13 +6,21 @@ import { Text } from '../Text'
 
 import { Container, Content, InfoBar } from './styles'
 
+export type Categories =
+  | 'Workshop'
+  | 'Palestra'
+  | 'EAD'
+  | 'Capacitação'
+  | 'Seminário'
+  | 'Outros'
+
 interface CourseCardProps extends ComponentProps<typeof Container> {
   image?: string
   title: string
   firstDate: string | null
   lastDate: string | null
   finished?: boolean
-  category: string
+  category: Categories
 }
 
 function CourseCard({

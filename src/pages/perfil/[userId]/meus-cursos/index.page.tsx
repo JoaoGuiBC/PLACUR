@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import type { GetStaticProps } from 'next'
 
@@ -11,13 +12,13 @@ import {
   CoursesContainer,
   CoursesSection,
 } from './styles'
-import { Heading, CourseCard } from '@components/index'
+import { Heading, CourseCard, Categories } from '@components/index'
 
 interface Course {
   id: string
   title: string
-  category: string
   end_date: string
+  category: Categories
   initial_date: string
   image: string | null
 }
@@ -59,14 +60,15 @@ export default function MyCourses({
             </Heading>
 
             {ongoingCourses.map((course) => (
-              <CourseCard
-                key={course.id}
-                title={course.title}
-                image={course.image || undefined}
-                category={course.category}
-                lastDate={course.end_date}
-                firstDate={course.initial_date}
-              />
+              <Link key={course.id} href={`/curso/${course.id}`}>
+                <CourseCard
+                  title={course.title}
+                  image={course.image || undefined}
+                  category={course.category}
+                  lastDate={course.end_date}
+                  firstDate={course.initial_date}
+                />
+              </Link>
             ))}
           </CoursesSection>
 
@@ -76,15 +78,16 @@ export default function MyCourses({
             </Heading>
 
             {endedCourses.map((course) => (
-              <CourseCard
-                finished
-                key={course.id}
-                title={course.title}
-                image={course.image || undefined}
-                category={course.category}
-                lastDate={course.end_date}
-                firstDate={course.initial_date}
-              />
+              <Link key={course.id} href={`/curso/${course.id}`}>
+                <CourseCard
+                  finished
+                  title={course.title}
+                  image={course.image || undefined}
+                  category={course.category}
+                  lastDate={course.end_date}
+                  firstDate={course.initial_date}
+                />
+              </Link>
             ))}
           </CoursesSection>
         </CoursesContainer>
@@ -100,7 +103,9 @@ export async function getStaticPaths() {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<MyCoursesProps> = async ({
+  params,
+}) => {
   if (!params) {
     return {
       notFound: true,
@@ -138,7 +143,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       id: course.id,
       title: course.title,
       image: course.image,
-      category: course.category!.title,
+      category: course.category!.title as Categories,
       end_date: dayjs(course.end_date!).format('DD/MM/YYYY'),
       initial_date: dayjs(course.initial_date).format('DD/MM/YYYY'),
     }))
@@ -148,7 +153,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       id: course.id,
       title: course.title,
       image: course.image,
-      category: course.category!.title,
+      category: course.category!.title as Categories,
       end_date: dayjs(course.end_date!).format('DD/MM/YYYY'),
       initial_date: dayjs(course.initial_date).format('DD/MM/YYYY'),
     }))

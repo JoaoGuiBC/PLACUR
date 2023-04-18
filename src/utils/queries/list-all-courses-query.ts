@@ -1,9 +1,10 @@
 import { api } from '@lib/axios'
+import { Categories } from '@components/CourseCard'
 
 interface ListCoursesData {
   title: string
   axisOfKnowledge: string
-  category: string
+  category: Categories
   skip: number
   take: number
 }
@@ -11,7 +12,7 @@ interface ListCoursesData {
 interface Course {
   id: string
   title: string
-  category: string
+  category: Categories
   isFinished: boolean
   firstDate: string | null
   lastDate: string | null
