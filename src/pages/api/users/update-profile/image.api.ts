@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { v2 as cloudinary } from 'cloudinary'
 import { NextApiRequest, NextApiResponse } from 'next'
 
+import '@lib/cloudinary'
 import { prisma } from '@lib/prisma'
 import { authOptions } from '@api/auth/[...nextauth].api'
 
@@ -45,5 +46,5 @@ export default async function handler(
     data: { image: uploadedImage.url },
   })
 
-  return res.status(204).json({ userImage: uploadedImage.url })
+  return res.json({ userImage: uploadedImage.url })
 }

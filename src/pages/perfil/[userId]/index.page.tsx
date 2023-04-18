@@ -142,8 +142,23 @@ export default function Perfil({ user, isAdminSession }: PerfilProps) {
 
   async function handleUpdateUserInfo(data: UserFormData) {
     try {
-      await api.post('/users/update', { id: user.id, ...data })
+      await api.put('/users/update-profile', { id: user.id, ...data })
       setUserName(data.name)
+    } catch (error: any) {
+      const { response } = error as AxiosError<{ message: string }>
+
+      setToast({
+        title: 'Ops, temos um problema',
+        description: response?.data.message ?? '',
+        type: 'error',
+        isOpen: true,
+      })
+    }
+  }
+
+  async function handleDeleteUser() {
+    try {
+      await api.delete('/users/delete', { params: { id: user.id } })
     } catch (error: any) {
       const { response } = error as AxiosError<{ message: string }>
 
@@ -304,6 +319,7 @@ export default function Perfil({ user, isAdminSession }: PerfilProps) {
               <Button
                 variant="secondary"
                 size="min"
+                onClick={handleDeleteUser}
                 css={{ $$baseColor: theme.colors.red500.value }}
               >
                 Deletar conta
