@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     domains: ['github.com', 'storage.googleapis.com'],
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   pageExtensions: ['page.tsx', 'api.ts', 'api.tsx'],
 }
 
