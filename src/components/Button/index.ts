@@ -4,12 +4,13 @@ import { styled } from 'stitches.config'
 
 const Button = styled('button', {
   all: 'unset',
+  boxSizing: 'border-box',
   $$baseColor: '$colors$blue600',
 
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  boxSizing: 'border-box',
+  textAlign: 'center',
 
   height: '3rem',
   overflow: 'clip',

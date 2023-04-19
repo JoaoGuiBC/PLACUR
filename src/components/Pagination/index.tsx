@@ -7,7 +7,7 @@ interface PaginationProps {
   totalCountOfRegisters: number
   registerPerPage?: number
   currentPage?: number
-  onPageChange?: (page: number) => void
+  onPageChange: (page: number) => void
 }
 
 const siblingsCount = 2
@@ -43,7 +43,9 @@ function Pagination({
     <Container>
       {currentPage > 1 + siblingsCount && (
         <>
-          <PaginationItem>1</PaginationItem>
+          <PaginationItem type="button" onClick={() => onPageChange(1)}>
+            1
+          </PaginationItem>
           {currentPage > 1 + siblingsCount && (
             <span>
               <DotsThree
@@ -58,14 +60,26 @@ function Pagination({
 
       {previousPages.length > 0 &&
         previousPages.map((page) => (
-          <PaginationItem key={page}>{page}</PaginationItem>
+          <PaginationItem
+            key={page}
+            type="button"
+            onClick={() => onPageChange(page)}
+          >
+            {page}
+          </PaginationItem>
         ))}
 
       <PaginationItem isCurrentPage={true}>{currentPage}</PaginationItem>
 
       {nextPages.length > 0 &&
         nextPages.map((page) => (
-          <PaginationItem key={page}>{page}</PaginationItem>
+          <PaginationItem
+            key={page}
+            type="button"
+            onClick={() => onPageChange(page)}
+          >
+            {page}
+          </PaginationItem>
         ))}
 
       {currentPage + siblingsCount < lastPage && (
@@ -79,7 +93,9 @@ function Pagination({
               />
             </span>
           )}
-          <PaginationItem>{lastPage}</PaginationItem>
+          <PaginationItem type="button" onClick={() => onPageChange(lastPage)}>
+            {lastPage}
+          </PaginationItem>
         </>
       )}
     </Container>

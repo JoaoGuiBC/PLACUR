@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import { prisma } from '@lib/prisma'
-import { authOptions } from '../../auth/[...nextauth].api'
+import { authOptions } from '@api/auth/[...nextauth].api'
 
 const updateAddressBodySchema = z.object({
   visualDisability: z.boolean(),

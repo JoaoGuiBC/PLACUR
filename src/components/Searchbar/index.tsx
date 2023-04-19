@@ -1,16 +1,18 @@
-import type { ComponentProps } from 'react'
 import { MagnifyingGlass } from 'phosphor-react'
+import type { ComponentProps, FormEvent } from 'react'
 
 import { theme } from 'stitches.config'
 import { Container, Input, Button } from './styles'
 
-interface SearchbarProps extends ComponentProps<typeof Input> {}
+interface SearchbarProps extends ComponentProps<typeof Input> {
+  onSearch: (event: FormEvent<HTMLFormElement>) => Promise<void>
+}
 
-function Searchbar(props: SearchbarProps) {
+function Searchbar({ onSearch, ...props }: SearchbarProps) {
   return (
-    <Container>
+    <Container onSubmit={(event) => onSearch(event)}>
       <Input {...props} />
-      <Button>
+      <Button type="submit">
         <MagnifyingGlass
           size={16}
           color={theme.colors.gray900.value}

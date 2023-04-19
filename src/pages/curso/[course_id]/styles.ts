@@ -7,6 +7,28 @@ export const Container = styled('div', {
   justifyContent: 'space-between',
 })
 
+export const EncounterContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.5rem',
+
+  '& > span': {
+    display: 'flex',
+    alignItems: 'center',
+
+    paddingLeft: '0.5rem',
+    cursor: 'pointer',
+
+    fontSize: '0.75rem',
+    textDecorationLine: 'underline',
+  },
+
+  '& > p': {
+    fontSize: '0.75rem',
+    color: '$blue600',
+  },
+})
+
 export const InfoContainer = styled('main', {
   display: 'flex',
   flexDirection: 'column',

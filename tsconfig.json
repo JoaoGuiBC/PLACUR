@@ -16,11 +16,13 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["./src/components/*"],
       "@lib/*": ["./src/lib/*"],
+      "@atoms/*": ["./src/atoms/*"],
       "@utils/*": ["./src/utils/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@hooks/*": ["./src/hooks/*"],
       "@api/*": ["./src/pages/api/*"],
-      "@atoms/*": ["./src/atoms/*"]
+      "@components/*": ["./src/components/*"]
     }
   },
   "include": [

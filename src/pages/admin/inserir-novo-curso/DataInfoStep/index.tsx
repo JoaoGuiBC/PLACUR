@@ -1,30 +1,30 @@
-import { z } from "zod";
-import { useAtom } from "jotai";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from 'zod'
+import { useAtom } from 'jotai'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Button, Heading, Text, TextArea } from "@components/index";
+import { newCourse } from '@atoms/newCourseAtom'
+import { Button, Heading, Text, TextArea } from '@components/index'
 
-import { newCourse } from "@atoms/newCourseAtom";
-import { FormContainer, HeaderContainer } from "../styles";
+import { FormContainer, HeaderContainer } from '../styles'
 
 const DataInfoFormSchema = z.object({
   targetAudience: z
     .string()
-    .min(5, { message: "Por favor, informe o público alvo" }),
-  objective: z.string().min(5, { message: "Por favor, informe o objetivo" }),
+    .min(5, { message: 'Por favor, informe o público alvo' }),
+  objective: z.string().min(5, { message: 'Por favor, informe o objetivo' }),
   observations: z
     .string()
-    .min(5, { message: "Por favor, informe as observações" }),
+    .min(5, { message: 'Por favor, informe as observações' }),
   content: z
     .string()
-    .min(5, { message: "Por favor, informe o conteúdo programático" }),
-});
+    .min(5, { message: 'Por favor, informe o conteúdo programático' }),
+})
 
-type DataInfoFormData = z.infer<typeof DataInfoFormSchema>;
+type DataInfoFormData = z.infer<typeof DataInfoFormSchema>
 
 interface DataInfoStepProps {
-  onCompleteStep: (step: number) => void;
+  onCompleteStep: (step: number) => void
 }
 
 export function DataInfoForm({ onCompleteStep }: DataInfoStepProps) {
@@ -34,14 +34,14 @@ export function DataInfoForm({ onCompleteStep }: DataInfoStepProps) {
     formState: { errors, isSubmitting },
   } = useForm<DataInfoFormData>({
     resolver: zodResolver(DataInfoFormSchema),
-  });
+  })
 
-  const [newCourseData, setNewCourse] = useAtom(newCourse);
+  const [newCourseData, setNewCourse] = useAtom(newCourse)
 
   async function DataInfo(data: DataInfoFormData) {
-    setNewCourse({ ...newCourseData, ...data });
+    setNewCourse({ ...newCourseData, ...data })
 
-    onCompleteStep(3);
+    onCompleteStep(3)
   }
 
   return (
@@ -51,9 +51,9 @@ export function DataInfoForm({ onCompleteStep }: DataInfoStepProps) {
         placeholder={
           errors.targetAudience
             ? `Público Alvo - ${errors.targetAudience.message}`
-            : "Público Alvo"
+            : 'Público Alvo'
         }
-        {...register("targetAudience")}
+        {...register('targetAudience')}
       />
 
       <TextArea
@@ -61,9 +61,9 @@ export function DataInfoForm({ onCompleteStep }: DataInfoStepProps) {
         placeholder={
           errors.objective
             ? `Objetivo - ${errors.objective.message}`
-            : "Objetivo"
+            : 'Objetivo'
         }
-        {...register("objective")}
+        {...register('objective')}
       />
 
       <TextArea
@@ -71,9 +71,9 @@ export function DataInfoForm({ onCompleteStep }: DataInfoStepProps) {
         placeholder={
           errors.observations
             ? `Observação - ${errors.observations.message}`
-            : "Observação"
+            : 'Observação'
         }
-        {...register("observations")}
+        {...register('observations')}
       />
 
       <TextArea
@@ -81,14 +81,14 @@ export function DataInfoForm({ onCompleteStep }: DataInfoStepProps) {
         placeholder={
           errors.content
             ? `Conteúdo programático - ${errors.content.message}`
-            : "Conteúdo programático"
+            : 'Conteúdo programático'
         }
-        {...register("content")}
+        {...register('content')}
       />
 
       <Button disabled={isSubmitting}>Próximo passo</Button>
     </FormContainer>
-  );
+  )
 }
 
 export function DataInfoHeader() {
@@ -101,5 +101,5 @@ export function DataInfoHeader() {
         mostradas para os alunos na página dedicada do curso
       </Text>
     </HeaderContainer>
-  );
+  )
 }

@@ -4,31 +4,31 @@ import {
   Clock,
   ClockAfternoon,
   CalendarX,
-} from "phosphor-react";
-import { Fragment } from "react";
-import { UseFieldArrayReturn } from "react-hook-form";
+} from 'phosphor-react'
+import { Fragment } from 'react'
+import { UseFieldArrayReturn } from 'react-hook-form'
 
-import { Button, Separator, TextInput } from "@components/index";
+import { Button, Separator, TextInput } from '@components/index'
 
-import { Container, MeetingInfoSection, InputsContainer } from "./styles";
+import { Container, MeetingInfoSection, InputsContainer } from './styles'
 
 interface EncounterFormProps {
-  register: any;
-  errors: any;
+  register: any
+  errors: any
   meetingsFields: UseFieldArrayReturn<
     {
-      category: string;
-      type: string;
+      category: string
+      type: string
       meetings: {
-        date: Date;
-        startTimeInMinutes: number;
-        endTimeInMinutes: number;
-      }[];
-      classes: any;
+        date: Date
+        startTimeInMinutes: number
+        endTimeInMinutes: number
+      }[]
+      classes: any
     },
-    "meetings",
-    "id"
-  >;
+    'meetings',
+    'id'
+  >
 }
 
 export function EncounterForm({
@@ -36,14 +36,14 @@ export function EncounterForm({
   errors,
   meetingsFields,
 }: EncounterFormProps) {
-  const { fields, append, remove } = meetingsFields;
+  const { fields, append, remove } = meetingsFields
 
   return (
     <>
       {fields.map((field, index) => {
         return (
           <Fragment key={field.id}>
-            <Separator css={{ $$baseColor: "$colors$gray100" }} />
+            <Separator css={{ $$baseColor: '$colors$gray100' }} />
 
             <MeetingInfoSection>
               <InputsContainer>
@@ -54,7 +54,7 @@ export function EncounterForm({
                   placeholder={
                     errors?.meetings?.[index]?.date
                       ? `Data - ${errors?.meetings?.[index]?.date?.message}`
-                      : "Data"
+                      : 'Data'
                   }
                   {...register(`meetings.${index}.date`)}
                 />
@@ -67,7 +67,7 @@ export function EncounterForm({
                     placeholder={
                       errors?.meetings?.[index]?.startTimeInMinutes
                         ? `Horário do início - ${errors?.meetings?.[index]?.startTimeInMinutes.message}`
-                        : "Horário do início"
+                        : 'Horário do início'
                     }
                     {...register(`meetings.${index}.startTime`)}
                   />
@@ -79,7 +79,7 @@ export function EncounterForm({
                     placeholder={
                       errors?.meetings?.[index]?.endTimeInMinutes
                         ? `Horário do fim - ${errors?.meetings?.[index]?.endTimeInMinutes.message}`
-                        : "Horário do fim"
+                        : 'Horário do fim'
                     }
                     {...register(`meetings.${index}.endTime`)}
                   />
@@ -89,7 +89,7 @@ export function EncounterForm({
               <Button
                 variant="withIcon"
                 size="min"
-                css={{ $$baseColor: "$colors$red500" }}
+                css={{ $$baseColor: '$colors$red500' }}
                 type="button"
                 onClick={() => remove(0)}
               >
@@ -97,7 +97,7 @@ export function EncounterForm({
               </Button>
             </MeetingInfoSection>
           </Fragment>
-        );
+        )
       })}
 
       {errors?.meetings?.message && <span>{errors?.meetings?.message}</span>}
@@ -105,7 +105,7 @@ export function EncounterForm({
       <Button
         variant="withIcon"
         size="min"
-        css={{ $$baseColor: "$colors$green500" }}
+        css={{ $$baseColor: '$colors$green500' }}
         type="button"
         onClick={() =>
           append({
@@ -118,5 +118,5 @@ export function EncounterForm({
         <CalendarPlus size={32} />
       </Button>
     </>
-  );
+  )
 }

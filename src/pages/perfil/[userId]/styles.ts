@@ -32,7 +32,7 @@ export const Label = styled('label', {
   cursor: 'pointer',
 })
 
-export const Content = styled('div', {
+export const Content = styled('form', {
   display: 'grid',
   gridTemplateRows: '1fr 1fr',
   gridGap: '1rem',

@@ -9,7 +9,7 @@ const updateProfileBodySchema = z.object({
   name: z
     .string()
     .min(4, { message: 'Informe o seu nome completo.' })
-    .transform((value) => value.toLowerCase()),
+    .transform((value) => value.toLowerCase().trim()),
   document: z.string().min(11, { message: 'Informe um CPF válido' }),
   phone: z.string().min(10, { message: 'Informe um telefone válido' }),
 })

@@ -1,9 +1,11 @@
 import { z } from 'zod'
+import { useSetAtom } from 'jotai'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { getServerSession } from 'next-auth'
+import { toastState } from '@atoms/toastAtom'
 import type { GetServerSideProps } from 'next'
 import { EnvelopeSimple } from 'phosphor-react'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -28,11 +30,22 @@ export default function Login() {
     resolver: zodResolver(informEmailFormSchema),
   })
 
+  const setToast = useSetAtom(toastState)
+
   const router = useRouter()
   const { message } = router.query
 
   async function handleLogin({ email }: InformEmailFormData) {
-    await signIn('email', { email })
+    try {
+      await signIn('email', { email })
+    } catch (error: any) {
+      setToast({
+        title: 'Ops, temos um problema',
+        description: error.message ?? '',
+        type: 'error',
+        isOpen: true,
+      })
+    }
   }
 
   return (

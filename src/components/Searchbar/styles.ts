@@ -1,6 +1,6 @@
 import { styled } from 'stitches.config'
 
-export const Container = styled('div', {
+export const Container = styled('form', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

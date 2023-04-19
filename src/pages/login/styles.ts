@@ -16,9 +16,9 @@ export const Form = styled('form', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
+  gap: '1rem',
 
   width: '20.5rem',
-
   marginTop: '2rem',
 
   '& a': {
